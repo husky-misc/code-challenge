@@ -14,6 +14,8 @@ Create an API that receives, store and compute 7-bit ASCII text.
 
 - It may include deployment instructions depending on wich technology you decide to use. 
 
+- Follow Restful principles when design your API.
+
 ### Endpoints and expected behavior
 
 #1: Create an endpoint `/store` that receives and store 7-bit ASCII text. Each request, should include a data line that may consist of an IP address, followed by a colon, followed by a comma-separated list of numbers. Feel free to design the submmited JSON as your back-end object should look like.
@@ -46,7 +48,7 @@ curl -i -X POST "http://localhost:3000/api/v1/store" -H "Authorization: jVbwTGNy
 }'
 ``` 
 
-At this point, if I request `GET /compute`, the JSON return should have the data:
+At this point, if I request `/compute`, the JSON return should have the data:
 ```
 data: {
   "ip_code": [
@@ -67,7 +69,8 @@ Important:
 
 It may count extra points on your evaluation. It's not obligated althougth it's really appreciatted by our team.
 
-- Follow Restful principles when design your API.
+- Store and create an endpoint to return all previous results from `/compute`.
+- Enable pagination (5 per request) when return previous results from `/compute`.
 - Create an `Authorization` Header or API keys to ensure that only authorized users request data on your API.
 - Deploy it at any free cloud service so we don't need to deploy ourselves in order to test your code.
 - Create an admin page where the user can see the computed ips trougth `/compute` including when it was computed and so on.
