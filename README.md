@@ -1,4 +1,4 @@
-#Husky dev Ruby challenge!
+# Husky dev Ruby challenge!
 
 ### Description and general information
 
