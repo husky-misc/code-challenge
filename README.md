@@ -10,7 +10,9 @@ Create an API that receives, store and compute 7-bit ASCII text.
 
 - You should return a 415 Unsupported Media Type response code if the consumer attempt to use a different URL suffix or leave out the Content-Type header.
 
-- Your program should handle errors, including malformed input, appropriately and should be of a sufficient quality that it can run on a production Linux system. It may also include deployment instructions depending on wich technology you decide to use. 
+- Your program should handle errors, including malformed input, appropriately and should be of a sufficient quality that it can run on a production Linux system. 
+
+- It may include deployment instructions depending on wich technology you decide to use. 
 
 ### Endpoints and expected behavior
 
