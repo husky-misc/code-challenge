@@ -1,8 +1,8 @@
-# ip-parser-api | Husky dev Ruby challenge!
+#Husky dev Ruby challenge!
 
 ### Description and general information
 
-Create an API that receives, store and compute 7-bit ASCII text.
+Create an API that receives, store and compute 7-bit ASCII text. This text will consist in a IP, followed by a column and a sequence of numbers. i.e `127.0.0.1:0,11,23,44,50`.
 
 ### Requirements
 
