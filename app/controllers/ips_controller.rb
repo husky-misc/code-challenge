@@ -1,7 +1,5 @@
 class IpsController < ApplicationController
-  # only accept json requests
-  before_action :check_format, only: [:create]
-  before_action :set_ip, only: [:create]
+  before_action :check_format, :check_params, :set_ip, only: [:create]
 
   # GET /compute
   def index
@@ -25,7 +23,7 @@ class IpsController < ApplicationController
       numbers = params[:numbers]
       numbers.each do |value|
         number = Number.new(value: value)
-        @ip.numbers << number unless @ip.numbers.find_by value: number
+        @ip.numbers << number unless @ip.numbers.find_by value: value
       end
       render json: @ip, status: :created
     else
@@ -39,13 +37,30 @@ class IpsController < ApplicationController
       @ip = Ip.find_by address: params[:address]
     end
 
-    # Only allow a trusted parameter "white list" through.
     def ip_params
       params.require(:ip).permit(:address)
     end
 
     def check_format
-      puts request.headers["Content-Type"]
       render nothing: true, status: 415 unless request.headers["Content-Type"] =~ /json/
     end
+
+    def check_params
+      if params[:address].blank? || params[:numbers].blank?
+        render nothing: true, status: :bad_request
+      elsif check_address(params[:address])
+        render nothing: true, status: :bad_request
+      end
+    end
+
+    def check_address(address)
+      address.split('.').each do |portion|
+        if portion.to_i < 0 || portion.to_i > 255 || portion.scan(/\D/).any?
+          return true
+        end
+      end
+
+      return false
+    end
+
 end
