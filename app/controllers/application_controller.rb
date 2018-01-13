@@ -3,6 +3,6 @@ class ApplicationController < ActionController::API
   before_action :check
 
   def check
-    render nothing: true, status: 415 if request.headers["Content-Type"] == nil
+    render nothing: true, status: 415 if request.headers["Content-Type"]  == nil && request.method != "GET"
   end
 end

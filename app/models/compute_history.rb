@@ -1,0 +1,2 @@
+class ComputeHistory < ApplicationRecord
+end

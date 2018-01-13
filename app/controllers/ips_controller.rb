@@ -11,7 +11,8 @@ class IpsController < ApplicationController
     end
 
     Ip.destroy_all
-
+    ComputeHistory.create(result: ips.to_json)
+    
     render json: ips
   end
 
