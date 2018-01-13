@@ -4,15 +4,11 @@ class IpsController < ApplicationController
   # GET /compute
   def index
     raw_ips = Ip.all
-    ips = []
-
-    raw_ips.each do |ip|
-      ips << { address: ip.address, numbers: ip.numbers_value }
-    end
+    ips = serialize(raw_ips)
 
     Ip.destroy_all
     ComputeHistory.create(result: ips.to_json)
-    
+
     render json: ips
   end
 
@@ -22,10 +18,12 @@ class IpsController < ApplicationController
 
     if @ip.save
       numbers = params[:numbers]
+      
       numbers.each do |value|
         number = Number.new(value: value)
         @ip.numbers << number unless @ip.numbers.find_by value: value
       end
+
       render json: @ip, status: :created
     else
       render json: @ip.errors, status: :unprocessable_entity
@@ -62,6 +60,16 @@ class IpsController < ApplicationController
       end
 
       return false
+    end
+
+    def serialize(raw_ips)
+      ips = []
+
+      raw_ips.each do |ip|
+        ips << { address: ip.address, numbers: ip.numbers_value }
+      end
+
+      ips
     end
 
 end
