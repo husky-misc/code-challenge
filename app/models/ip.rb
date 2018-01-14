@@ -3,5 +3,6 @@ class Ip
 
   field :address,  type: String
   field :values,   type: Array 
-  field :computed, type: Boolean, default: false
+  
+  validates_presence_of :address, :values
 end

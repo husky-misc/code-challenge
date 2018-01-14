@@ -6,8 +6,7 @@ describe Services::Compute, type: :services do
     let!(:ip2) { create(:ip, values: [1,5]) }
     let(:result) { described_class.new.call }
     
-    it { expect(result.length).to eq(1) }
-    it { expect(result.first.values).to eq([1,2,3,5]) }
-    it { expect(result.first.computed).to eq(true) }
+    it { expect(result.ips.length).to eq(1) }
+    it { expect(result.ips.first.values).to eq([1,2,3,5]) }
   end
 end
