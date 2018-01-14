@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'mongoid-rspec'
 require 'simplecov'
+require 'support/json_helper'
 SimpleCov.start
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -28,6 +29,8 @@ SimpleCov.start
 RSpec.configure do |config|
   config.include Mongoid::Matchers, type: :model
   config.include FactoryBot::Syntax::Methods
+  config.include Support::JsonHelper, :type => :controller
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end

@@ -18,7 +18,7 @@ module Services
         IPAddr.new(ip_number)
 
         # validate numbers
-        numbers
+        fail ::Exceptions::MalformedInputError if numbers.empty?
       rescue IPAddr::InvalidAddressError, ArgumentError
         fail ::Exceptions::MalformedInputError
       end

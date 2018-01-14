@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       controller :ip do
-        post 'ip/store' => :store
+        post :store
+        post :compute
+        get  :compute_histories
       end
     end
   end
