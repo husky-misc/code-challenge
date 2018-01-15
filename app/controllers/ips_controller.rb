@@ -3,13 +3,18 @@ class IpsController < ApplicationController
 
   # GET /compute
   def index
-    raw_ips = Ip.all
-    ips = serialize(raw_ips)
+    if Ip.count > 0
+      raw_ips = Ip.all
+      ips = serialize(raw_ips)
 
-    Ip.destroy_all
-    ComputeHistory.create(result: ips.to_json)
+      Ip.destroy_all
+      ComputeHistory.create(result: ips.to_json)
 
-    render json: ips
+      render json: ips
+    else
+      render nothing: true, status: :no_content
+    end
+
   end
 
   # POST /store
@@ -18,7 +23,7 @@ class IpsController < ApplicationController
 
     if @ip.save
       numbers = params[:numbers]
-      
+
       numbers.each do |value|
         number = Number.new(value: value)
         @ip.numbers << number unless @ip.numbers.find_by value: value

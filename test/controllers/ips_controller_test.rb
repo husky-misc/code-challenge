@@ -2,37 +2,46 @@ require 'test_helper'
 
 class IpsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @ip = ips(:one)
-  end
-
-  test "should get index" do
-    get ips_url, as: :json
-    assert_response :success
+    @ip = Ip.create(address: "127.0.0.1")
+    @ip.numbers = [Number.create(value: 9)]
   end
 
   test "should create ip" do
-    assert_difference('Ip.count') do
-      post ips_url, params: { ip: { address: @ip.address } }, as: :json
-    end
+    post "/store", params: { address: @ip.address, numbers: [1,2,3] }, as: :json
 
     assert_response 201
   end
 
-  test "should show ip" do
-    get ip_url(@ip), as: :json
-    assert_response :success
+  test "should not create ip with wrong ip address" do
+    post "/store", params: { address: "wrong.0.0.1", numbers: [1,2,3] }, as: :json
+
+    assert_response 400
   end
 
-  test "should update ip" do
-    patch ip_url(@ip), params: { ip: { address: @ip.address } }, as: :json
+  test "should not create ip with wrong params" do
+    post "/store", params: { address: @ip.address }, as: :json
+
+    assert_response 400
+  end
+
+  test "should not create ip with request not json" do
+    post "/store", params: { address: @ip.address }, as: :xml
+
+    assert_response 415
+  end
+
+  test "should compute and show ip address" do
+    get "/compute"
+
+    assert_equal([{"address"=>"127.0.0.1", "numbers"=>[9]}], response.parsed_body)
     assert_response 200
   end
 
-  test "should destroy ip" do
-    assert_difference('Ip.count', -1) do
-      delete ip_url(@ip), as: :json
-    end
+  test "should compute and return no content" do
+    Ip.destroy_all
+    get "/compute"
 
     assert_response 204
   end
+
 end
