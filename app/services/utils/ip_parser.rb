@@ -17,6 +17,9 @@ module Services
         # validate ip
         IPAddr.new(ip_number)
 
+        # validate token size
+        fail ::Exceptions::MalformedInputError if input_tokens.length != 2
+
         # validate numbers
         fail ::Exceptions::MalformedInputError if numbers.empty?
       rescue IPAddr::InvalidAddressError, ArgumentError
@@ -28,11 +31,11 @@ module Services
       end
 
       def numbers
-        @numbers ||= input_tokens.slice(1, input_tokens.length).map { |n| Integer(n) }
+        @numbers ||= input_tokens.last.split(',').map { |n| Integer(n) }
       end
 
       def input_tokens
-        @input_tokens ||= @input.split(/[:,]/)
+        @input_tokens ||= @input.split(':')
       end
     end
   end
