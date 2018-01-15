@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 describe Api::V1::IpController, type: :controller do
+
+  let!(:api_key) { create(:api_key) }
+
   before {
     request.content_type = 'application/json; charset=utf-8'
+    request.headers['Authorization'] = "Bearer #{api_key.token}"
   }
 
   describe 'POST /api/v1/store' do
@@ -17,8 +21,8 @@ describe Api::V1::IpController, type: :controller do
       it 'should be stored' do
         post :store, params: ip, format: :json
         
-        expect(Ip.all.count).to eq(1)
         expect(response).to have_http_status(:ok)
+        expect(Ip.all.count).to eq(1)
       end
     end
     context 'when data is invalid' do
