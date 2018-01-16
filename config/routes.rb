@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       controller :ip do
-        post :store
-        post :compute
-        get  :compute_histories
+        post :store, :defaults => {:format => 'json'}
+        post :compute, :defaults => {:format => 'json'}
+        get  :compute_histories, :defaults => {:format => 'json'}
       end
     end
   end
-
 end
