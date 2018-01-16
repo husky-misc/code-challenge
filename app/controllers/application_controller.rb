@@ -6,8 +6,6 @@ class ApplicationController < ActionController::API
   def validate_request
     valid_content_type = request.headers['Content-Type'].present? && /(?=.*application\/json;.)(?=.*charset=utf-8)/.match?(request.headers['Content-Type'].downcase)
 
-    puts request.format
-    puts request.headers['CONTENT_TYPE']
     return render json: { error: 'Unsupported Media Type' }, status: 415 unless valid_content_type
     return render json: { error: 'Unsupported Media Type' }, status: 415 unless ['*/*', 'application/json'].include?(request.format)
     return render json: { error: 'Unauthorized' },           status: 401 unless authenticated?

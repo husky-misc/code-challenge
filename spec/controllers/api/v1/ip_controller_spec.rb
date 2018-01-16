@@ -5,7 +5,7 @@ describe Api::V1::IpController, type: :controller do
   let!(:api_key) { create(:api_key) }
 
   before {
-    request.content_type = 'application/json; charset=utf-8'
+    request.headers['Content-Type'] = 'application/json;charset=utf-8'
     request.headers['Authorization'] = "Bearer #{api_key.token}"
   }
 
@@ -58,7 +58,7 @@ describe Api::V1::IpController, type: :controller do
        }
 
       it 'should return computed data' do
-        post :compute
+        post :compute, format: :json
         expect(ComputeHistory.all.count).to eq(1)
         expect(Ip.all.count).to eq(0)
         expect(json).to eq(expected)
@@ -75,7 +75,7 @@ describe Api::V1::IpController, type: :controller do
       }
       
       it 'should return empty ip_code' do
-        post :compute
+        post :compute, format: :json
 
         expect(ComputeHistory.all.count).to eq(1)
         expect(json).to eq(expected)
@@ -100,7 +100,7 @@ describe Api::V1::IpController, type: :controller do
       }
 
       it 'should return all previous computed data' do
-        get :compute_histories
+        get :compute_histories, format: :json
         expect(json).to eq(expected)
       end
     end

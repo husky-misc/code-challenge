@@ -11,7 +11,7 @@ module Services
     end
 
     def compute_history
-      ::ComputeHistory.page(@page).per(@per)
+      ::ComputeHistory.order_by('computed_at' => 'desc').page(@page).per(@per)
     end
   end
 end
