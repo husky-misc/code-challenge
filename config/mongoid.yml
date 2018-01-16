@@ -155,3 +155,13 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      database: <%= ENV['MONGO_DB'] %>
+      hosts: 
+        - <%= ENV['MONGO_HOST'] %>
+      options:
+        user: <%= ENV['MONGO_USER'] %>
+        password: <%= ENV['MONGO_PASSWORD'] %>
