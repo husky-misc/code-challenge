@@ -1,5 +1,8 @@
 # Husky challenge!
 
+### Goal
+Implement a Russian Doll (or any better strategy) cache for a bank statement receipt
+
 ### Description and general information
 
 Imagine that you have a filter that returns three days, 15 days, or last 30 days data on your bank statement. 
@@ -7,10 +10,6 @@ Imagine that you have a filter that returns three days, 15 days, or last 30 days
 That information is pretty much unchanged from the database entries perspectives: what is paid is paid (debit), amounts credited were credited. There is no reason to query it every single time that you open your banking app. This imaginary banking app is querying all results from the DB every time.
 
 We'd like to have a straightforward way to implement a cache for any entry point of this API that follows similar behavior. This cache "module" should be easily extendable, isolated, and flexible if the business now requires evicts or reloading of cache data.
-
-### Goal
-Implement a Russian Doll (or any better strategy) cache for a bank statement receipt
-
 
 ### Expected result
 
