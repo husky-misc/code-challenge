@@ -23,7 +23,7 @@ We'd like to have a straightforward way to implement a cache for any entry point
 
 5 - Is there a recovery strategy? And if all cached data goes away, how do we query and cache everything back?
 
-6 - You'll explain to the team your approach and defend the pros and cons of your strategy. There is no silver bullet, and we expect that you are able to explain to us what are the stronger and the weaker points of the chosen strategy.
+6 - You'll explain to the team your approach and defend the pros and cons of your strategy. There is no silver bullet, and we expect that you will be able to explain to us what are the stronger and the weaker points of the chosen strategy.
 It should be a piece of code that you studied a little to figure out and are proud of enough to explain to other people.
 
 ### Resources
