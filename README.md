@@ -24,7 +24,7 @@ We'd like to have a straightforward way to implement a cache for any entry point
 5 - There is a recovery strategy? What if all cached data goes away how do we query and cache everything back?
 
 6 - You'll explain to the team your approach and defend the pros and cons of your strategy. There is no silver bullet, and we expect that you should be able to explain to us what is the strongest points and the weakest points of the chosen strategy.
-It should be a piece of code that you studied a little to figure out and are proud of enough to explain to other people.
+It should be a piece of code that you studied a little to figure out and are proud enough to explain to other people.
 
 ### Resources
 Russian Doll Cache strategy overview on Basecamp: https://youtu.be/ktZLpjCanvg?t=69
