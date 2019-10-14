@@ -27,3 +27,4 @@ It should be a piece of code that you studied a little to figure out and are pro
 
 ### Resources
 Russian Dool Cache strategy overview on Basecamp: https://youtu.be/ktZLpjCanvg?t=69
+https://signalvnoise.com/posts/3690-the-performance-impact-of-russian-doll-caching
