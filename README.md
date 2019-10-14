@@ -8,7 +8,7 @@ That information is pretty much unchanged from the database entries perspectives
 
 Also, we'd like to have a straightforward way to implement a cache for any entry point of our this API that follows similar behavior. This cache "module" should be easily extendable, isolated, and flexible if the business now requires evicts or reloading of cache data.
 
-### Goal: 
+### Goal
 Implement a Russian Dool (or any better strategy) cache for a bank statement receipt
 
 
