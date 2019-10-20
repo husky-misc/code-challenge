@@ -1,0 +1,12 @@
+require:
+  - rubocop-minitest
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+
+Metrics/LineLength:
+    Max: 120
