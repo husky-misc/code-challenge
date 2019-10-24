@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class TransactionsControllerTest < ActionDispatch::IntegrationTest
+class TransactionsIntegrationTest < ActionDispatch::IntegrationTest
   def setup
     @account = Account.create!
   end
