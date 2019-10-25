@@ -11,6 +11,9 @@ class Transaction < ApplicationRecord
   validates :value, numericality: { greater_than_or_equal_to: 0 }, if: :credit?
   validates :value, numericality: { less_than_or_equal_to: 0 },    if: :debit?
 
+  scope :filter_days,  ->(days) { where(created_at: days.days.ago.beginning_of_day..DateTime::Infinity.new) }
+  scope :past_balance, ->(days) { where('created_at < ?', days.days.ago.beginning_of_day).sum(:value) }
+
   def initialize(*)
     super
     negative_debit_transaction

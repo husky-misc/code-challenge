@@ -13,6 +13,7 @@ gem 'rails', '~> 6.0.0'
 
 group :development, :test do
   gem 'byebug'
+  gem 'factory_bot_rails'
   gem 'mocha'
 end
 
