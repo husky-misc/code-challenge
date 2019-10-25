@@ -1,6 +1,20 @@
+# frozen_string_literal: true
+
+require 'caching/warm_cache'
+
 module Caching
   module CacheableResource
     module ClassMethods
+      @@_mutex          = Mutex.new
+      @@_cache_options  = {}
+      @@_cached_methods = []
+
+      def cache_options(options={})
+        @@_mutex.synchronize do
+          @@_cache_options.merge!(options)
+        end
+      end
+
       def class_name
         name.split('::').last
       end
@@ -13,6 +27,7 @@ module Caching
       def cache(method)
         class_eval do
           alias_method "#{method}_without_cache", method
+          add_method_to_cached_list(method)
           define_method method do |*args|
             Rails.cache.fetch("#{cache_key}/#{method}") do
               public_send("#{method}_without_cache", *args)
@@ -20,10 +35,27 @@ module Caching
           end
         end
       end
+
+      private
+
+      def add_method_to_cached_list(method)
+        @@_mutex.synchronize do
+          @@_cached_methods << method
+        end
+      end
+
+      def __cache_options
+        @@_cache_options
+      end
+
+      def __cached_methods
+        @@_cached_methods
+      end
     end
 
     def self.included(klass)
       klass.extend(ClassMethods)
+      klass.extend(WarmCache)
     end
 
     def cache_key

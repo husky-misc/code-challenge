@@ -12,6 +12,8 @@ class BankStatement
 
   validates :days, inclusion: { in: ALLOWED_DAYS_TO_FILTER }
 
+  cache_options default_cache_warm_with: {account: -> { Account.pluck(:id).map { |id| Account.new(id: id) } }, days: ALLOWED_DAYS_TO_FILTER}
+
   def initialize(account:, days:)
     @account = account
     @days    = days.to_i
