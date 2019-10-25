@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'caching'
+
 class BankStatement
   include ActiveModel::Validations
+  include Caching::CacheableResource
 
   attr_reader :account, :days
 
@@ -14,11 +17,17 @@ class BankStatement
     @days    = days.to_i
   end
 
-  def transactions
-    @transactions ||= @account.transactions.filter_days(days)
+  def custom_cache_keys
+    [account.id, days]
   end
+
+  def transactions
+    @transactions ||= @account.transactions.filter_days(days).to_a
+  end
+  cache :transactions
 
   def past_balance
     @past_balance ||= @account.transactions.past_balance(days)
   end
+  cache :past_balance
 end

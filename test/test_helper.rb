@@ -4,6 +4,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'mocha/minitest'
+require 'support/caching_helper'
 
 module ActiveSupport
   class TestCase

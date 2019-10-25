@@ -18,6 +18,7 @@ class Operation
       @account.with_lock do
         @transaction.save!
         Account.where(id: @transaction.account_id).update_all(['balance = balance + ?', @transaction.value])
+        BankStatement.invalidate_cache_for(@account.id)
       end
     end
     @transaction
