@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  api: &base_image
+    build:
+      context: .
+    depends_on:
+      - db
+      - redis
+    links:
+      - db
+      - redis
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/var/app
+      - /var/app/tmp
+    command: bin/rails s -b '0.0.0.0'
+    environment:
+      DATABASE_URL: postgres://postgres:@db/
+      REDIS_URL: redis://redis:6379
+
+volumes:
+  db-data:
