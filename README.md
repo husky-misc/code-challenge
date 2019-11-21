@@ -1,31 +1,29 @@
-# Husky challenge!
+# Bank Statement API
 
-### Goal
-Implement a Russian Doll (or any better strategy) cache for a bank statement receipt
+## API description
 
-### Description and general information
+The application consists of an API that returns data about bank transactions such as: id, amount, credit card number, currency, installments, creation date and update date.
 
-Imagine that you have a bank statement, with a filter that returns the last 3 days, 15 days, or 30 days data. 
+In short, the API follows the business model: A bank statement is made up of multiple transactions during a period. It can be retrieved from the API via the `GET /transactions` route. If we want to see a specific transaction, we access the `GET /transactions/:id` route (for example, in the `GET /transactions/26` route we can see transaction details of `id=26` in the database).
 
-That information is pretty much unchanged from the database entries perspectives: what is paid is paid (debit), amounts credited were credited. There is no reason to query it every single time that you open your banking app. This imaginary banking app is querying all results from the DB every time.
+![Simplificated model](public/images/model.png)
 
-We'd like to have a straightforward way to implement a cache for any entry point of this API that follows similar behavior. This cache "module" should be easily extendable, isolated, and flexible if the business now requires evicts or reloadings of cached data.
+Additionally, you can create, update, and remove transactions from the database. The major API routes are shown below.
 
-### Expected result
+![API routes](public/images/routes.png)
 
-1 - We'd like to see a POC, including some Unit tests that prove the chosen cache strategy.
+## Customized routes
 
-2 - We'd like to see some stress test consuming your API endpoint that serves the bank statement JSON
+## Build Setup
 
-3 - Memory and cloud storage are currently cheap. We expect you to use a production-ready infrastructure like Memcached or Redis.
+    # install dependencies
+    bundle
+    
+    # generate data
+    rails dev:setup
 
-4 - An isolated module that we can use as a DSL to evict or include new cache keys reloading current data
+## Running the application
 
-5 - Is there a recovery strategy? And if all cached data goes away, how do we query and cache everything back?
+    # run application
+    rails s -b localhost
 
-6 - You'll explain to the team your approach and defend the pros and cons of your strategy. There is no silver bullet, and we expect that you will be able to explain to us what are the stronger and the weaker points of the chosen strategy.
-It should be a piece of code that you studied a little to figure out and are proud of enough to explain to other people.
-
-### Resources
-Russian Doll Cache strategy overview on Basecamp: https://youtu.be/ktZLpjCanvg?t=69
-https://signalvnoise.com/posts/3690-the-performance-impact-of-russian-doll-caching

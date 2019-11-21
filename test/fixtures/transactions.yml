@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  currency: MyString
+  credit_card: MyString
+  installments: 1
+
+two:
+  amount: 9.99
+  currency: MyString
+  credit_card: MyString
+  installments: 1
