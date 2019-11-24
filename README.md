@@ -26,4 +26,3 @@ Additionally, you can create, update, and remove transactions from the database.
 
     # run application
     rails s -b localhost
-

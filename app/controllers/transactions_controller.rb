@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   def index
     @transactions = Transaction.all
 
-    render json: @transactions
+    render json: @transactions, methods: :i18n
   end
 
   # GET /transactions/1
