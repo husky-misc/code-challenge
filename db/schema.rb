@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_21_013459) do
+ActiveRecord::Schema.define(version: 2019_11_24_212249) do
+
+  create_table "bank_statements", force: :cascade do |t|
+    t.decimal "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "transactions", force: :cascade do |t|
     t.decimal "amount"
-    t.string "currency"
     t.string "credit_card"
     t.integer "installments"
+    t.integer "bank_statement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["bank_statement_id"], name: "index_transactions_on_bank_statement_id"
   end
 
 end

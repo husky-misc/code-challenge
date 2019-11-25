@@ -1,51 +1,47 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :update, :destroy]
+  before_action :set_bank_statement
 
-  # GET /transactions
-  def index
-    @transactions = Transaction.all
-
-    render json: @transactions, methods: :i18n
-  end
-
-  # GET /transactions/1
+  # GET /bank_statement/1/transactions
   def show
-    render json: @transaction
+    render json: @bank_statement.transactions
   end
 
-  # POST /transactions
-  def create
-    @transaction = Transaction.new(transaction_params)
-
-    if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
-    else
-      render json: @transaction.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /transactions/1
-  def update
-    if @transaction.update(transaction_params)
-      render json: @transaction
-    else
-      render json: @transaction.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /transactions/1
+  # DELETE /bank_statement/1/transactions
   def destroy
-    @transaction.destroy
+    transaction = Transaction.find(transaction_params[:id])
+    transaction.destroy
+  end
+
+  # POST /bank_statement/1/transaction
+  def create
+    @bank_statement.transactions << Transaction.new(transaction_params)
+
+    if @bank_statement.save
+      render json: @bank_statement.transactions, status: :created, location: bank_statement_transactions_url(@bank_statement)
+    else
+      render json: @bank_statement.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /bank_statement/1/transaction
+  def update
+    transaction = Transaction.find(transaction_params[:id])
+
+    if transaction.update(transaction_params)
+      render json: @bank_statement.transactions
+    else
+      render json: @bank_statement.errors, status: :unprocessable_entity
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_transaction
-      @transaction = Transaction.find(params[:id])
+    def set_bank_statement
+      @bank_statement = BankStatement.find(params[:bank_statement_id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def transaction_params
-      params.require(:transaction).permit(:amount, :currency, :credit_card, :installments)
+      ActiveModelSerializers::Deserialization.jsonapi_parse(params)
     end
 end

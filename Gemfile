@@ -15,7 +15,9 @@ gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
+
+gem 'hiredis'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -30,6 +32,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
+
+# ActiveModel::Serializer implementation and Rails hooks
+gem 'active_model_serializers', '~> 0.10.0'
+
+# Manage Procfile-based applications http://ddollar.github.com/foreman
+gem 'foreman'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

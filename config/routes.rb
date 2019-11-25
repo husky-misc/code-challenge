@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  resources :transactions
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :bank_statements do
+    resource :transactions, only: [:show]
+    resource :transactions, only: [:show], path: 'relationships/transactions'
+    
+    resource :transaction, only: [:update, :create, :destroy]
+    resource :transaction, only: [:update, :create, :destroy], path: 'relationships/transaction'
+  end
 end
