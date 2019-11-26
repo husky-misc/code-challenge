@@ -2,7 +2,7 @@
 
 ## API description
 
-The application consists of an API that returns data about bank transactions such as: id, amount, credit card number, currency, installments, creation date and update date. In short, the API follows the business model: A **bank statement receipt** is made up of multiple transactions during a period. 
+The application consists of an API that returns data about bank transactions such as: id, amount, credit card number, currency, installments, creation date and update date. In short, the API follows the business model: A **bank statement receipt** is made up of multiple transactions during a period.
 
 ![Simplificated model](public/images/model.png)
 
@@ -16,13 +16,13 @@ Additionally, you can create, update, and remove transactions from the database.
 
 ## Authentication
 
-We use **Devise Token Auth** as a plugin to control user authentication in the API. To create a user in the API, you must access the route: 
+We use **Devise Token Auth** as a plugin to control user authentication in the API. To create a user in the API, you must access the route:
 
 `POST http://localhost:3000/auth`
 
 using as headers
-	`Accept: application/vnd.api+json`
-	`Content-type: application/vnd.api+json`
+ `Accept: application/vnd.api+json`
+ `Content-type: application/vnd.api+json`
 
 In the request body, it is necessary to pass three parameters: **email**, **password**, **password_confirmation**. The request is made according to the example below.
 
@@ -78,4 +78,4 @@ The response should be as the example below:
 ## Running the application
 
     # run application
-    rails s -b localhost
+    foreman start
