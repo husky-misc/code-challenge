@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_212249) do
+ActiveRecord::Schema.define(version: 2019_11_26_021011) do
 
   create_table "bank_statements", force: :cascade do |t|
     t.decimal "total"
@@ -27,5 +27,8 @@ ActiveRecord::Schema.define(version: 2019_11_24_212249) do
     t.datetime "updated_at", null: false
     t.index ["bank_statement_id"], name: "index_transactions_on_bank_statement_id"
   end
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'inet' for column 'current_sign_in_ip'
 
 end
