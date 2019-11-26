@@ -5,7 +5,9 @@ module V1
 
     # GET /bank_statements
     def index
-      @bank_statements = BankStatement.all
+      page_number = params[:page].try(:[], :number)
+      per_page = params[:page].try(:[], :size)
+      @bank_statements = BankStatement.all.page(page_number).per(per_page) 
 
       render json: @bank_statements
     end
