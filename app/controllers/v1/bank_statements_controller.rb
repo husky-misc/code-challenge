@@ -1,5 +1,7 @@
 module V1
   class BankStatementsController < ApplicationController
+    include ErrorSerializer
+
     before_action :authenticate_user!
     before_action :set_bank_statement, only: [:show, :update, :destroy]
 
@@ -24,7 +26,7 @@ module V1
       if @bank_statement.save
         render json: @bank_statement, include: [:transactions], status: :created, location: @bank_statement
       else
-        render json: @bank_statement.errors, status: :unprocessable_entity
+        render json: ErrorSerializer.serialize(@bank_statement.errors), status: :unprocessable_entity
       end
     end
 
@@ -33,7 +35,7 @@ module V1
       if @bank_statement.update(bank_statement_params)
         render json: @bank_statement, include: [:transactions]
       else
-        render json: @bank_statement.errors, status: :unprocessable_entity
+        render json: ErrorSerializer.serialize(@bank_statement.errors), status: :unprocessable_entity
       end
     end
 
