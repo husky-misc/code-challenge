@@ -2,7 +2,7 @@ module V1
   class BankStatementsController < ApplicationController
     include ErrorSerializer
 
-    before_action :authenticate_user!
+    #before_action :authenticate_user!
     before_action :set_bank_statement, only: [:show, :update, :destroy]
 
     # GET /bank_statements
@@ -11,7 +11,9 @@ module V1
       per_page = params[:page].try(:[], :size)
       @bank_statements = BankStatement.all.page(page_number).per(per_page) 
 
-      render json: @bank_statements
+      if stale?(last_modified: @bank_statements[0].updated_at)
+        render json: @bank_statements
+      end
     end
 
     # GET /bank_statements/1

@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-    belongs_to :bank_statement, optional: true, touch: true
+    belongs_to :bank_statement, touch: true, optional: true
     def i18n
         I18n.default_locale
     end

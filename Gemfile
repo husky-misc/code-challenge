@@ -16,10 +16,6 @@ gem 'puma', '~> 3.11'
 gem 'devise_token_auth'
 # A plugin for versioning Rails based RESTful APIs.
 gem 'versionist'
-# Use Redis adapter to run Action Cable in production
-#gem 'redis', '~> 4.0'
-# Ruby wrapper for hiredis (hiredis-rb)
-#gem 'hiredis'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
@@ -30,6 +26,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'foreman'
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
 gem 'kaminari'
+# High performance memcached client for Ruby
+gem 'dalli'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,7 +36,9 @@ group :development, :test do
   gem 'faker'
 end
 
-group :development do
+group :production do
+  # A PostgreSQL client library for Ruby
+  gem 'pg', '~> 1.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

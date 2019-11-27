@@ -1,4 +1,4 @@
-module ErrorSerializer < ActiveModel::Serializer
+module ErrorSerializer
     def self.serialize(errors) # standard errors
         return if errors.nil? # return null if has no errors
 

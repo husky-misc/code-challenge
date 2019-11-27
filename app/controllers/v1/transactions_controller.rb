@@ -2,15 +2,17 @@ module V1
   class TransactionsController < ApplicationController
     include ErrorSerializer
 
-    before_action :authenticate_user!
+    #before_action :authenticate_user!
     before_action :set_bank_statement
 
-    # GET /bank_statement/1/transactions
+    # GET /bank_statements/1/transactions
     def show
-      render json: @bank_statement.transactions
+      if stale?(last_modified: @bank_statement.transactions[0].updated_at)
+        render json: @bank_statement.transactions
+      end
     end
 
-    # DELETE /bank_statement/1/transactions
+    # DELETE /bank_statements/1/transactions
     def destroy
       transaction = Transaction.find(transaction_params[:id])
       transaction.destroy
@@ -21,7 +23,7 @@ module V1
       @bank_statement.transactions << Transaction.new(transaction_params)
 
       if @bank_statement.save
-        render json: @bank_statement.transactions, status: :created, location: v1_bank_statement_transaction_url(@bank_statement)
+        render json: @bank_statement.transactions, status: :created, location: v1_bank_statement_transactions_url(@bank_statement)
       else
         render json: ErrorSerializer.serialize(@bank_statement.errors), status: :unprocessable_entity
       end
