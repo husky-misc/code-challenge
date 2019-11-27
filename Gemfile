@@ -34,6 +34,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # A library for generating fake data such as names, addresses, and phone numbers.
   gem 'faker'
+  # Rails >= 3 pry initializer
+  gem 'pry-rails'
+  # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
+  gem 'rspec-rails', '~> 3.9.0'
 end
 
 group :production do

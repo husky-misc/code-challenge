@@ -55,6 +55,7 @@ GEM
     byebug (11.0.1)
     case_transform (0.2)
       activesupport
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     dalli (2.7.10)
@@ -68,6 +69,7 @@ GEM
       bcrypt (~> 3.0)
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 6.1)
+    diff-lcs (1.3)
     erubi (1.9.0)
     faker (2.7.0)
       i18n (>= 1.6, < 1.8)
@@ -107,6 +109,11 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.1.4-x64-mingw32)
+    pry (0.12.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     puma (3.12.1)
     rack (2.0.7)
     rack-cors (1.1.0)
@@ -144,6 +151,23 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec-core (3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-expectations (3.9.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-rails (3.9.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.0)
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -182,10 +206,12 @@ DEPENDENCIES
   foreman
   kaminari
   pg (~> 1.0)
+  pry-rails
   puma (~> 3.11)
   rack-cors
   rails (~> 5.2.2)
   rails-i18n (~> 5.1)
+  rspec-rails (~> 3.9.0)
   sqlite3
   tzinfo-data
   versionist
