@@ -34,5 +34,7 @@ module CodeChallenge
 
     # Autoload /lib
     config.autoload_paths << Rails.root.join('lib')
+
+    config.cache_store = :dalli_store
   end
 end

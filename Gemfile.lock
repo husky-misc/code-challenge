@@ -55,6 +55,7 @@ GEM
     byebug (11.0.1)
     case_transform (0.2)
       activesupport
+    chronic (0.10.2)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.5)
@@ -118,6 +119,8 @@ GEM
     rack (2.0.7)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
+    rack-reducer (2.0.2)
+      rack (>= 1.6, < 3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.3)
@@ -200,6 +203,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
   byebug
+  chronic (~> 0.10.2)
   dalli
   devise_token_auth
   faker
@@ -209,6 +213,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rack-cors
+  rack-reducer
   rails (~> 5.2.2)
   rails-i18n (~> 5.1)
   rspec-rails (~> 3.9.0)

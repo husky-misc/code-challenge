@@ -26,6 +26,8 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'foreman'
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
 gem 'kaminari'
+# Declaratively filter data via URL params, in any Rack app, with any ORM.
+gem 'rack-reducer'
 # High performance memcached client for Ruby
 gem 'dalli'
 

@@ -9,10 +9,17 @@ module V1
     def index
       page_number = params[:page].try(:[], :number)
       per_page = params[:page].try(:[], :size)
-      @bank_statements = BankStatement.all.page(page_number).per(per_page) 
 
-      if stale?(last_modified: @bank_statements[0].updated_at)
+      @bank_statements = Rack::Reducer.call(params, dataset: BankStatement.all.page(page_number).per(per_page), filters: [
+        ->(numDays:) { where("created_at < ?", (numDays.to_i).days.ago) }
+      ])
+     
+      if @bank_statements.empty?
         render json: @bank_statements
+      else
+        if stale?(last_modified: @bank_statements[0].updated_at)
+          render json: @bank_statements
+        end
       end
     end
 
