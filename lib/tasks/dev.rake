@@ -2,6 +2,16 @@ namespace :dev do
   desc "Set up the development environment"
   task setup: :environment do
 
+    #"Droping database..."
+    #%x(rails db:drop:_unsafe)
+    #"Database dropped with success!"
+    #"Creating database..."
+    #%x(rails db:create)
+    #"Database created with success!"
+    #"Migrating database..."
+    #%x(rails db:migrate)
+    #"Database migrated with success!"
+
     puts "Creating bank statements receipts..."
 
     50.times do |i|

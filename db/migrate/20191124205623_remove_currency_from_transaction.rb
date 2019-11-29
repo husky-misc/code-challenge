@@ -1,4 +1,4 @@
-class RemoveCurrenyFromTransaction < ActiveRecord::Migration[5.2]
+class RemoveCurrencyFromTransaction < ActiveRecord::Migration[5.2]
   def change
     remove_column :transactions, :currency, :string
   end
