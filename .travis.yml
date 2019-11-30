@@ -16,5 +16,4 @@ script:
   - rails db:create
   - rails db:migrate RAILS_ENV=test
   - rails dev:setup RAILS_ENV=test
-  - rails s -b localhost -p 3000
   - rspec
