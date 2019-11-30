@@ -1,8 +1,13 @@
 language: ruby
+
 rvm:
   - 2.5
   - 2.6
-script:
+
+before_install:
+  - gem install bundler
+
+ script:
   - bundle install — jobs=3 — retry=3
   - rails db:drop:_unsafe
   - rails db:create
