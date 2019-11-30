@@ -1,4 +1,4 @@
-# Bank Statement API
+# Bank Statement API [![Build Status](https://travis-ci.org/mariazevedo88/code-challenge.svg?branch=master)](https://travis-ci.org/mariazevedo88/code-challenge)
 
 ## API description
 
@@ -13,6 +13,12 @@ Additionally, you can create, update, and remove transactions from the database.
 ![API routes](public/images/routes.png)
 
 ## Customized routes
+
+The Bank Statement API `GET /v1/bank_statements` route has as filter parameters:
+
+- Number of days: You can filter bank transactions created by the number of days. For example, transactions created 3 days ago, 15 days ago, 30 days ago, etc ...
+- Page: API searches are paginated.
+- Size: Number of records per page fetched.
 
 ## Authentication
 
@@ -57,13 +63,14 @@ The response should be as the example below:
 * **sqlite3** (Database for Active Record)
 * **devise_token_auth** (Token based authentication for Rails JSON APIs)
 * **versionist** (A plugin for versioning Rails based RESTful APIs)
-* **redis ~> 4.0** (Open source in-memory data structure store)
-* **hiredis** (Ruby wrapper for hiredis - hiredis-rb)
 * **bootsnap >= 1.1.0** (Reduces boot times through caching)
 * **rack-cors** (Handling Cross-Origin Resource Sharing - CORS, making cross-origin AJAX possible)
 * **active_model_serializers ~> 0.10.0** (ActiveModel::Serializer implementation and Rails hooks)
 * **foreman** (Manage Procfile-based applications)
 * **kaminari** (A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps)
+* **rack-reducer** (Declaratively filter data via URL params, in any Rack app, with any ORM)
+* **dalli** (High performance memcached client for Ruby)
+* **travis** (CLI and Ruby client library for Travis CI)
 * **byebug** (Plugin to stop execution and get a debugger console)
 * **faker** (A library for generating fake data)
 
@@ -79,3 +86,8 @@ The response should be as the example below:
 
     # run application
     foreman start
+
+## Running unit tests
+    
+    # tests application
+    rspec
