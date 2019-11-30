@@ -30,8 +30,6 @@ gem 'kaminari'
 gem 'rack-reducer'
 # High performance memcached client for Ruby
 gem 'dalli'
-# CLI and Ruby client library for Travis CI
-gem 'travis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
