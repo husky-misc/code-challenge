@@ -34,7 +34,7 @@ module V1
       @bank_statement = BankStatement.new(bank_statement_params)
 
       if @bank_statement.save
-        render json: @bank_statement, include: [:transactions], status: :created, location: @bank_statement
+        render json: @bank_statement, include: [:transactions], status: :created, location: v1_bank_statements_url(@bank_statement)
       else
         render json: ErrorSerializer.serialize(@bank_statement.errors), status: :unprocessable_entity
       end

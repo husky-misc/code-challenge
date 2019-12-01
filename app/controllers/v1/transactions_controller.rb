@@ -11,7 +11,7 @@ module V1
       end
     end
 
-    # DELETE /bank_statements/1/transactions
+    # DELETE /bank_statements/1/transaction
     def destroy
       transaction = Transaction.find(transaction_params[:id])
       transaction.destroy

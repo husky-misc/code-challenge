@@ -15,12 +15,10 @@ describe V1::BankStatementsController, type: :controller do
         get :index
         expect(response).to have_http_status(:ok)
     end
-
     it 'should request index and return 406 OK' do
         get :index
         expect(response).to have_http_status(:not_acceptable)
     end
-
     it 'GET v1/bank_statements/:id' do
         bank_statement = BankStatement.first
         
@@ -32,8 +30,15 @@ describe V1::BankStatementsController, type: :controller do
         expect(response_body.json('data > type')).to eq('bank-statements')
         expect(response_body.json('data > attributes > total')).to eq(bank_statement.total.to_s)
     end
+    it 'GET v1/bank_statements/:id/transactions' do
+        bank_statement = BankStatement.first
 
-    context 'Testing API caching' do
+        request.accept = 'application/vnd.api+json'
+        get :show, params: {id: bank_statement.id}
+
+        expect(response).to have_http_status(:ok)
+    end
+    context 'Testing API caching with Russian Doll strategy' do
         before do
             request.accept = 'application/vnd.api+json'
             get :index

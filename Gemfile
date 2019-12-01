@@ -8,8 +8,8 @@ gem 'rails', '~> 5.2.2'
 # Repository for collecting Locale data for Ruby on Rails I18n as well as other 
 # interesting, Rails related I18n stuff
 gem 'rails-i18n', '~> 5.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# A PostgreSQL client library for Ruby
+gem 'pg', '~> 1.1', '>= 1.1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Token based authentication for Rails JSON APIs. Designed to work with jToker and ng-token-auth.
@@ -47,8 +47,6 @@ group :development, :test do
 end
 
 group :production do
-  # A PostgreSQL client library for Ruby
-  gem 'pg', '~> 1.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

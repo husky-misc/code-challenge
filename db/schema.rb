@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_11_26_021011) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bank_statements", force: :cascade do |t|
     t.decimal "total"
     t.datetime "created_at", null: false
@@ -27,8 +30,5 @@ ActiveRecord::Schema.define(version: 2019_11_26_021011) do
     t.datetime "updated_at", null: false
     t.index ["bank_statement_id"], name: "index_transactions_on_bank_statement_id"
   end
-
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'inet' for column 'current_sign_in_ip'
 
 end
