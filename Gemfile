@@ -32,6 +32,8 @@ gem 'rack-reducer'
 gem 'dalli'
 # CLI and Ruby client library for Travis CI
 gem 'travis'
+# A Ruby based DSL for building JMeter test plans
+gem 'ruby-jmeter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

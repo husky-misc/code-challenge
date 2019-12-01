@@ -2,7 +2,6 @@ module V1
   class TransactionsController < ApplicationController
     include ErrorSerializer
 
-    before_action :authenticate_user!, except: [:show, :index]
     before_action :set_bank_statement
 
     # GET /bank_statements/1/transactions

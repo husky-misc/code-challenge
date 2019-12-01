@@ -2,7 +2,6 @@ module V1
   class BankStatementsController < ApplicationController
     include ErrorSerializer
 
-    before_action :authenticate_user!, except: [:show, :index]
     before_action :set_bank_statement, only: [:show, :update, :destroy]
 
     # GET /bank_statements
@@ -10,10 +9,12 @@ module V1
       page_number = params[:page].try(:[], :number)
       per_page = params[:page].try(:[], :size)
 
-      @bank_statements = Rack::Reducer.call(params, dataset: BankStatement.all.page(page_number).per(per_page), filters: [
-        ->(numDays:) { where("created_at < ?", (numDays.to_i).days.ago) }
-      ])
-     
+      Rails.cache.fetch("bank_statements", :expires_in => 60.minutes) do
+        @bank_statements = Rack::Reducer.call(params, dataset: BankStatement.all.page(page_number).per(per_page), filters: [
+          ->(numDays:) { where("created_at < ?", (numDays.to_i).days.ago) }
+        ])  
+      end
+
       if @bank_statements.empty?
         render json: @bank_statements
       else

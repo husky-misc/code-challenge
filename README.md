@@ -22,40 +22,11 @@ The Bank Statement API `GET /v1/bank_statements` route has as filter parameters:
 
 ## Authentication
 
-We use **Devise Token Auth** as a plugin to control user authentication in the API. To create a user in the API, you must access the route:
-
-`POST http://localhost:3000/auth`
-
-using as headers
- `Accept: application/vnd.api+json`
- `Content-type: application/vnd.api+json`
-
-In the request body, it is necessary to pass three parameters: **email**, **password**, **password_confirmation**. The request is made according to the example below.
-
-`{"email": "mariana@bsi.ufla.br", "password": "12345678", "password_confirmation": "12345678"}`
-
-The response should be as the example below:
-
-```
-{
-    "status": "success",
-    "data": {
-        "uid": "mariana@bsi.ufla.br",
-        "id": 1,
-        "email": "mariana@bsi.ufla.br",
-        "provider": "email",
-        "allow_password_change": false,
-        "name": null,
-        "nickname": null,
-        "image": null,
-        "created_at": "2019-11-26T02:03:28.026Z",
-        "updated_at": "2019-11-26T02:03:28.467Z",
-        "type": "user"
-    }
-}
-```
+We use **Devise Token Auth** as a plugin to control user authentication in the API. 
 
 ## Gems
+
+The gems used in the project are listed below:
 
 * **rails ~> 5.2.2** (Rails Framework)
 * **rails-i18n ~> 5.1** (Collecting Locale data for Ruby on Rails I18n)
@@ -73,6 +44,9 @@ The response should be as the example below:
 * **travis** (CLI and Ruby client library for Travis CI)
 * **byebug** (Plugin to stop execution and get a debugger console)
 * **faker** (A library for generating fake data)
+* **pry-rails** (Rails >= 3 pry initializer)
+* **rspec-rails ~> 3.9.0** (RSpec for Rails-3+)
+* **pg ~> 1.0** (A PostgreSQL client library for Ruby)
 
 ## Build Setup
 
@@ -88,6 +62,9 @@ The response should be as the example below:
     foreman start
 
 ## Running unit tests
+
+    # generate data
+    rails dev:setup RAILS_ENV=test
     
     # tests application
     rspec
