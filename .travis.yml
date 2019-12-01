@@ -12,8 +12,6 @@ addons:
     - postgresql-client-12
 env:
   - "rack=master"
-  global:
-  - PGPORT=5432
 before_install:
   - gem install bundler
 install: 
@@ -22,7 +20,7 @@ install:
   - gem install rails
   - bundle install
 before_script:
-  - psql -c 'create role railsdb with createdb login password;' -U 123@456
+  - psql -c "CREATE ROLE railsdb with createdb login password '123@456';" -U postgres
 script:
   - rails db:drop
   - rails db:create
