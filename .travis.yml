@@ -12,6 +12,7 @@ install:
   - gem install rails
   - bundle install
 script:
+  - create role railsdb with createdb login password '123@456'
   - rails db:drop
   - rails db:create
   - rails db:migrate RAILS_ENV=test
