@@ -153,6 +153,10 @@ The gems used in the project are listed below:
 * **pry-rails** (Rails >= 3 pry initializer)
 * **rspec-rails ~> 3.9.0** (RSpec for Rails-3+)
 
+## Dependencies
+
+To run the API in development environment, you need to have postgresql installed. Here is a [tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-18-04) for installation.
+
 ## Build Setup
 
     # install dependencies
@@ -189,7 +193,7 @@ The gems used in the project are listed below:
     # tests application
     rspec
 
-By default, the API is available in development/test mode on http://localhost:5000/v1/.
+By default, the API is available in development/test mode on http://localhost:5000/v1/. In production environment: https://code-challenge-mari.herokuapp.com/v1/.
 
 ## Contributors
 
