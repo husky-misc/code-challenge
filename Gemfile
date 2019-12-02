@@ -34,12 +34,12 @@ gem 'dalli'
 gem 'travis'
 # A Ruby based DSL for building JMeter test plans
 gem 'ruby-jmeter'
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # A library for generating fake data such as names, addresses, and phone numbers.
-  gem 'faker'
   # Rails >= 3 pry initializer
   gem 'pry-rails'
   # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
@@ -47,8 +47,6 @@ group :development, :test do
 end
 
 group :production do
-  # A library for generating fake data such as names, addresses, and phone numbers.
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
