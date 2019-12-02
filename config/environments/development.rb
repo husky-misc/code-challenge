@@ -3,7 +3,7 @@ Rails.application.configure do
 
   Rails.application.routes.default_url_options = {
      host: 'localhost',
-     port: 3000
+     port: 5000
   }
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

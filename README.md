@@ -189,7 +189,7 @@ The gems used in the project are listed below:
     # tests application
     rspec
 
-By default, the API is available in development/test mode on http://localhost:3000/v1/.
+By default, the API is available in development/test mode on http://localhost:5000/v1/.
 
 ## Contributors
 

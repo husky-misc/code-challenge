@@ -1,1 +1,1 @@
-web: rails s -b localhost -p 3000
+web: bundle exec rails s -p $PORT
