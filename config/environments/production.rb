@@ -1,7 +1,14 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
- 
-  config.cache_store = :dalli_store
+  config.cache_store = :mem_cache_store,
+  (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+  {:username => ENV["MEMCACHIER_USERNAME"],
+    :password => ENV["MEMCACHIER_PASSWORD"],
+    :failover => true,
+    :socket_timeout => 1.5,
+    :socket_failure_delay => 0.2,
+    :down_retry_delay => 60
+  }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -14,7 +21,7 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-
+  
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
