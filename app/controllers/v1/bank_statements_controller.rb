@@ -9,7 +9,7 @@ module V1
       page_number = params[:page].try(:[], :number)
       per_page = params[:page].try(:[], :size)
 
-      Rails.cache.fetch("bank_statements", :expires_in => 60.minutes) do
+      Rails.cache.fetch("bank_statements") do
         @bank_statements = Rack::Reducer.call(params, dataset: BankStatement.all.page(page_number).per(per_page), filters: [
           ->(numDays:) { where("created_at < ?", (numDays.to_i).days.ago) }
         ])  

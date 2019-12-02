@@ -11,7 +11,7 @@ class AppName
         else
             status, headers, response = @app.call(env)
             headers.merge!({'X-App-Name' => "#{@app_name}"})
-            if response == []
+            if status==204 || status==304 || status==404
                 [status, headers, []]
             else
                 [status, headers, [response.body]]
