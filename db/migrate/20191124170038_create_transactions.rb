@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.string :currency
       t.string :credit_card
       t.integer :installments
-      t.references :bank_statement, foreign_key: true
+      t.references :bank_statement, foreign_key: true, on_delete: :cascade
 
       t.timestamps
     end

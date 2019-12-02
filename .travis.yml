@@ -6,7 +6,7 @@ services:
   - postgresql
   - memcached
 addons:
-  postgresql: "9.6"
+  postgresql: "9.6" #travis don't support postgres 10
 env:
   - "rack=master"
 before_install:

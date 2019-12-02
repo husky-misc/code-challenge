@@ -118,9 +118,7 @@ class Transaction < ApplicationRecord
 end
 ```
 
-- **Conditional cache headers**: are a feature of the HTTP specification that provide a way for web servers to tell browsers that the response to a GET request hasn't changed since the last request and can be safely pulled from the browser cache.
-
-They work by using the `HTTP_IF_MODIFIED_SINCE` header to pass back and forth both a unique content identifier and the timestamp of when the content was last changed. If the browser makes a request where the last modified since timestamp matches the server's version then the server only needs to send back an empty response with a not modified status.
+- **Conditional cache headers**: are a feature of the HTTP specification that provide a way for web servers to tell browsers that the response to a GET request hasn't changed since the last request and can be safely pulled from the browser cache. They work by using the `HTTP_IF_MODIFIED_SINCE` header to pass back and forth both a unique content identifier and the timestamp of when the content was last changed. If the browser makes a request where the last modified since timestamp matches the server's version then the server only needs to send back an empty response with a not modified status.
 
 - **Memcache**: used in production mode. Memcached is an open-source application caching service. To prepare the Bank Statement requests to perform memcache, we used `Rails.cache` function. In the `index` request, the `Rails.cache.fetch` method takes a key argument and a block. If the key is present, then the corresponding value is returned. If not, the block is executed and the value is stored with the given key, then returned.
 
@@ -159,6 +157,18 @@ The gems used in the project are listed below:
 
     # install dependencies
     bundle
+
+    # creating a role in postgresdb for the application (on the postgres terminal)
+    create role railsdb with createdb login password '123@456'
+
+    # drop database
+    rails db:drop
+
+    # create database
+    rails db:create
+
+    # migrate database
+    rails db:migrate
     
     # generate data
     rails dev:setup
@@ -169,6 +179,9 @@ The gems used in the project are listed below:
     foreman start
 
 ## Running unit tests
+
+    # migrate database
+    rails db:migrate RAILS_ENV=test
 
     # generate data
     rails dev:setup RAILS_ENV=test
