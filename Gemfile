@@ -47,6 +47,8 @@ group :development, :test do
 end
 
 group :production do
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

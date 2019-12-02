@@ -1,6 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Rails.application.routes.default_url_options = {
+     host: 'https://code-challenge-mari.herokuapp.com/',
+     port: 3000
+  }
+  
   config.cache_store = :mem_cache_store,
                     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
                     {:username => ENV["MEMCACHIER_USERNAME"],
