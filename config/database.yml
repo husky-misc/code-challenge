@@ -20,6 +20,8 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['BANK_API_DATABASE_USER'] %>
+  password: <%= ENV['BANK_API_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -81,5 +83,3 @@ test:
 production:
   <<: *default
   database: bank_api_production
-  username: bank_api
-  password: <%= ENV['BANK_API_DATABASE_PASSWORD'] %>

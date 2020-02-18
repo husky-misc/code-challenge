@@ -21,3 +21,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Local overrides of environment settings.
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
