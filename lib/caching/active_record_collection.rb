@@ -6,7 +6,7 @@ module Caching
       return cached_block unless cached_block.nil?
       cached_block = yield.to_a
       Rails.cache.write(key, cached_block, expires_in: expiration)
-      return cached_block
+      cached_block
     end
   end
 end
