@@ -3,11 +3,11 @@ FactoryBot.define do
 
     trait :with_transactions do
         transient do
-          length { 5 }
+          transactions_qt { 5 }
         end
 
         after(:create) do |bank_account, evaluator|
-          create_list(:transaction, evaluator.length, bank_account: bank_account)
+          create_list(:transaction, evaluator.transactions_qt, bank_account: bank_account)
         end
     end
   end
