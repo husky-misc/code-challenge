@@ -38,6 +38,8 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'redis'
 gem 'hiredis'
 
+# Pagination
+gem 'will_paginate'
 
 group :development, :test do
   # Rspec tests

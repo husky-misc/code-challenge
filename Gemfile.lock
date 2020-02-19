@@ -47,6 +47,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    api-pagination (4.8.2)
     arel (9.0.0)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -174,12 +175,14 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    will_paginate (3.2.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   active_model_serializers
+  api-pagination
   bootsnap (>= 1.1.0)
   byebug
   database_cleaner
@@ -200,6 +203,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  will_paginate
 
 RUBY VERSION
    ruby 2.6.3p62
