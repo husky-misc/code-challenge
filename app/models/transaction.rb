@@ -1,4 +1,4 @@
 class Transaction < ApplicationRecord
   enum transaction_type: [:credit, :debit]
-  belongs_to :bank_account
+  belongs_to :bank_account, touch: true
 end

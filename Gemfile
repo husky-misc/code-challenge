@@ -34,6 +34,11 @@ gem 'rack-cors'
 # Load environment variables
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
+# Gem for 'redis'
+gem 'redis'
+gem 'hiredis'
+
+
 group :development, :test do
   # Rspec tests
   gem 'rspec-rails'

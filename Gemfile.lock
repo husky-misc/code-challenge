@@ -73,6 +73,7 @@ GEM
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hiredis (0.6.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jsonapi-renderer (0.2.2)
@@ -131,6 +132,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.1.2)
     rspec-collection_matchers (1.2.0)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.9.1)
@@ -184,11 +186,13 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  hiredis
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rack-cors
   rails (~> 5.2.1)
+  redis
   rspec-collection_matchers
   rspec-json_expectations
   rspec-rails
