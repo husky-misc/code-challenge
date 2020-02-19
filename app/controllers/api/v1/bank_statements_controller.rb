@@ -1,10 +1,10 @@
 class Api::V1::BankStatementsController < ApplicationController
 
   def index
-    @transactions = cache_active_record_collection_block(record: bank_account, query: query_variation) do
+    @transactions = cache_block(record: bank_account, query: query_variation) do
       bank_account.transactions
-                  .days_ago(days_ago)
-                  .paginate(page: page_number,per_page: per_page)
+      .days_ago(days_ago)
+      .paginate(page: page_number,per_page: per_page)
     end
     render json: @transactions
   end
