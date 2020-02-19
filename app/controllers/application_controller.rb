@@ -7,13 +7,14 @@ class ApplicationController < ActionController::API
     render json: { message: e.message }, status: :unprocessable_entity
   end
 
-def pagination_dict(collection)
-  {
-    current_page: collection.current_page,
-    next_page: collection.next_page,
-    prev_page: collection.prev_page, # use collection.previous_page when using will_paginate
-    total_pages: collection.total_pages,
-    total_count: collection.total_count
-  }
-end
+  protected
+
+  def cache_active_record_collection_block(record:, query:, expiration: 12.hours)
+    key = "#{record.cache_key_with_version}_#{query}"
+    cached_block = Rails.cache.read(key)
+    return cached_block unless cached_block.nil?
+    cached_block = yield.to_a
+    Rails.cache.write(key, cached_block, expires_in: expiration)
+    return cached_block
+  end
 end

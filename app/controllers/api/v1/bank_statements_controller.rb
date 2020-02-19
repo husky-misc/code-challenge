@@ -1,18 +1,18 @@
 class Api::V1::BankStatementsController < ApplicationController
 
   def index
-    @transactions = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+    @transactions = cache_active_record_collection_block(record: bank_account, query: query_variation) do
       bank_account.transactions
                   .days_ago(days_ago)
-                  .paginate(page: page_number,per_page: per_page).to_a
+                  .paginate(page: page_number,per_page: per_page)
     end
     render json: @transactions
   end
 
   private
 
-  def cache_key
-    "#{bank_account.cache_key_with_version}_days_ago_#{days_ago}_page_#{page_number}_per_page_#{per_page}"
+  def query_variation
+    "days_ago_#{days_ago}_page_#{page_number}_per_page_#{per_page}"
   end
 
   def bank_account
