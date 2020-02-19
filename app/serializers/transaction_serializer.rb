@@ -3,7 +3,7 @@ class TransactionSerializer < ActiveModel::Serializer
              :description,
              :transaction_type,
              :amount,
-             :balance,
-             :previous_balance,
+             :balance,          # TODO: Balance should be update using a Service called to create transactions
+             :previous_balance, #
              :created_at
 end
