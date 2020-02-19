@@ -7,6 +7,7 @@ class Api::V1::BankAccountsController < ApplicationController
 
   def create
     @bank_account = BankAccount.create(bank_account_params)
+    render json: @bank_account
   end
 
   private
