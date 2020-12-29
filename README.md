@@ -12,7 +12,7 @@ Note: This project should take no longer than 2-4 hours at the most to complete.
 We are going to build a Credit Card Transactions API.
 
  Our data modeling will follow something close to:
- - A Customer may have one or more credit cards trougth an Account. 
+ - A Customer may have one or more credit cards through an Account. 
  - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many transactions.
 
 ## Tasks
@@ -31,7 +31,7 @@ Scaffold a simple Rails 6 API and models a Credit Card transaction. JSON data st
 - To avoid monetary round issues, the amount field is always in USD cents
 - A Transaction object has a credit card foreign key (credit_card_id). 
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
-- The Credit card should be related to a Customer trough an Account. 
+- The Credit card should be related to a Customer through an Account. 
 
 > Feel free to model these relations as you want, here is the step where we will test your design and Object Oriented Programming (SOLID, Design, Clean Code) skills. Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
 
