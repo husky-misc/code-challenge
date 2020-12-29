@@ -15,10 +15,10 @@ We are going to build a Credit Card Transactions API.
 
  Our data modeling will follow something close to:
  - A Customer may have one or more credit cards through an Account. 
- - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many transactions.
+ - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many Transactions.
 
 ## Tasks
-Scaffold a simple Rails 6 API and models a Credit Card transaction. 
+Scaffold a simple Rails 6 API and models a Credit Card Transaction. 
 
 JSON data structure below:
 ```json
