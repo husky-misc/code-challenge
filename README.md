@@ -10,6 +10,8 @@ That is why we would like to see some code before a conversation. Please Fork th
 
 After you submit a Pull Request, our team will make a code review and schedule a call with you.
 
+We would like to see a PR in Ruby altougth if you don't know Ruby (yet! you'll learn it here) please submit it using the language that you has more experience.
+
 ## Getting Started
 We are going to build a Credit Card Transactions API.
 
@@ -39,7 +41,7 @@ JSON data structure below:
 
 > *Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests.*
 
-> *Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord Objects (Concerns, UseCases, Services, etc)*.
+> *Advise: Models and Entity Objects are not only a representation of the database table, you can have objects that are not ActiveRecord / ORM classes (Concerns, UseCases, Services, etc)*.
 
 ## Business Rules and Unit Tests
 
