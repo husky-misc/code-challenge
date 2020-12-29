@@ -21,7 +21,7 @@ We are going to build a Credit Card Transactions API.
  - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many Transactions.
 
 ## Task: Credit Card Transaction API
-Scaffold a simple Rails 6 API and models a Credit Card Transaction. 
+Scaffold a simple Rails API only app (https://guides.rubyonrails.org/api_app.html) and models a Credit Card Transaction. 
 
 JSON data structure below:
 ```json
