@@ -2,7 +2,7 @@
 
 Congratulations, you're almost there! 
 
-You received this repository because we liked your profile and decided to move forward to the tecnhical step of our hiring process. 
+You received this repository because we liked your profile and decided to move forward to the technical step of our hiring process. 
 
 Talk is cheap that is why we would like to see some code before a conversation. After you submit a Pull Request, our team will perform a code review and schedule a call with you.
 
@@ -12,7 +12,7 @@ Note: This project should take no longer than 2-4 hours at the most to complete.
 We are going to build a Credit Card Transactions API.
 
  Our data modeling will follow something close to:
- - A Costumer may have one or more credit cards trougth an Account. 
+ - A Customer may have one or more credit cards trougth an Account. 
  - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many transactions.
 
 ## Tasks
@@ -31,7 +31,7 @@ Scaffold a simple Rails 6 API and models a Credit Card transaction. JSON data st
 - To avoid monetary round issues, the amount field is always in USD cents
 - A Transaction object has a credit card foreign key (credit_card_id). 
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
-- The Credit card should be related to a Costumer trough an Account. 
+- The Credit card should be related to a Customer trough an Account. 
 
 > Feel free to model these relations as you want, here is the step where we will test your design and Object Oriented Programming (SOLID, Design, Clean Code) skills. Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
 
@@ -59,7 +59,7 @@ Create a State Machine and unit tests to cover the following business rules:
 2) A transaction can be `refunded` only if it is in `dispute`
 3) A transaction under dispute state can go to the status: `paid` or `refunded`.
 4) A Transaction will be automatically `failed` if the credit card does not have limit available.
-5) Once a transaction is in `disputed` state, the amount of the disputed transaction is not available on the costumer credit card limit.
+5) Once a transaction is in `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
 
 *You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
 
