@@ -10,7 +10,7 @@ That is why we would like to see some code before a conversation. Please Fork th
 
 After you submit a Pull Request, our team will make a code review and schedule a call with you.
 
-We would like to see a PR in Ruby altougth if you don't know Ruby (yet! you'll learn it here) please submit it using the language that you has more experience.
+We would like to see a PR in Ruby altougth if you don't know Ruby (yet! you'll learn it here) please submit the PR using the programming language that you are  proficiency.
 
 ## Getting Started
 We are going to build a Credit Card Transactions API.
