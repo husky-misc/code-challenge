@@ -10,7 +10,7 @@ That is why we would like to see some code before a conversation. Please Fork th
 
 After you submit a Pull Request, our team will make a code review and schedule a call with you.
 
-We would like to see a PR in Ruby altougth if you don't know Ruby (yet! you'll learn it here) please submit the PR using the programming language that you are  proficiency.
+We would locw to see some Ruby code altougth if you don't know Ruby (yet! you'll learn it here) please submit the PR using the programming language that you are  proficiency.
 
 ## Getting Started
 We are going to build a Credit Card Transactions API.
@@ -73,7 +73,7 @@ The endpoint should receive nested attributes to support the /GET method similar
 The endpoint should receive a body containing the `currency` and `amount` attributes and support nested attributes on the /POST method
 ```localhost:3000/api/v1/customer/{id}/credit_card/{id}/charge```
 
-## Seeds
+## Database Seeds
 
 #### Seed 4 Customers into the system
 ```
