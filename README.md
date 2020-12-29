@@ -37,7 +37,9 @@ JSON data structure below:
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
 - The Credit card should be related to a Customer through an Account. 
 
-> Feel free to model these relations as you want, here is the step where we will test your design and Object-Oriented Programming (SOLID, Design, Clean Code) skills. Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
+> Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests. 
+
+> Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
 
 ## API Endpoints
 
