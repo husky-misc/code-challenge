@@ -71,7 +71,7 @@ The endpoint should receive a body containing the `currency` and `amount` attrib
 
 ## Seeds
 
-Seed 4 Customers into the system:
+#### Seed 4 Customers into the system
 ```
 Customer 1: 
   First Name: Yukihiro 
@@ -90,7 +90,7 @@ Customer 4:
   Last Name: Kay
 ```
 
-Seed 20 transactions (charges) into the system
+#### Seed 20 transactions (charges) into the system
 
 - 10 Should be successful transactions:
 ```
