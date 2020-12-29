@@ -17,7 +17,7 @@ We are going to build a Credit Card Transactions API.
  - A Customer may have one or more credit cards through an Account. 
  - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many Transactions.
 
-## Tasks
+## Task: Credit Card Transaction API
 Scaffold a simple Rails 6 API and models a Credit Card Transaction. 
 
 JSON data structure below:
@@ -41,6 +41,18 @@ JSON data structure below:
 
 > Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord Objects (Concerns, UseCases, Services, etc).
 
+## Business Rules and Unit Tests
+
+Create a State Machine and unit tests to cover the following business rules:
+1) A transaction status can't change from `paid` to `failed`. 
+2) A `paid` transaction can change only to `refunded` or `dispute`.
+2) A transaction can be `refunded` only if it is in a `dispute`
+3) A transaction under dispute state can go to the status: `paid` or `refunded`.
+4) A Transaction will be automatically `failed` if the credit card does not have limit available.
+5) Once a transaction is in a `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
+
+*You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
+
 ## API Endpoints
 
 ##### Create an API endpoint where I can return all transactions of a Customer credit card
@@ -56,18 +68,6 @@ The endpoint should receive nested attributes to support the /GET method similar
 ##### Create an API endpoint where we can charge a Customer credit card
 The endpoint should receive a body containing the `currency` and `amount` attributes and support nested attributes on the /POST method
 ```localhost:3000/api/v1/customer/{id}/credit_card/{id}/charge```
-
-## Business Rules and Unit Tests
-
-Create a State Machine and unit tests to cover the following business rules:
-1) A transaction status can't change from `paid` to `failed`. 
-2) A `paid` transaction can change only to `refunded` or `dispute`.
-2) A transaction can be `refunded` only if it is in a `dispute`
-3) A transaction under dispute state can go to the status: `paid` or `refunded`.
-4) A Transaction will be automatically `failed` if the credit card does not have limit available.
-5) Once a transaction is in a `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
-
-*You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
 
 ## Seeds
 
