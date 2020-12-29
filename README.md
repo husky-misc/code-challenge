@@ -39,7 +39,7 @@ JSON data structure below:
 
 > Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests. 
 
-> Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
+> Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord Objects (Concerns, UseCases, Services, etc).
 
 ## API Endpoints
 
