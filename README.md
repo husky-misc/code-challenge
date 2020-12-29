@@ -37,9 +37,9 @@ JSON data structure below:
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
 - The Credit card should be related to a Customer through an Account. 
 
-> Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests. 
+> *Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests.*
 
-> Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord Objects (Concerns, UseCases, Services, etc).
+> *Advise: Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord Objects (Concerns, UseCases, Services, etc)*.
 
 ## Business Rules and Unit Tests
 
@@ -52,6 +52,8 @@ Create a State Machine and unit tests to cover the following business rules:
 5) Once a transaction is in a `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
 
 *You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
+
+*Please, DO NOT submit your solution without Unit Tests.*
 
 ## API Endpoints
 
