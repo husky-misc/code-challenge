@@ -32,7 +32,7 @@ JSON data structure below:
   }
  ``` 
 
-- To avoid monetary round issues, the amount field is always in USD cents
+- To avoid monetary round issues, the amount field is always in the respective currency cents
 - A Transaction object has a credit card foreign key (credit_card_id). 
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
 - The Credit card should be related to a Customer through an Account. 
