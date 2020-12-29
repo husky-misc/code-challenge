@@ -4,7 +4,9 @@ Congratulations, you're almost there!
 
 You received this repository because we liked your profile and decided to move forward to the technical step of our hiring process. 
 
-Talk is cheap that is why we would like to see some code before a conversation. After you submit a Pull Request, our team will perform a code review and schedule a call with you.
+We believe that Talk is cheap! 
+
+That is why we would like to see some code before a conversation. After you submit a Pull Request, our team will perform a code review and schedule a call with you.
 
 Note: This project should take no longer than 2-4 hours at the most to complete.
 
