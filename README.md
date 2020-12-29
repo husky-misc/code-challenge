@@ -6,9 +6,9 @@ You received this repository because we liked your profile and decided to move f
 
 ## Talk is cheap! 
 
-That is why we would like to see some code before a conversation. 
+That is why we would like to see some code before a conversation. Please Fork this repository and submit a Pull Request with your code.
 
-After you submit a Pull Request, our team will perform a code review and schedule a call with you.
+After you submit a Pull Request, our team will make a code review and schedule a call with you.
 
 ## Getting Started
 We are going to build a Credit Card Transactions API.
@@ -110,8 +110,8 @@ Customer 4:
   - 3 should be linked to Customer 1 Visa Credit Card
   - 2 should be linked to customer 2 Visa Credit Card
  ```
-## Once Complete
-1) Commit and Push your code to your forked
+## Once Completed
+1) Commit and Push your code to your forked repository
 2) Send us a pull request, we will review your code and get back to you.
 
 ## Questions
