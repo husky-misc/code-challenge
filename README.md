@@ -33,13 +33,13 @@ Scaffold a simple Rails 6 API and models a Credit Card transaction. JSON data st
 - A transaction status could be `failed`, `paid`, `dispute`, `refunded`
 - The Credit card should be related to a Customer through an Account. 
 
-> Feel free to model these relations as you want, here is the step where we will test your design and Object Oriented Programming (SOLID, Design, Clean Code) skills. Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
+> Feel free to model these relations as you want, here is the step where we will test your design and Object-Oriented Programming (SOLID, Design, Clean Code) skills. Models Objects are not only a representation of the database table, you can have objects at /models dir that are not ActiveRecord models (Concerns, UseCases, Services, etc).
 
 ## API Endpoints
 
 ##### Create an API endpoint where I can return all transactions of a Customer credit card
 This endpoint should respect the rules bellow 
-- return json as default result
+- return json as the default result
 - paginate results automatically and return only 5 transactions per page
 - accepts query parameters as filters for transactions statuses. For example:
 ```localhost:3000/api/v1/customer/{id}/credit_card/{id}/transactions?status=failed```
@@ -56,10 +56,10 @@ The endpoint should receive a body containing the `currency` and `amount` attrib
 Create a State Machine and unit tests to cover the following business rules:
 1) A transaction status can't change from `paid` to `failed`. 
 2) A `paid` transaction can change only to `refunded` or `dispute`.
-2) A transaction can be `refunded` only if it is in `dispute`
+2) A transaction can be `refunded` only if it is in a `dispute`
 3) A transaction under dispute state can go to the status: `paid` or `refunded`.
 4) A Transaction will be automatically `failed` if the credit card does not have limit available.
-5) Once a transaction is in `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
+5) Once a transaction is in a `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
 
 *You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
 
@@ -68,20 +68,20 @@ Create a State Machine and unit tests to cover the following business rules:
 Seed 4 Customers into the system:
 ```
 Customer 1: 
-  First Name: Johny 
-  Last Name: Flow
+  First Name: Yukihiro 
+  Last Name: Matsumoto
 
 Customer 2: 
-  First Name: Raj
-  Last Name: Jamnis
+  First Name: Sandi
+  Last Name: Matz
 
 Customer 3: 
-  First Name: Andrew
-  Last Name: Chung
+  First Name: Martin
+  Last Name: Fowler
 
 Customer 4: 
-  First Name: Mike
-  Last Name: Smith
+  First Name: Dr. Alan
+  Last Name: Kay
 ```
 
 Seed 20 transactions (charges) into the system
