@@ -6,9 +6,11 @@ You received this repository because we liked your profile and decided to move f
 
 ## Talk is cheap! 
 
-That is why we would like to see some code before a conversation. After you submit a Pull Request, our team will perform a code review and schedule a call with you.
+That is why we would like to see some code before a conversation. 
 
-Note: This project should take no longer than 2-4 hours at the most to complete.
+After you submit a Pull Request, our team will perform a code review and schedule a call with you.
+
+Note: This project should take no longer than 3 to 4 hours at the most to complete.
 
 ## Getting Started
 We are going to build a Credit Card Transactions API.
