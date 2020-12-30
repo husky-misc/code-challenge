@@ -74,8 +74,7 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    faker (2.15.1)
-      i18n (>= 1.6, < 2)
+    ffaker (2.17.0)
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -184,7 +183,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   factory_bot_rails
-  faker
+  ffaker
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
