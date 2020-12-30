@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: 5432
+  timeout: 5000
+
+development:
+  <<: *default
+  database: husky_code_challenge_development
+
+test:
+  <<: *default
+  database: husky_code_challenge_test
+
+production:
+  <<: *default
+  database: husky_code_challenge_production
+  username: husky_code_challenge
+  password: <%= ENV['HUSKY_CODE_CHALLENGE_DATABASE_PASSWORD'] %>
