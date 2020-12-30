@@ -1,5 +1,6 @@
 class Account < ApplicationRecord
   belongs_to :customer, required: true
+  has_many :credit_cards
 
-  validates :customer_id, uniqueness: :true
+  validates_uniqueness_of :customer_id
 end
