@@ -56,7 +56,7 @@ RSpec.describe Transaction, type: :model do
   context 'from paid' do
     context 'to dispute' do
       subject(:transaction) do
-         build(:transaction, credit_card: credit_card, amount: 10_00)
+        build(:transaction, credit_card: credit_card, amount: 10_00)
       end
 
       before do

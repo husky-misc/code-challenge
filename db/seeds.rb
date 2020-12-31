@@ -1,8 +1,8 @@
 customers = [
-  {first_name: 'Yukihiro', last_name: 'Matsumoto'},
-  {first_name: 'Sandi', last_name: 'Matz'},
-  {first_name: 'Martin', last_name: 'Fowler'},
-  {first_name: 'Dr. Alan', last_name: 'Kay'},
+  { first_name: 'Yukihiro', last_name: 'Matsumoto' },
+  { first_name: 'Sandi', last_name: 'Matz' },
+  { first_name: 'Martin', last_name: 'Fowler' },
+  { first_name: 'Dr. Alan', last_name: 'Kay' }
 ]
 
 puts '########################################################################'
@@ -58,28 +58,28 @@ end
 
 puts '    |    | 1 for Customer 3'
 credit_card = FactoryBot.create(
-    :credit_card,
-    account: Account.find(3),
-    spent_limit: rand(1_000_00..10_000_00)
-  )
+  :credit_card,
+  account: Account.find(3),
+  spent_limit: rand(1_000_00..10_000_00)
+)
 transaction = FactoryBot.build(
-    :transaction,
-    credit_card: credit_card,
-    amount: rand(100_00..1_000_00)
-  )
+  :transaction,
+  credit_card: credit_card,
+  amount: rand(100_00..1_000_00)
+)
 transaction.pay!
 
 puts '    |    | 1 for Customer 4'
 credit_card = FactoryBot.create(
-    :credit_card,
-    account: Account.find(4),
-    spent_limit: rand(1_000_00..10_000_00)
-  )
+  :credit_card,
+  account: Account.find(4),
+  spent_limit: rand(1_000_00..10_000_00)
+)
 transaction = FactoryBot.build(
-    :transaction,
-    credit_card: credit_card,
-    amount: rand(100_00..1_000_00)
-  )
+  :transaction,
+  credit_card: credit_card,
+  amount: rand(100_00..1_000_00)
+)
 transaction.pay!
 puts '    | 10 transactions created successfully!'
 puts '    |'
