@@ -1,7 +1,7 @@
 class Transaction < ApplicationRecord
-  belongs_to :credit_card
+  include TransactionStateMachine
 
-  enum status: %i[paid failed refunded dispute]
+  belongs_to :credit_card
 
   validates_presence_of(
     :credit_card_id, :status, :amount, :currency

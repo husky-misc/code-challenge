@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.1.1)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.0)
       actionpack (= 6.1.0)
       activesupport (= 6.1.0)
@@ -60,6 +62,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    after_commit_everywhere (0.1.5)
+      activerecord (>= 4.2)
     ast (2.4.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
@@ -200,6 +204,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
+  after_commit_everywhere (~> 0.1, >= 0.1.5)
   bootsnap (>= 1.4.4)
   byebug
   factory_bot_rails
