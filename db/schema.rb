@@ -10,46 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_230_221_316) do
+ActiveRecord::Schema.define(version: 2020_12_30_221316) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'accounts', force: :cascade do |t|
-    t.bigint 'customer_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['customer_id'], name: 'index_accounts_on_customer_id'
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_accounts_on_customer_id"
   end
 
-  create_table 'credit_cards', force: :cascade do |t|
-    t.bigint 'account_id', null: false
-    t.integer 'spent_limit'
-    t.string 'number'
-    t.string 'expiration_date'
-    t.string 'cvv'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['account_id'], name: 'index_credit_cards_on_account_id'
+  create_table "credit_cards", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.integer "spent_limit"
+    t.string "number"
+    t.string "expiration_date"
+    t.string "cvv"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_credit_cards_on_account_id"
   end
 
-  create_table 'customers', force: :cascade do |t|
-    t.string 'first_name'
-    t.string 'last_name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "customers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'transactions', force: :cascade do |t|
-    t.bigint 'credit_card_id', null: false
-    t.integer 'status'
-    t.integer 'amount'
-    t.string 'currency'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['credit_card_id'], name: 'index_transactions_on_credit_card_id'
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "credit_card_id", null: false
+    t.integer "status"
+    t.integer "amount"
+    t.string "currency"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["credit_card_id"], name: "index_transactions_on_credit_card_id"
   end
 
-  add_foreign_key 'accounts', 'customers'
-  add_foreign_key 'credit_cards', 'accounts'
-  add_foreign_key 'transactions', 'credit_cards'
+  add_foreign_key "accounts", "customers"
+  add_foreign_key "credit_cards", "accounts"
+  add_foreign_key "transactions", "credit_cards"
 end
