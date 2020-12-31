@@ -2,6 +2,7 @@ require 'simplecov'
 
 SimpleCov.start 'rails' do
   add_filter '/controllers/application_controller.rb'
+  add_filter '/controllers/api/v1/api_base_controller.rb'
   add_filter '/models/application_record.rb'
 end
 
