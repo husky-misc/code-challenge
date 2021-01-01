@@ -121,3 +121,5 @@ Customer 4:
 
 ## Questions
 If you have any question regarding the project, you can contact us directly by email
+
+[![codecov](https://codecov.io/gh/luxu/code-challenge/branch/master/graph/badge.svg?token=MDIRRS36JS)](https://codecov.io/gh/luxu/code-challenge)
