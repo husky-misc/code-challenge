@@ -1,4 +1,8 @@
 AllCops:
   NewCops: enable
+  Exclude:
+    - db/schema.rb
 Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
+  Enabled: false
+Style/Documentation:
+  Enabled: false
