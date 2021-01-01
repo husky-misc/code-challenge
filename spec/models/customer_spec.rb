@@ -24,4 +24,10 @@ RSpec.describe Customer, type: :model do
 
     expect(customer).to_not be_valid
   end
+
+  it '.full_name' do
+    customer = create :customer
+
+    expect(customer.full_name).to eq "#{customer.first_name} #{customer.last_name}"
+  end
 end
