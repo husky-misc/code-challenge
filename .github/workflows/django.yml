@@ -24,7 +24,17 @@ jobs:
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run Tests
+        pip install pipenv codecov
+        pip install -q -r requirements.txt
+        pipenv sync --dev
+    - name: Lint with flake8
       run: |
-        python manage.py test
+        pipenv run flake8 .
+    - name: Test with pytest
+      run: |
+        pytest api_credit_card --cov=api_credit_card
+    - name: Posting Coverage
+      env:
+        CODECOV_TOKEN: "db5e3e57-fd05-4b8f-966d-20b4aaeb1b2a"
+      run: |
+        pipenv run codecov
