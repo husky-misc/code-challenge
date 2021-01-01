@@ -20,7 +20,6 @@ json.customer do
       json.currency transaction.currency
       json.credit_card_id transaction.credit_card_id
     end
-
   end
 end
 
