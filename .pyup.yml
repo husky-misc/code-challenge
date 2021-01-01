@@ -26,6 +26,10 @@ search: True
 # default: empty
 # allowed: list
 requirements:
+  - requirements.txt:
+      # update all dependencies and pin them
+      update: all
+      pin: True
   - requirements/staging.txt:
       # update all dependencies and pin them
       update: all
