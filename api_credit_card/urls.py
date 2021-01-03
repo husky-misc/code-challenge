@@ -14,8 +14,56 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth.models import User
+from django.urls import path, include
+from cartao.models import Cc
+from cartao import views
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+from rest_framework import routers, serializers, viewsets
+
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email']
+
+
+# ViewSets define the view behavior.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class CcSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Cc
+        fields = [
+            'fullname',
+            'name_flag',
+            'spent_limit',
+            'number',
+            'expiration_date',
+            'cvv_code'
+        ]
+
+
+# ViewSets define the view behavior.
+class CcViewSet(viewsets.ModelViewSet):
+    queryset = Cc.objects.all()
+    serializer_class = CcSerializer
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'cartoes', CcViewSet)
 
 urlpatterns = [
+    # path('', include(router.urls)),
+    path('', views.home_page, name='home_page'),
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    # path('/cartao', include(car.router))
 ]
