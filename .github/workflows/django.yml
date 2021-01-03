@@ -32,7 +32,7 @@ jobs:
         pipenv run flake8 .
     - name: Test with pytest
       run: |
-        pytest api_credit_card --cov=api_credit_card
+        pytest test --cov=test
     - name: Posting Coverage
       env:
         CODECOV_TOKEN: "db5e3e57-fd05-4b8f-966d-20b4aaeb1b2a"
