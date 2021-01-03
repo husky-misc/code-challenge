@@ -1,5 +1,10 @@
 # Husky
 
+[![codecov](https://codecov.io/gh/luxu/code-challenge/branch/master/graph/badge.svg?token=MDIRRS36JS)](https://codecov.io/gh/luxu/code-challenge)
+[![Python 3](https://pyup.io/repos/github/luxu/code-challenge/python-3-shield.svg)](https://pyup.io/repos/github/luxu/code-challenge/)
+[![Updates](https://pyup.io/repos/github/luxu/code-challenge/shield.svg)](https://pyup.io/repos/github/luxu/code-challenge/)
+
+
 Congratulations, you're almost there! 
 
 You received this repository because we liked your profile and decided to move forward to the technical step of our hiring process. 
@@ -121,3 +126,4 @@ Customer 4:
 
 ## Questions
 If you have any question regarding the project, you can contact us directly by email
+
