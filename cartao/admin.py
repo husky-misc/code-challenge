@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from cartao.models import Cc
 
+
 class CcAdmin(admin.ModelAdmin):
     list_display = [
         'fullname',
@@ -11,5 +12,6 @@ class CcAdmin(admin.ModelAdmin):
         'expiration_date',
         'cvv_code',
     ]
+
 
 admin.site.register(Cc, CcAdmin)
