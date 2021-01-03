@@ -6,3 +6,7 @@
 db.sqlite3
 geckodriver.log
 __pycache__
+/test/.pytest_cache/CACHEDIR.TAG
+/test/.pytest_cache/README.md
+/test/.pytest_cache/CACHEDIR.TAG
+/test/.pytest_cache/README.md
