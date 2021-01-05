@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_05_165504) do
+ActiveRecord::Schema.define(version: 2021_01_05_195235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_165504) do
     t.string "cvv", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "customer_full_name", null: false
     t.index ["account_id"], name: "index_credit_cards_on_account_id"
   end
 

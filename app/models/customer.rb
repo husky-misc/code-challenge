@@ -8,8 +8,4 @@ class Customer < ApplicationRecord
   end
 
   after_create :create_account
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 end

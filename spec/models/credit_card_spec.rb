@@ -10,4 +10,5 @@ RSpec.describe CreditCard, type: :model do
   it { is_expected.to validate_length_of(:expiration_date).is_equal_to(4) }
   it { is_expected.to validate_numericality_of(:cvv).only_integer }
   it { is_expected.to validate_length_of(:cvv).is_at_least(3).is_at_most(4) }
+  it { is_expected.to validate_presence_of(:customer_full_name) }
 end
