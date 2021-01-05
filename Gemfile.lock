@@ -73,6 +73,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -152,6 +154,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.1)
+    shoulda-matchers (4.4.1)
+      activesupport (>= 4.2.0)
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -175,11 +179,13 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   factory_bot_rails (= 6.1.0)
+  faker (= 2.15.1)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.0)
   rspec-rails (= 4.0.2)
+  shoulda-matchers (= 4.4.1)
   spring
   tzinfo-data
 
