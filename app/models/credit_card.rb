@@ -1,6 +1,7 @@
 class CreditCard < ApplicationRecord
   belongs_to :account
   has_one :customer, through: :account
+  has_many :transactions, class_name: 'CreditCard::Transaction', inverse_of: :credit_card
 
   delegate :full_name, to: :customer, prefix: true
 
