@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
-  subject { build(:credit_card) }
+  subject(:credit_card) { build(:credit_card) }
 
   it { is_expected.to validate_numericality_of(:spent_limit).is_greater_than_or_equal_to(0).only_integer }
   it { is_expected.to validate_numericality_of(:number).only_integer }
@@ -18,6 +18,26 @@ RSpec.describe CreditCard, type: :model do
     it 'subtracts the sum of disputed transactions from spent limit' do
       create_pair(:credit_card_transaction, :dispute, amount: 100_00, credit_card: credit_card)
       expect(credit_card.available_limit).to eq(800_00)
+    end
+  end
+
+  describe "#charge" do
+    let(:params) { { amount: 10_00, currency: 'usd' } }
+    let(:charge_call) { credit_card.charge(params) }
+    let(:transaction) { instance_double(CreditCard::Transaction) }
+    let(:service_mock) { instance_double(CreditCard::ChargeService, call: true, credit_card_transaction: transaction) }
+
+    before { allow(CreditCard::ChargeService).to receive(:new).and_return(service_mock) }
+
+    it 'calls CreditCard::ChargeService' do
+      charge_call
+
+      expect(CreditCard::ChargeService).to have_received(:new).with(credit_card, params)
+      expect(service_mock).to have_received(:call)
+    end
+
+    it 'returns the new transaction' do
+      expect(charge_call).to eq(transaction)
     end
   end
 end

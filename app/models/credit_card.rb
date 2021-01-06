@@ -12,4 +12,9 @@ class CreditCard < ApplicationRecord
   def available_limit
     spent_limit - transactions.dispute.pluck(:amount).sum
   end
+
+  def charge(**options)
+    service = CreditCard::ChargeService.new(self, **options).tap(&:call)
+    service.credit_card_transaction
+  end
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :credit_card do
-    account
+    association :account, strategy: :create
     spent_limit { 10_000_00 }
     number { Faker::Finance.credit_card(:mastercard, :visa).delete('-') }
     expiration_date { '0125' }
