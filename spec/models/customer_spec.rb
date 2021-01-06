@@ -12,4 +12,10 @@ RSpec.describe Customer, type: :model do
       expect(customer.account).not_to be_nil
     end
   end
+
+  describe "#full_name" do
+    it 'joins first name and last name' do
+      expect(customer.full_name).to include(customer.first_name, customer.last_name)
+    end
+  end
 end

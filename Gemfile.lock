@@ -177,6 +177,9 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.1)
+    seed-fu (2.3.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
     simplecov (0.21.1)
@@ -217,6 +220,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.0)
   rspec-rails (= 4.0.2)
+  seed-fu (= 2.3.9)
   shoulda-matchers (= 4.4.1)
   simplecov (= 0.21.1)
   spring
