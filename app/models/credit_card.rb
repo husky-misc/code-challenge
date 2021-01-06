@@ -8,4 +8,8 @@ class CreditCard < ApplicationRecord
   validates :expiration_date, numericality: { only_integer: true }, length: { is: 4 }
   validates :cvv, numericality: { only_integer: true }, length: { minimum: 3, maximum: 4 }
   validates :customer_full_name, presence: true
+
+  def available_limit
+    spent_limit - transactions.dispute.pluck(:amount).sum
+  end
 end
