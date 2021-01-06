@@ -1,6 +1,8 @@
 class CreditCard::Transaction < ApplicationRecord
   include AASM
 
+  scope :by_status, ->(status) { status ? where(status: status) : all }
+
   belongs_to :credit_card
 
   validates :amount, numericality: { greater_than: 0, only_integer: true }
@@ -26,4 +28,6 @@ class CreditCard::Transaction < ApplicationRecord
       transitions from: :started, to: :failed
     end
   end
+
+  paginates_per 5
 end
