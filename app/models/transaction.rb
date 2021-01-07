@@ -7,7 +7,7 @@ class Transaction < ApplicationRecord
 
   belongs_to :credit_card
 
-  aasm do
+  aasm column: 'status' do
     state :dispute, initial: true
     state :paid, :failed, :refunded
 
