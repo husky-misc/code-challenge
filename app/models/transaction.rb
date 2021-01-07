@@ -18,7 +18,7 @@ class Transaction < ApplicationRecord
     end
 
     event :refund do
-      transitions from: %i[dispute paid], to: :refunded
+      transitions from: %i[dispute], to: :refunded
     end
 
     event :fail do
