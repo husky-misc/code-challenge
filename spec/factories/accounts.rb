@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :account do
-    customer
+    association(:customer, factory: :customer)
   end
 end
