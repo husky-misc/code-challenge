@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_05_225248) do
+ActiveRecord::Schema.define(version: 2021_01_07_012502) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_accounts_on_customer_id"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "spent_limit"
+    t.string "number"
+    t.datetime "expiration_date"
+    t.string "cvv"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_credit_cards_on_account_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -27,4 +38,5 @@ ActiveRecord::Schema.define(version: 2021_01_05_225248) do
   end
 
   add_foreign_key "accounts", "customers"
+  add_foreign_key "credit_cards", "accounts"
 end
