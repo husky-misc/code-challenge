@@ -14,3 +14,18 @@ FactoryBot.create(:credit_card, account: sandi.account)
 FactoryBot.create(:credit_card, account: martin.account)
 FactoryBot.create(:credit_card, account: alan.account)
 
+puts '>>> Creating transactions'
+puts '>>>>> Successful transactions'
+FactoryBot.create_list(:transaction, 5, status: :paid, credit_card: matz.credit_cards.first)
+FactoryBot.create_list(:transaction, 3, status: :paid, credit_card: sandi.credit_cards.first)
+FactoryBot.create_list(:transaction, 1, status: :paid, credit_card: martin.credit_cards.first)
+FactoryBot.create_list(:transaction, 1, status: :paid, credit_card: alan.credit_cards.first)
+
+puts '>>>>> Failed transactions'
+FactoryBot.create_list(:transaction, 3, status: :failed, credit_card: martin.credit_cards.first)
+FactoryBot.create_list(:transaction, 2, status: :failed, credit_card: alan.credit_cards.first)
+
+
+puts '>>>>> Dispute transactions'
+FactoryBot.create_list(:transaction, 3, status: :dispute, credit_card: matz.credit_cards.first)
+FactoryBot.create_list(:transaction, 2, status: :dispute, credit_card: sandi.credit_cards.first)
