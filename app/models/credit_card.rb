@@ -4,6 +4,8 @@ class CreditCard < ApplicationRecord
 
   belongs_to :account
 
+  has_many :transactions
+
   delegate :customer, to: :account
   delegate :full_name, to: :customer
 end
