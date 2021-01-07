@@ -48,7 +48,7 @@ JSON data structure below:
 
 Create a State Machine and unit tests to cover the following business rules:
 1) A transaction status can't change from `paid` to `failed`. 
-2) A `paid` transaction can change only to `refunded` or `dispute`.
+2) A `paid` transaction can change only to `dispute`.
 2) A transaction can be `refunded` only if it is in a `dispute`
 3) A transaction under dispute state can go to the status: `paid` or `refunded`.
 4) A Transaction will be automatically `failed` if the credit card does not have limit available.
