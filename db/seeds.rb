@@ -27,5 +27,5 @@ FactoryBot.create_list(:transaction, 2, status: :failed, credit_card: alan.credi
 
 
 puts '>>>>> Dispute transactions'
-FactoryBot.create_list(:transaction, 3, status: :dispute, credit_card: matz.credit_cards.first)
-FactoryBot.create_list(:transaction, 2, status: :dispute, credit_card: sandi.credit_cards.first)
+FactoryBot.create_list(:transaction, 3, status: :disputed, credit_card: matz.credit_cards.first)
+FactoryBot.create_list(:transaction, 2, status: :disputed, credit_card: sandi.credit_cards.first)
