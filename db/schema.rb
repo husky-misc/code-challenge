@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_202641) do
+ActiveRecord::Schema.define(version: 2021_01_07_204431) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_202641) do
     t.integer "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "flag"
     t.index ["account_id"], name: "index_credit_cards_on_account_id"
   end
 
