@@ -17,7 +17,8 @@ module Api
       private
 
       def set_credit_card
-        @credit_card = CreditCard.find(params[:credit_card_id])
+        customer = Customer.find(params[:customer_id])
+        @credit_card = customer.credit_cards.find(params[:credit_card_id])
       end
     end
   end
