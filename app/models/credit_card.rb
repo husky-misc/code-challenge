@@ -10,4 +10,20 @@ class CreditCard < ApplicationRecord
                         :expiration_date,
                         :cvv,
                         :flag
+
+  def expired?
+    Date.today > expiration_date
+  end
+
+  def decrease_limit(amount)
+    self.spent_limit -= amount
+
+    save!
+  end
+
+  def back_limit(amount)
+    self.spent_limit += amount
+
+    save!
+  end
 end
