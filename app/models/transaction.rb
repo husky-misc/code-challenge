@@ -33,9 +33,11 @@ class Transaction < ApplicationRecord
   private
 
   def check_transaction
-    pay if amount <= credit_card.spent_limit && !credit_card.expired?
-
-    self.fail if amount > credit_card.spent_limit || credit_card.expired?
+    if amount <= credit_card.spent_limit && !credit_card.expired?
+      pay
+    elsif amount > credit_card.spent_limit || credit_card.expired?
+      self.fail
+    end
   end
 
   def decrease_limit
