@@ -5,7 +5,7 @@ module Api
         relation = credit_card.transactions
         relation = relation.where(status: transaction_params[:status]) if transaction_params[:status]
 
-        render json: relation, status: :ok
+        paginate relation, per_page: 5, status: :ok
       end
 
       private
