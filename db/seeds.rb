@@ -16,42 +16,79 @@ account_two = Account.create(customer_id: customer_two.id)
 account_three = Account.create(customer_id: customer_three.id)
 account_four = Account.create(customer_id: customer_four.id)
 
-account_one = CreditCard.create(
+credit_card_one = CreditCard.create(
   account_id: account_one.id,
   number: '4916793613502348',
   cvv: '443',
-  spent_limite: 150000,
+  spent_limit: 150000,
   expiration_date: '2022/12/07',
   flag: 'Visa',
   customer_full_name: account_one.customer.full_name
 )
 
-account_two = CreditCard.create(
+credit_card_two = CreditCard.create(
   account_id: account_two.id,
   number: '4929551440422139',
   cvv: '322',
-  spent_limite: 250000,
+  spent_limit: 250000,
   expiration_date: '07/07/2021',
   flag: 'Visa',
   customer_full_name: account_two.customer.full_name
 )
 
-account_three = CreditCard.create(
+credit_card_three = CreditCard.create(
   account_id: account_three.id,
   number: '5414651510520330',
   cvv: '125',
-  spent_limite: 350000,
+  spent_limit: 350000,
   expiration_date: '2021/08/07',
   flag: 'MasterCard',
   customer_full_name: account_three.customer.full_name
 )
 
-account_four = CreditCard.create(
+credit_card_four = CreditCard.create(
   account_id: account_four.id,
   number: '4916971365086203',
   cvv: '881',
-  spent_limite: 450000,
+  spent_limit: 450000,
   expiration_date: '2021/08/07',
   flag: 'Visa',
   customer_full_name: account_four.customer.full_name
 )
+
+# successful transactions
+
+1.upto(5) do |i|
+  Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_one.id)
+end
+
+1.upto(3) do |i|
+  Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_two.id)
+end
+
+Transaction.create(currency: 'usd', amount: 50000, credit_card_id: credit_card_three.id)
+Transaction.create(currency: 'usd', amount: 100000, credit_card_id: credit_card_four.id)
+
+# failed transactions
+
+1.upto(3) do |i|
+  Transaction.create(currency: 'usd', amount: 350000 + 100000 * i, credit_card_id: credit_card_three.id)
+end
+
+1.upto(2) do |i|
+  Transaction.create(currency: 'usd', amount: 450000 + 100000 * i, credit_card_id: credit_card_four.id)
+end
+
+# disputed transactions
+
+1.upto(3) do |i|
+  t = Transaction.create(currency: 'usd', amount: 350000 + 100000 * i, credit_card_id: credit_card_three.id)
+  t.to_dispute
+  t.save!
+end
+
+1.upto(2) do |i|
+  t = Transaction.create(currency: 'usd', amount: 450000 + 100000 * i, credit_card_id: credit_card_four.id)
+  t.to_dispute
+  t.save!
+end
