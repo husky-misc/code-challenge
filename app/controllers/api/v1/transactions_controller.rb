@@ -1,6 +1,8 @@
 module Api
   module V1
     class TransactionsController < ApplicationController
+      before_action :set_credit_card
+
       def index
         transactions = @credit_card.transactions
         transactions = transactions.where(status: params[:status]) if params[:status].present?

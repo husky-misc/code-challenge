@@ -1,6 +1,8 @@
 module Api
   module V1
     class CreditCardsController < ApplicationController
+      before_action :set_credit_card
+
       def charge
         transaction = Transaction.new(charge_params)
         if transaction.save
