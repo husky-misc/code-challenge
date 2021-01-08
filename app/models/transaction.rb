@@ -2,6 +2,8 @@ class Transaction < ApplicationRecord
   include AASM
 
   validates_presence_of :status, :amount, :currency
+  validates_numericality_of :amount
+
   belongs_to :credit_card
 
   enum status: %i[pending paid failed disputed refunded]
