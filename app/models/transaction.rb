@@ -3,7 +3,6 @@
 class Transaction < ApplicationRecord
   include AASM
 
-  before_save :set_status
   before_save :check_transaction
 
   belongs_to :credit_card
