@@ -4,7 +4,7 @@ module Api
       before_action :set_credit_card
 
       def charge
-        transaction = Transaction.new(charge_params)
+        transaction = @credit_card.transactions.new(charge_params)
         transaction.check_status
         if transaction.save
           transaction_json = TransactionSerializer.new(transaction).serialized_json
