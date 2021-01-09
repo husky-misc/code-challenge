@@ -20,7 +20,7 @@ credit_card_one = CreditCard.create(
   account_id: account_one.id,
   number: '4916793613502348',
   cvv: '443',
-  spent_limit: 150000,
+  spent_limit: 250000,
   expiration_date: '2022/12/07',
   flag: 'Visa',
   customer_full_name: account_one.customer.full_name
@@ -30,7 +30,7 @@ credit_card_two = CreditCard.create(
   account_id: account_two.id,
   number: '4929551440422139',
   cvv: '322',
-  spent_limit: 250000,
+  spent_limit: 350000,
   expiration_date: '07/07/2021',
   flag: 'Visa',
   customer_full_name: account_two.customer.full_name
@@ -40,7 +40,7 @@ credit_card_three = CreditCard.create(
   account_id: account_three.id,
   number: '5414651510520330',
   cvv: '125',
-  spent_limit: 350000,
+  spent_limit: 450000,
   expiration_date: '2021/08/07',
   flag: 'MasterCard',
   customer_full_name: account_three.customer.full_name
@@ -50,7 +50,7 @@ credit_card_four = CreditCard.create(
   account_id: account_four.id,
   number: '4916971365086203',
   cvv: '881',
-  spent_limit: 450000,
+  spent_limit: 550000,
   expiration_date: '2021/08/07',
   flag: 'Visa',
   customer_full_name: account_four.customer.full_name
@@ -81,14 +81,14 @@ end
 
 # disputed transactions
 
-1.upto(3) do |i|
-  t = Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_one.id)
+1.upto(3) do
+  t = Transaction.create(currency: 'usd', amount: 10000, credit_card_id: credit_card_one.id)
   t.to_dispute
   t.save!
 end
 
-1.upto(2) do |i|
-  t = Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_two.id)
+1.upto(2) do
+  t = Transaction.create(currency: 'usd', amount: 10000, credit_card_id: credit_card_two.id)
   t.to_dispute
   t.save!
 end
