@@ -5,7 +5,11 @@ module Chargeable
     has_many :transactions, as: :chargeable
 
     def charge!(amount:, currency:)
-      self.transactions.create!(amount: amount, currency: currency)
+      transaction = self.transactions.new(amount: amount, currency: currency)
+      transaction.pay!
+      return false if transaction.failed?
+
+      true
     end
   end
 end
