@@ -24,9 +24,9 @@ RSpec.describe ::Api::V1::TransactionsController, type: :request do
 
     context 'with valid params' do
       before do
-        create(:transaction, status: :paid, credit_card: credit_card)
-        create(:transaction, status: :failed, credit_card: credit_card)
-        create(:transaction, status: :disputed, credit_card: credit_card)
+        create(:transaction, status: :paid, chargeable: credit_card)
+        create(:transaction, status: :failed, chargeable: credit_card)
+        create(:transaction, status: :disputed, chargeable: credit_card)
       end
 
       context 'with invalid status' do

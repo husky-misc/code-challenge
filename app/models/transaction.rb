@@ -4,7 +4,7 @@ class Transaction < ApplicationRecord
   validates_presence_of :status, :amount, :currency
   validates_numericality_of :amount
 
-  belongs_to :credit_card
+  belongs_to :chargeable, polymorphic: true
 
   enum status: %i[pending paid failed disputed refunded]
   aasm column: :status, enum: true do

@@ -8,7 +8,7 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'Relationships' do
-    it { is_expected.to belong_to(:credit_card) }
+    it { is_expected.to belong_to(:chargeable) }
   end
 
   describe 'Data Mapping' do
