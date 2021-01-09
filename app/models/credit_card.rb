@@ -1,5 +1,6 @@
 class CreditCard < ApplicationRecord
   include Chargeable
+  include Withdrawable
 
   delegate :customer, to: :account
   delegate :full_name, to: :customer

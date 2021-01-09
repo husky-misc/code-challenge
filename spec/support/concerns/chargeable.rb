@@ -14,7 +14,7 @@ shared_examples_for 'chargeable' do
 
     context 'when done' do
       let(:model) { create(described_class.to_s.underscore, spent_limit: 10_000_00) }
-      let(:amount) { 100_00}
+      let(:amount) { 100_00 }
 
       it { is_expected.to be_truthy }
     end

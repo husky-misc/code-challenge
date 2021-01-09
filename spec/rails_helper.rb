@@ -80,3 +80,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# autorequire the spec/support
+Dir["./spec/support/**/*.rb"].sort.each {|f| require f} # autorequire the files
