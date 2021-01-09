@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
+  it_behaves_like 'chargeable'
+  it_behaves_like 'withdrawable'
+
   describe 'Validations' do
     it do
       is_expected.to validate_numericality_of(:spent_limit)
