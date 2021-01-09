@@ -59,36 +59,45 @@ credit_card_four = CreditCard.create(
 # successful transactions
 
 1.upto(5) do |i|
-  Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_one.id)
+  t = Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_one.id)
+  t.check_status
+  t.save!
 end
 
 1.upto(3) do |i|
-  Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_two.id)
+  t = Transaction.create(currency: 'usd', amount: 10000 * i, credit_card_id: credit_card_two.id)
+  t.check_status
+  t.save!
 end
 
-Transaction.create(currency: 'usd', amount: 50000, credit_card_id: credit_card_three.id)
-Transaction.create(currency: 'usd', amount: 100000, credit_card_id: credit_card_four.id)
+t = Transaction.create(currency: 'usd', amount: 50000, credit_card_id: credit_card_three.id)
+t.check_status
+t.save!
+
+t = Transaction.create(currency: 'usd', amount: 100000, credit_card_id: credit_card_four.id)
+t.check_status
+t.save!
 
 # failed transactions
 
 1.upto(3) do |i|
-  Transaction.create(currency: 'usd', amount: 350000 + 100000 * i, credit_card_id: credit_card_three.id)
+  t = Transaction.create(currency: 'usd', amount: 350000 + 100000 * i, credit_card_id: credit_card_three.id)
+  t.check_status
+  t.save!
 end
 
 1.upto(2) do |i|
-  Transaction.create(currency: 'usd', amount: 450000 + 100000 * i, credit_card_id: credit_card_four.id)
+  t = Transaction.create(currency: 'usd', amount: 450000 + 100000 * i, credit_card_id: credit_card_four.id)
+  t.check_status
+  t.save!
 end
 
 # disputed transactions
 
 1.upto(3) do
   t = Transaction.create(currency: 'usd', amount: 10000, credit_card_id: credit_card_one.id)
-  t.to_dispute
-  t.save!
 end
 
 1.upto(2) do
   t = Transaction.create(currency: 'usd', amount: 10000, credit_card_id: credit_card_two.id)
-  t.to_dispute
-  t.save!
 end

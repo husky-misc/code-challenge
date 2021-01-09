@@ -5,6 +5,7 @@ module Api
 
       def charge
         transaction = Transaction.new(charge_params)
+        transaction.check_status
         if transaction.save
           transaction_json = TransactionSerializer.new(transaction).serialized_json
 

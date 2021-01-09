@@ -3,8 +3,6 @@
 class Transaction < ApplicationRecord
   include AASM
 
-  before_save :check_transaction
-
   belongs_to :credit_card
 
   validates_presence_of :amount, :currency
@@ -30,15 +28,15 @@ class Transaction < ApplicationRecord
     end
   end
 
-  private
-
-  def check_transaction
+  def check_status
     if amount <= credit_card.spent_limit && !credit_card.expired?
       pay
     elsif amount > credit_card.spent_limit || credit_card.expired?
       self.fail
     end
   end
+
+  private
 
   def decrease_limit
     credit_card.decrease_limit(amount)
