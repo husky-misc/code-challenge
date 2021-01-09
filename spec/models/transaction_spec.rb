@@ -16,11 +16,32 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'State Transitions' do
-    it { is_expected.to transition_from(:pending).to(:paid).on_event(:pay) }
-    it { is_expected.to transition_from(:disputed).to(:paid).on_event(:pay) }
-    it { is_expected.to transition_from(:pending).to(:failed).on_event(:fail) }
-    it { is_expected.to transition_from(:paid).to(:disputed).on_event(:dispute) }
-    it { is_expected.to transition_from(:disputed).to(:refunded).on_event(:refund) }
+    subject { build :transaction }
+    it { is_expected.to have_state(:pending) }
+
+    describe '.pay' do
+      context 'with insufficient limit' do
+        let(:chargeable) { build :credit_card, spent_limit: 1_000_00 }
+        subject { build :transaction, chargeable: chargeable, amount: 10_000_00 }
+        it { is_expected.to transition_from(:pending).to(:failed).on_event(:pay) }
+      end
+
+      context 'with enought limit' do
+        let(:chargeable) { build :credit_card, spent_limit: 10_000_00 }
+        subject { build :transaction, chargeable: chargeable, amount: 1_000_00 }
+        it { is_expected.to transition_from(:pending).to(:paid).on_event(:pay) }
+      end
+      it { is_expected.to transition_from(:disputed).to(:paid).on_event(:pay) }
+    end
+
+    describe '.dispute' do
+      it { is_expected.to transition_from(:paid).to(:disputed).on_event(:dispute) }
+    end
+
+    describe '.refund' do
+      it { is_expected.to transition_from(:disputed).to(:refunded).on_event(:refund) }
+    end
+
   end
 
 

@@ -15,12 +15,9 @@ class Transaction < ApplicationRecord
     state :refunded
 
     event :pay do
+      transitions from: :pending, to: :failed, if: :insufficient_limit
       transitions from: :pending, to: :paid
       transitions from: :disputed, to: :paid
-    end
-
-    event :fail do
-      transitions from: :pending, to: :failed
     end
 
     event :refund do
@@ -30,5 +27,11 @@ class Transaction < ApplicationRecord
     event :dispute do
       transitions from: :paid, to: :disputed
     end
+  end
+
+  private
+
+  def insufficient_limit
+    chargeable.spent_limit <= amount
   end
 end
