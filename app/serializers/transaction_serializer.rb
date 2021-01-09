@@ -1,3 +1,7 @@
 class TransactionSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :status, :amount, :currency, :credit_card_id
+  attributes :id, :status, :amount, :currency, :chargeable_id, :created_at
+
+  def created_at
+    object.created_at.iso8601
+  end
 end
