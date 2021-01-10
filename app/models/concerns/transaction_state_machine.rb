@@ -12,7 +12,7 @@ module TransactionStateMachine
       state :dispute
 
       event :pay do
-        transitions from: :started, to: :paid, guard: :has_limit?, success: :withdraw_credit_card_limit
+        transitions from: :started, to: :paid, guard: :has_limit?, success: :withdraw
         transitions from: :started, to: :failed
       end
 
@@ -22,22 +22,22 @@ module TransactionStateMachine
       end
 
       event :refund do
-        transitions from: :dispute, to: :refunded, success: :restore_credit_card_limit
+        transitions from: :dispute, to: :refunded, success: :restore_limit
       end
     end
   end
 
   private
 
+  def withdraw
+    credit_card.withdraw(amount)
+  end
+
+  def restore_limit
+    credit_card.restore_limit(amount)
+  end
+
   def has_limit?
     credit_card.spent_limit >= amount
-  end
-
-  def withdraw_credit_card_limit
-    credit_card.update(spent_limit: credit_card.spent_limit - amount)
-  end
-
-  def restore_credit_card_limit
-    credit_card.update(spent_limit: credit_card.spent_limit + amount)
   end
 end

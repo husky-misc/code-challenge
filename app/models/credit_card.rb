@@ -15,4 +15,12 @@ class CreditCard < ApplicationRecord
       currency: params[:currency]
     ).call
   end
+
+  def withdraw(amount)
+    self.update!(spent_limit: spent_limit - amount)
+  end
+
+  def restore_limit(amount)
+    self.update!(spent_limit: spent_limit + amount)
+  end
 end
