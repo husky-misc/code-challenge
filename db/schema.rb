@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2021_01_07_204431) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_accounts_on_customer_id"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_204431) do
     t.string "number"
     t.date "expiration_date"
     t.string "cvv"
-    t.integer "account_id", null: false
+    t.bigint "account_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "flag"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_204431) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer "credit_card_id", null: false
+    t.bigint "credit_card_id", null: false
     t.integer "amount"
     t.string "currency"
     t.string "status"
