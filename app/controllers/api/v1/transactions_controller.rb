@@ -17,11 +17,11 @@ module Api
 
       def to_dispute
         if @transaction.dispute?
-          render json: { message: 'This transaction is already in dispute' }, status: 200
+          render json: { error: 'This transaction is already in dispute' }, status: 400
         elsif @transaction.refunded?
-          render json: { message: 'This transaction refunded' }, status: 200
+          render json: { error: 'This transaction refunded' }, status: 400
         elsif @transaction.failed?
-          render json: { message: 'This transaction failed' }, status: 200
+          render json: { error: 'This transaction failed' }, status: 400
         else
           @transaction.to_dispute
           if @transaction.save
@@ -43,7 +43,7 @@ module Api
             render json: { error: 'We cannot refund the transaction' }, status: 500
           end
         else
-          render json: { message: 'The transaction must be in dispute to refund' }, stauts: 200
+          render json: { error: 'The transaction must be in dispute to refund' }, stauts: 400
         end
       rescue StandardError => e
         render json: { error: e.message }, status: 200
