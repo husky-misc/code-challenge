@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
       post(
         '/customers/:customer_id/credit_cards/:credit_card_id/charge',
-        to: 'credit_cards#create',
+        to: 'credit_cards#charge',
         as: :credit_cards
       )
     end
