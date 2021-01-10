@@ -54,10 +54,14 @@ module Api
       def set_credit_card
         customer = Customer.find(params[:customer_id])
         @credit_card = customer.credit_cards.find(params[:credit_card_id])
+      rescue StandardError => e
+        render json: { error: 'Cannot find the credit_card' }, status: 400
       end
 
       def set_transaction
         @transaction = @credit_card.transactions.find(params[:transaction_id])
+      rescue StandardError => e
+        render json: { error: 'Cannot find the transaction' }, status: 400
       end
     end
   end
