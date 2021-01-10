@@ -1,24 +1,17 @@
-class Api::V1::TransactionsController < Api::V1::ApiBaseController
-  def index
-    status = transaction_params[:status]
+module Api::V1
+  class TransactionsController < Api::V1::ApiBaseController
+    include ValidateStatus
 
-    if status.present?
-      return not_found('Status not found') unless status_valid?(status)
-
+    def index
       @transactions =
-        @credit_card.transactions.send(status).page(transaction_params[:page])
-    else
-      @transactions = @credit_card.transactions.page(transaction_params[:page])
+        @credit_card
+        .transactions.send(status || 'all').page(transaction_params[:page])
     end
-  end
 
-  private
+    private
 
-  def status_valid?(status)
-    Transaction.statuses.include? status
-  end
-
-  def transaction_params
-    params.permit(:page, :status)
+    def transaction_params
+      params.permit(:page, :status)
+    end
   end
 end
