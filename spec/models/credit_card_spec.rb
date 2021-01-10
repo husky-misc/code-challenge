@@ -23,4 +23,12 @@ RSpec.describe CreditCard, type: :model do
       expect(credit_card.errors.full_messages.first).to eq("Spent limit can\'t be blank")
     end
   end
+
+  context 'When exist all attributes' do
+    it 'should save' do
+      credit_card = build(:credit_card)
+
+      expect(credit_card.save).to eq true
+    end
+  end
 end
