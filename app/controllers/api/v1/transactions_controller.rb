@@ -25,7 +25,9 @@ module Api
         else
           @transaction.to_dispute
           if @transaction.save
-            render json: @transaction, status: 200
+            transaction_json = TransactionSerializer.new(@transaction).serialized_json
+
+            render json: transaction_json, status: 200
           else
             render json: { error: 'We cannot change the transaction to dispute' }, status: 500
           end
@@ -37,8 +39,10 @@ module Api
       def refund
         if @transaction.dispute?
           @transaction.refund
+          transaction_json = TransactionSerializer.new(@transaction).serialized_json
+
           if @transaction.save
-            render json: @transaction, status: 200
+            render json: transaction_json, status: 200
           else
             render json: { error: 'We cannot refund the transaction' }, status: 500
           end
