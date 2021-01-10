@@ -1,123 +1,243 @@
-# Husky
+Husky Code Challenge
+===
 
-Congratulations, you're almost there! 
+## Getting started
 
-You received this repository because we liked your profile and decided to move forward to the technical step of our hiring process. 
+To setup the project you'll need this following technology and version:
 
-## Talk is cheap! 
+- Ruby - 2.5.3
 
-That is why we would like to see some code before a conversation. Please Fork this repository and submit a Pull Request with your code.
+Do not forget to install this package:
 
-After you submit a Pull Request, our team will make a code review and schedule a call with you.
+- libpq-dev
+- `sudo apt-get install libpq-dev`
 
->*Note: We would LOVE to see some Ruby code.* 
->*If you don't know Ruby (yet!) - you'll learn it here - send the PR using the programming language that you are proficient. (or learn at least the necessary to submit this challenge)*
+In the file config/database.yml change the username for the username that you use in your postgres database
 
-## Getting Started
-We are going to build a Credit Card Transactions API.
+    default: &default
+        adapter: postgresql
+        pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+        timeout: 5000
+        host: localhost
+        username: postgres  <- HERE
 
- Our data modeling will follow something close to:
- - A Customer may have one or more credit cards through an Account. 
- - A Credit Card has a spent limit, the customer full_name, a number, an expiration date, CVV code and has many Transactions.
+Now you can just clone this project and run:
+- `bundle install`
+- `rails db:create`
+- `rails db:migrate`
+- `rails db:seed`
+- `rails s`
 
-## Task: Credit Card Transaction API
-Scaffold a simple Rails API only app (https://guides.rubyonrails.org/api_app.html) and models a Credit Card Transaction. 
+The last command will run the server in: http://localhost:3000
 
-JSON data structure below:
-```json
-  {
-    "id": 9923,
-    "created": 1389618241,
-    "status": "paid",
-    "amount": 4900,
-    "currency": "usd",
-    "credit_card_id" : 1232211
-  }
- ``` 
+API endpoints
+---
 
-- To avoid monetary round issues, the amount field is always in the respective currency cents
-- A Transaction object has a credit card foreign key (credit_card_id). 
-- A transaction status could be `failed`, `paid`, `dispute`, `refunded`
-- The Credit card should be related to a Customer through an Account. 
+**OBS: Remember to always use http://localhost:3000 and the complements below**
 
-> *Feel free to model these relations as you want, here is the step where we will test your Object-Oriented Programming skills including SOLID, Design, Clean Code amd Unit tests.*
+### GET /api/v1/customers/:customer_id/credit_cards/:credit_card_id/transactions
 
-> *Advise: Models and Entity Objects are not only a representation of the database table, you can have objects that are not ActiveRecord / ORM classes (Concerns, UseCases, Services, etc)*.
+This endpoint will return all the credit_card transactions, something like that:
 
-## Business Rules and Unit Tests
+    {
+      "data": [
+        {
+          "id": "6",
+          "type": "transaction",
+          "attributes": {
+            "amount": 10000,
+            "currency": "usd",
+            "status": "paid"
+          },
+          "relationships": {
+            "credit_card": {
+              "data": {
+                "id": "2",
+                "type": "credit_card"
+              }
+            }
+          }
+        },
+        {
+          "id": "7",
+          "type": "transaction",
+          "attributes": {
+            "amount": 20000,
+            "currency": "usd",
+            "status": "paid"
+          },
+          "relationships": {
+            "credit_card": {
+              "data": {
+                "id": "2",
+                "type": "credit_card"
+              }
+            }
+          }
+        }
+      ]
+    }
 
-Create a State Machine and unit tests to cover the following business rules:
-1) A transaction status can't change from `paid` to `failed`. 
-2) A `paid` transaction can change only to `refunded` or `dispute`.
-2) A transaction can be `refunded` only if it is in a `dispute`
-3) A transaction under dispute state can go to the status: `paid` or `refunded`.
-4) A Transaction will be automatically `failed` if the credit card does not have limit available.
-5) Once a transaction is in a `disputed` state, the amount of the disputed transaction is not available on the Customer credit card limit.
+You also can filter the transactions adding in the parameter **?status** in the end, example:
 
-*You don't need to build a State Machine from the ground. If you don't know what a state machine is, please have a look at https://github.com/aasm/aasm or a similar project*
+**/api/v1/customers/:customer_id/credit_cards/:credit_card_id/transactions?status=dispute**
 
-*Please, DO NOT submit your solution without Unit Tests.*
+    {
+      "data": [
+        {
+          "id": "19",
+          "type": "transaction",
+          "attributes": {
+            "amount": 10000,
+            "currency": "usd",
+            "status": "dispute"
+          },
+          "relationships": {
+            "credit_card": {
+              "data": {
+                "id": "2",
+                "type": "credit_card"
+              }
+            }
+          }
+        },
+        {
+          "id": "20",
+          "type": "transaction",
+          "attributes": {
+            "amount": 10000,
+            "currency": "usd",
+            "status": "dispute"
+          },
+          "relationships": {
+            "credit_card": {
+              "data": {
+                "id": "2",
+                "type": "credit_card"
+              }
+            }
+          }
+        }
+      ]
+    }
 
-## API Endpoints
+### PUT /api/v1/customers/:customer_id/credit_cards/:credit_card_id/transactions/:transaction_id/to_dispute
 
-##### Create an API endpoint where I can return all transactions of a Customer credit card
-This endpoint should respect the rules bellow 
-- return json as the default result
-- paginate results automatically and return only 5 transactions per page
-- accepts query parameters as filters for transactions statuses. For example:
-```localhost:3000/api/v1/customer/{id}/credit_card/{id}/transactions?status=failed```
+This endpoint will change the transaction to dispute if it is paid, returning:
 
-The endpoint should receive nested attributes to support the /GET method similar to: 
-```localhost:3000/api/v1/customer/{id}/credit_card/{id}/transactions```
+    {
+      "data": {
+        "id": "21",
+        "type": "transaction",
+        "attributes": {
+          "amount": 10000,
+          "currency": "usd",
+          "status": "dispute"
+        },
+        "relationships": {
+          "credit_card": {
+            "data": {
+              "id": "1",
+              "type": "credit_card"
+            }
+          }
+        }
+      }
+    }
 
-##### Create an API endpoint where we can charge a Customer credit card
-The endpoint should receive a body containing the `currency` and `amount` attributes and support nested attributes on the /POST method
-```localhost:3000/api/v1/customer/{id}/credit_card/{id}/charge```
+### PUT /api/v1/customers/:customer_id/credit_cards/:credit_card_id/transactions/:transaction_id/refund
 
-## Database Seeds
+This endpoint will change the transaction to refund, if it is in dispute, returning:
 
-#### Seed 4 Customers into the system
-```
-Customer 1: 
-  First Name: Yukihiro 
-  Last Name: Matsumoto
+    {
+      "data": {
+        "id": "21",
+        "type": "transaction",
+        "attributes": {
+          "amount": 10000,
+          "currency": "usd",
+          "status": "refunded"
+        },
+        "relationships": {
+          "credit_card": {
+            "data": {
+              "id": "1",
+              "type": "credit_card"
+            }
+          }
+        }
+      }
+    }
 
-Customer 2: 
-  First Name: Sandi
-  Last Name: Matz
+### POST /api/v1/customers/:customer_id/credit_cards/:credit_card_id/charge
 
-Customer 3: 
-  First Name: Martin
-  Last Name: Fowler
+This endpoint will create a new transaction for the credit card, it will always return the transaction requested
 
-Customer 4: 
-  First Name: Dr. Alan
-  Last Name: Kay
-```
+Body request example:
 
-#### Seed 20 transactions (charges) into the system
+    {
+        "transaction": {
+            "currency": "usd",
+            "amount": "10000"
+        }
+    }
 
-- 10 Should be successful transactions:
-```
-  - 5 Should be linked to Customer 1 Visa Credit Card
-  - 3 Should be linked to Customer 2 Visa Credit Card
-  - 1 Should be linked to Customer 3 MasterCard Credit Card
-  - 1 Should be linked to Customer 4 Visa Credit Card
-```
-- 5 Should be transactions that failed transactions:
-```
-  - 3 Should be linked to Customer 3 Mastercard Credit Card
-  - 2 Should be linked to Customer 4 Visa Credit Card
-```
+If the transaction amount is less than the credit card spent_limit, the transaction will be automatically paid:
 
-- 5 should be disputed transactions:
-```
-  - 3 should be linked to Customer 1 Visa Credit Card
-  - 2 should be linked to customer 2 Visa Credit Card
- ```
-## Once Completed
-1) Commit and Push your code to your forked repository
-2) Send us a pull request, we will review your code and get back to you.
+    {
+      "data": {
+        "id": "22",
+        "type": "transaction",
+        "attributes": {
+          "amount": 10000,
+          "currency": "usd",
+          "status": "paid"
+        },
+        "relationships": {
+          "credit_card": {
+            "data": {
+              "id": "1",
+              "type": "credit_card"
+            }
+          }
+        }
+      }
+    }
 
-## Questions
-If you have any question regarding the project, you can contact us directly by email
+If the transaction amount is greater than the credit card spent_limit, the transaction will be automatically failed:
+
+    {
+      "data": {
+        "id": "23",
+        "type": "transaction",
+        "attributes": {
+          "amount": 1000000,
+          "currency": "usd",
+          "status": "failed"
+        },
+        "relationships": {
+          "credit_card": {
+            "data": {
+              "id": "1",
+              "type": "credit_card"
+            }
+          }
+        }
+      }
+    }
+
+Unit tests
+---
+
+To execute the unit tests just run:
+`rspec`
+
+And all specs will be executed automatically.
+
+The specs were made with Rspec gem.
+
+Deployed app
+---
+
+You can access the deployed app with:
+https://secure-castle-24407.herokuapp.com/api/v1/ + endpoint
