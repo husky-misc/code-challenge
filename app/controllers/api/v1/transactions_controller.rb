@@ -2,7 +2,7 @@ module Api
   module V1
     class TransactionsController < ApplicationController
       before_action :set_credit_card
-      before_action :set_transaction, only: %i[to_dispute]
+      before_action :set_transaction, only: %i[to_dispute refund]
 
       def index
         transactions = @credit_card.transactions
@@ -32,6 +32,21 @@ module Api
         end
       rescue StandardError => e
         render json: { error: e.message }, status: 500
+      end
+
+      def refund
+        if @transaction.dispute?
+          @transaction.refund
+          if @transaction.save
+            render json: @transaction, status: 200
+          else
+            render json: { error: 'We cannot refund the transaction' }, status: 500
+          end
+        else
+          render json: { message: 'The transaction must be in dispute to refund' }, stauts: 200
+        end
+      rescue StandardError => e
+        render json: { error: e.message }, status: 200
       end
 
       private
