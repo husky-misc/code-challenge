@@ -7,4 +7,12 @@ class CreditCard < ApplicationRecord
   validates_presence_of(
     :account_id, :spent_limit, :number, :expiration_date, :cvv
   )
+
+  def charge!(params)
+    Charge.new(
+      credit_card: self,
+      amount: params[:amount],
+      currency: params[:currency]
+    ).call
+  end
 end
