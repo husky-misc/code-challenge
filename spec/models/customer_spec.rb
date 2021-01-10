@@ -14,4 +14,10 @@ RSpec.describe Customer, type: :model do
 
     expect(customer.errors.full_messages.first).to eq("Last name can\'t be blank")
   end
+
+  it 'is valid with both first and last name' do
+    customer = build(:customer)
+
+    expect(customer.save).to eq true
+  end
 end
