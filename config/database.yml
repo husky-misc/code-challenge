@@ -20,6 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['CODE_CHALLENGE_API_DATABASE_HOST'] %>
+  username: <%= ENV['CODE_CHALLENGE_API_DATABASE_USERNAME'] %>
+  password: <%= ENV['CODE_CHALLENGE_API_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -81,5 +84,3 @@ test:
 production:
   <<: *default
   database: code_challenge_production
-  username: code_challenge
-  password: <%= ENV['CODE_CHALLENGE_DATABASE_PASSWORD'] %>
