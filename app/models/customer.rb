@@ -10,5 +10,7 @@
 class Customer < ApplicationRecord
   has_one :account, dependent: :destroy
 
+  has_many :credit_cards, through: :account
+
   validates :full_name, presence: true, length: { in: 2..26 }
 end
