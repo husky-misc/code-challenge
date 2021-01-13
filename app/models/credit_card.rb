@@ -23,6 +23,8 @@
 class CreditCard < ApplicationRecord
   belongs_to :account
 
+  has_many :transactions
+
   validates_presence_of :spent_limit, :number, :expiration_date, :cvv, :full_name
 
   validates_length_of :full_name, in: 2..26
