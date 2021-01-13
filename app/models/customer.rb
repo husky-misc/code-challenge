@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class Customer < ApplicationRecord
-  has_one :account
+  has_one :account, dependent: :destroy
 
   validates :full_name, presence: true, length: { in: 2..26 }
 end
