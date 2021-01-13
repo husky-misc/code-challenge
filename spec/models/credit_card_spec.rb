@@ -23,5 +23,7 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  [:spent_limit, :number, :expiration_date, :cvv, :full_name].each { |attribute| it { should validate_presence_of(attribute) } }
+
+  it { should validate_length_of(:full_name).is_at_least(2).is_at_most(26) }
 end
