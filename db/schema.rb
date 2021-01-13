@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_13_182828) do
+ActiveRecord::Schema.define(version: 2021_01_13_185815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 2021_01_13_182828) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "credit_card_id", null: false
+    t.string "currency"
+    t.float "amount"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["credit_card_id"], name: "index_transactions_on_credit_card_id"
+  end
+
   add_foreign_key "accounts", "customers"
   add_foreign_key "credit_cards", "accounts"
+  add_foreign_key "transactions", "credit_cards"
 end
