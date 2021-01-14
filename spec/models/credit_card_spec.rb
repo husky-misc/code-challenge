@@ -23,10 +23,13 @@
 #
 require 'rails_helper'
 
-RSpec.describe CreditCard, type: :model do
-  [:spent_limit, :number, :expiration_date, :cvv, :full_name, :flag].each { |attribute| it { should validate_presence_of(attribute) } }
-
-  it { should have_many(:transactions) }
-
-  it { should validate_length_of(:full_name).is_at_least(2).is_at_most(26) }
+RSpec.describe CreditCard, type: :model do  
+  describe 'associations' do
+    it { should have_many(:transactions) }
+  end
+  
+  describe 'validations' do
+    [:spent_limit, :number, :expiration_date, :cvv, :full_name, :flag].each { |attribute| it { should validate_presence_of(attribute) } }
+    it { should validate_length_of(:full_name).is_at_least(2).is_at_most(26) }
+  end
 end

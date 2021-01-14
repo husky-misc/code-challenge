@@ -21,17 +21,24 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  [:amount, :currency, :status].each { |attribute| it { should validate_presence_of(attribute) } }
+  describe 'associations' do
+    it { should belong_to(:credit_card) }
+    it { should delegate_method(:spent_limit).to(:credit_card) }
+  end
+  
+  describe 'validations' do
+    [:amount, :currency, :status].each { |attribute| it { should validate_presence_of(attribute) } }
+  end
 
-  it { should delegate_method(:spent_limit).to(:credit_card) }
+  describe 'enums' do
+    it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3) }
+  end
 
-  it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3) }
-
-  describe 'scopes methods are defined' do
+  describe 'scopes' do
     let(:credit_card) { create(:credit_card) }
     let!(:transactions) { create_list(:transaction, 10) }
 
-    context 'scope :status' do
+    context ':status' do
       it 'filters the transactions by status, returns a json with only the transactions with the given status' do      
         expect(Transaction.status(1)).to all( have_attributes(status: 'paid') )
       end
@@ -39,7 +46,7 @@ RSpec.describe Transaction, type: :model do
     
     before { create_list(:transaction, 5, credit_card_id: credit_card.id ) }
 
-    context 'scope :credit card' do  
+    context ':credit card' do  
       it 'filters the transactions by credit card, returns a json with only the transactions of the given credit card' do
         expect(Transaction.credit_card(credit_card)).to all( have_attributes(credit_card_id: credit_card.id) )
       end
@@ -62,7 +69,7 @@ RSpec.describe Transaction, type: :model do
         expect(transactions.third.fail).to be(true)
       end
 
-      it 'if the spent limit is greater then the amount, when is created decreases the amount available on the spent limit' do
+      it 'if the spent limit is greater then the amount, when the state is checked it decreases the amount available on the spent limit' do
         transaction = create(:transaction)
         spent_limit_before_decrease = transaction.spent_limit
         transaction.check_state
@@ -70,10 +77,11 @@ RSpec.describe Transaction, type: :model do
         expect(spent_limit_before_decrease).to eq(transaction.spent_limit + transaction.amount)
       end
 
-      it 'if the spent limit is smaller then the amount, then it fails, and the spent limit is not decreased' do
+      it 'if the spent limit is smaller then the amount, when the state is check and it fails, the spent limit is not decreased' do
         credit_card = create(:credit_card)
         spent_limit_before_decrease = credit_card.spent_limit
         transaction = create(:transaction, credit_card_id: credit_card.id, amount: spent_limit_before_decrease + 1)
+        transaction.check_state
 
         expect(spent_limit_before_decrease).not_to eq(transaction.spent_limit + transaction.amount)
       end
