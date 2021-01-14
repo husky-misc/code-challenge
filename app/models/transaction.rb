@@ -23,5 +23,14 @@ class Transaction < ApplicationRecord
 
   delegate :spent_limit, to: :credit_card
 
+  enum status: {
+    dispute: 0,
+    paid: 1,
+    failed: 2,
+    refunded: 3
+  }
+
+  scope :status, ->(status) { where(status: status) }
+
   validates_presence_of :amount, :currency, :status
 end
