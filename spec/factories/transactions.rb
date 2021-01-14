@@ -23,7 +23,7 @@ FactoryBot.define do
     transient { credit_card { create(:credit_card) } }
 
     currency { Faker::Currency.code }
-    amount { Faker::Number.within(range: 1..30000) }
+    amount { Faker::Number.within(range: 1..10000) }
     status { rand(0..3) }
     credit_card_id { credit_card.id }
   end
