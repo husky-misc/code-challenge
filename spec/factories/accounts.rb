@@ -17,6 +17,8 @@
 #
 FactoryBot.define do
   factory :account do
-    customer { nil }
+    transient { customer { create(:customer) } }
+
+    customer_id { customer.id }
   end
 end

@@ -22,11 +22,13 @@
 #
 FactoryBot.define do
   factory :credit_card do
-    account { nil }
-    spent_limit { 1 }
-    number { "MyString" }
-    expiration_date { "2021-01-13" }
-    cvv { "MyString" }
-    full_name { "MyString" }
+    transient { account { create(:account) } }
+
+    spent_limit { Faker::Number.within(range: 1000..50000) }
+    number { Faker::Business.credit_card_number }
+    expiration_date { Faker::Business.credit_card_expiry_date }
+    cvv { Faker::Number.number(digits: 3).to_s }
+    full_name { account.customer.full_name }
+    account_id { account.id }
   end
 end

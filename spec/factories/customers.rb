@@ -9,5 +9,6 @@
 #
 FactoryBot.define do
   factory :customer do
+    full_name { Faker::Name.name[0..25] }
   end
 end

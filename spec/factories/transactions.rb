@@ -20,9 +20,11 @@
 #
 FactoryBot.define do
   factory :transaction do
-    credit_card { nil }
-    currency { "MyString" }
-    amount { 1.5 }
-    status { 1 }
+    transient { credit_card { create(:credit_card) } }
+
+    currency { Faker::Currency.code }
+    amount { Faker::Number.within(range: 1..30000) }
+    status { rand(0..3) }
+    credit_card_id { credit_card.id }
   end
 end
