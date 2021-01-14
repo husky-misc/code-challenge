@@ -57,18 +57,6 @@ class Transaction < ApplicationRecord
   scope :status, ->(status) { where(status: status) }
 
   validates_presence_of :amount, :currency, :status
-  
-  before_create :check_state
-
-  private
-
-  def charge_credit_card
-    credit_card.update(spent_limit: spent_limit - amount) if spent_limit > amount
-  end
-
-  def refund_credit_card
-    credit_card.update(spent_limit: spent_limit + amount)
-  end
 
   def check_state
     charge_credit_card
@@ -78,5 +66,15 @@ class Transaction < ApplicationRecord
     else amount > spent_limit
       self.fail if may_fail?
     end
+  end
+
+  private
+
+  def charge_credit_card
+    credit_card.update(spent_limit: spent_limit - amount) if spent_limit > amount
+  end
+
+  def refund_credit_card
+    credit_card.update(spent_limit: spent_limit + amount)
   end
 end

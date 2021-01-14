@@ -63,10 +63,10 @@ RSpec.describe Transaction, type: :model do
       end
 
       it 'if the spent limit is greater then the amount, when is created decreases the amount available on the spent limit' do
-        credit_card = create(:credit_card)
-        spent_limit_before_decrease = credit_card.spent_limit
-        transaction = create(:transaction, credit_card_id: credit_card.id)
-        
+        transaction = create(:transaction)
+        spent_limit_before_decrease = transaction.spent_limit
+        transaction.check_state
+
         expect(spent_limit_before_decrease).to eq(transaction.spent_limit + transaction.amount)
       end
 

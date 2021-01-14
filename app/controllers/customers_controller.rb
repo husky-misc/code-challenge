@@ -10,9 +10,11 @@ class CustomersController < ApplicationController
   end
 
   def charge_credit_card
-    transaction = @credit_card.transactions.create(transaction_params)
+    transaction = @credit_card.transactions.new(transaction_params)
 
-    if transaction.persisted?
+    transaction.check_state
+
+    if transaction.save
       render json: transaction
     else
       render json: transaction.errors.full_messages, status: :unprocessable_entity

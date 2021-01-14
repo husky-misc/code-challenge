@@ -50,11 +50,19 @@ RSpec.describe "Customers", type: :request do
         end
 
         
-        context 'when the params is missing the attributes' do
+        context 'when the amount is missing' do
           before { post "/customers/#{customer_id}/credit_cards/#{credit_card_id}/charge", params: { transaction: { currency: Faker::Currency.code } } }
 
-          it 'returns an error message' do
-            expect(json).to match([/can't be blank/])
+          it 'raises an error message' do         
+            expect(json['message']).to match(/comparison of Integer with nil failed/)
+          end
+        end
+
+        context 'when the currency is missing' do
+          before { post "/customers/#{customer_id}/credit_cards/#{credit_card_id}/charge", params: { transaction: { amount: Faker::Number.within(range: 1..10000) } } }
+
+          it 'raises an error message' do         
+            expect(json).to match([/Currency can't be blank/])
           end
         end
       end
