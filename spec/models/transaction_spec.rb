@@ -26,4 +26,12 @@ RSpec.describe Transaction, type: :model do
   it { should delegate_method(:spent_limit).to(:credit_card)}
 
   it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3)}
+
+  context 'defines the scope :status' do
+    let!(:transactions) { create_list(:transaction, 10) }
+
+    it 'filters the transactions by status' do      
+      expect(Transaction.status(1)).to all( have_attributes(status: 'paid') )
+    end
+  end
 end
