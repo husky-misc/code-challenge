@@ -23,9 +23,9 @@ require 'rails_helper'
 RSpec.describe Transaction, type: :model do
   [:amount, :currency, :status].each { |attribute| it { should validate_presence_of(attribute) } }
 
-  it { should delegate_method(:spent_limit).to(:credit_card)}
+  it { should delegate_method(:spent_limit).to(:credit_card) }
 
-  it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3)}
+  it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3) }
 
   describe 'scopes methods are defined' do
     let(:credit_card) { create(:credit_card) }
