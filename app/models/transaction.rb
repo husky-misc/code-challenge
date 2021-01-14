@@ -57,8 +57,8 @@ class Transaction < ApplicationRecord
   scope :status, ->(status) { where(status: status) }
 
   validates_presence_of :amount, :currency, :status
-
-  before_save :check_state
+  
+  before_create :check_state
 
   private
 
