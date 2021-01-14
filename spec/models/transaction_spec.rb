@@ -22,4 +22,6 @@ require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
   [:amount, :currency, :status].each { |attribute| it { should validate_presence_of(attribute) } }
+
+  it { should delegate_method(:spent_limit).to(:credit_card)}
 end

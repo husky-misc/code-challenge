@@ -20,5 +20,8 @@
 #
 class Transaction < ApplicationRecord
   belongs_to :credit_card
+
+  delegate :spent_limit, to: :credit_card
+
   validates_presence_of :amount, :currency, :status
 end
