@@ -30,6 +30,7 @@ class Transaction < ApplicationRecord
     refunded: 3
   }
 
+  scope :credit_card, ->(credit_card) { where(credit_card: credit_card) }
   scope :status, ->(status) { where(status: status) }
 
   validates_presence_of :amount, :currency, :status

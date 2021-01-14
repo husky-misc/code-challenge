@@ -27,11 +27,22 @@ RSpec.describe Transaction, type: :model do
 
   it { should define_enum_for(:status).with_values(dispute: 0, paid: 1, failed: 2, refunded: 3)}
 
-  context 'defines the scope :status' do
+  describe 'scopes methods are defined' do
+    let(:credit_card) { create(:credit_card) }
     let!(:transactions) { create_list(:transaction, 10) }
 
-    it 'filters the transactions by status' do      
-      expect(Transaction.status(1)).to all( have_attributes(status: 'paid') )
+    context 'scope :status' do
+      it 'filters the transactions by status' do      
+        expect(Transaction.status(1)).to all( have_attributes(status: 'paid') )
+      end
+    end
+    
+    before { create_list(:transaction, 5, credit_card_id: credit_card.id ) }
+
+    context 'scope :credit card' do  
+      it 'filters the transactions by credit card' do
+        expect(Transaction.credit_card(credit_card)).to all( have_attributes(credit_card_id: credit_card.id) )
+      end
     end
   end
 end
