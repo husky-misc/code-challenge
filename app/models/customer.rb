@@ -12,5 +12,7 @@ class Customer < ApplicationRecord
 
   has_many :credit_cards, through: :account
 
+  accepts_nested_attributes_for :account
+
   validates :full_name, presence: true, length: { in: 2..26 }
 end
