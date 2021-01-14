@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  cvv             :string           not null
 #  expiration_date :date             not null
+#  flag            :string           not null
 #  full_name       :string           not null
 #  number          :string           not null
 #  spent_limit     :integer          not null
@@ -23,7 +24,7 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
-  [:spent_limit, :number, :expiration_date, :cvv, :full_name].each { |attribute| it { should validate_presence_of(attribute) } }
+  [:spent_limit, :number, :expiration_date, :cvv, :full_name, :flag].each { |attribute| it { should validate_presence_of(attribute) } }
 
   it { should have_many(:transactions) }
 

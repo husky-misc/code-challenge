@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  cvv             :string           not null
 #  expiration_date :date             not null
+#  flag            :string           not null
 #  full_name       :string           not null
 #  number          :string           not null
 #  spent_limit     :integer          not null
@@ -25,7 +26,7 @@ class CreditCard < ApplicationRecord
 
   has_many :transactions
 
-  validates_presence_of :spent_limit, :number, :expiration_date, :cvv, :full_name
+  validates_presence_of :spent_limit, :number, :expiration_date, :cvv, :full_name, :flag
 
   validates_length_of :full_name, in: 2..26
 end

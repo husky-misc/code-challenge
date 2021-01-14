@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  cvv             :string           not null
 #  expiration_date :date             not null
+#  flag            :string           not null
 #  full_name       :string           not null
 #  number          :string           not null
 #  spent_limit     :integer          not null
@@ -29,6 +30,7 @@ FactoryBot.define do
     expiration_date { Faker::Business.credit_card_expiry_date }
     cvv { Faker::Number.number(digits: 3).to_s }
     full_name { account.customer.full_name }
+    flag { Faker::Business.credit_card_type }
     account_id { account.id }
   end
 end
