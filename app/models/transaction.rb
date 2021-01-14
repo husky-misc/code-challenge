@@ -5,7 +5,7 @@
 #  id             :bigint           not null, primary key
 #  amount         :float            not null
 #  currency       :string           not null
-#  status         :integer          not null
+#  status         :integer          default("dispute"), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  credit_card_id :bigint           not null
