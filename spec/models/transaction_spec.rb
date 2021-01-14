@@ -32,7 +32,7 @@ RSpec.describe Transaction, type: :model do
     let!(:transactions) { create_list(:transaction, 10) }
 
     context 'scope :status' do
-      it 'filters the transactions by status' do      
+      it 'filters the transactions by status, returns a json with only the transactions with the given status' do      
         expect(Transaction.status(1)).to all( have_attributes(status: 'paid') )
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe Transaction, type: :model do
     before { create_list(:transaction, 5, credit_card_id: credit_card.id ) }
 
     context 'scope :credit card' do  
-      it 'filters the transactions by credit card' do
+      it 'filters the transactions by credit card, returns a json with only the transactions of the given credit card' do
         expect(Transaction.credit_card(credit_card)).to all( have_attributes(credit_card_id: credit_card.id) )
       end
     end
