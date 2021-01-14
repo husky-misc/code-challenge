@@ -32,6 +32,19 @@ RSpec.describe "Customers", type: :request do
         expect(json['message']).to match(/Couldn't find Customer/)
       end
     end
+
+    context 'when you have status parameter' do
+      before { get "/customers/#{customer_id}/credit_cards/#{credit_card_id}/transactions?status=paid" }
+
+      it 'returns the transactions' do
+        expect(json['transactions']).to all( include("credit_card_id" => credit_card.id) )
+      end
+
+      it 'returns the filtered transactions given the status' do 
+        expect(json['transactions']).to all( include("status" => "paid") )
+      end
+    end
+
   end
 
   describe 'GET /customers/:id/credit_cards/:credit_card_id/charge' do
