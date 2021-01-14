@@ -45,4 +45,66 @@ RSpec.describe Transaction, type: :model do
       end
     end
   end
+
+  describe 'state machine rules' do
+    context 'when the status is dispute' do
+      let(:transactions) { build_list(:transaction, 4, status: :dispute) }
+
+      it 'can be changed to paid and returns true' do
+        expect(transactions.first.pay).to be(true)
+      end
+
+      it 'can be changed to refund and returns true' do
+        expect(transactions.second.refund).to be(true)
+      end
+      
+      it 'can be changed to failed and returns true' do
+        expect(transactions.third.fail).to be(true)
+      end
+
+      it 'if the spent limit is greater then the amount, when is created decreases the amount available on the spent limit' do
+        credit_card = create(:credit_card)
+        spent_limit_before_decrease = credit_card.spent_limit
+        transaction = create(:transaction, credit_card_id: credit_card.id)
+        
+        expect(spent_limit_before_decrease).to eq(transaction.spent_limit + transaction.amount)
+      end
+
+      it 'if the spent limit is smaller then the amount, then it fails, and the spent limit is not decreased' do
+        credit_card = create(:credit_card)
+        spent_limit_before_decrease = credit_card.spent_limit
+        transaction = create(:transaction, credit_card_id: credit_card.id, amount: spent_limit_before_decrease + 1)
+
+        expect(spent_limit_before_decrease).not_to eq(transaction.spent_limit + transaction.amount)
+      end
+    end
+
+    context 'when the status is paid' do
+      let(:transaction) { build(:transaction, status: :paid) }
+
+      it 'can only be changed to dispute and returns true' do
+        expect(transaction.dispute).to be(true)
+      end
+
+      it 'if you try to change the state to anything else, it raises an error' do
+        expect { transaction.fail }.to raise_error(AASM::InvalidTransition)
+      end
+    end
+
+    context 'when the status is failed' do
+      let(:transaction) { build(:transaction, status: :failed) }
+
+      it 'cannot be changed, it raises an error' do
+        expect { transaction.dispute }.to raise_error(AASM::InvalidTransition)
+      end
+    end
+
+    context 'when the status is refunded' do
+      let(:transaction) { build(:transaction, status: :refunded) }
+
+      it 'cannot be changed, it raises an error' do
+        expect { transaction.dispute }.to raise_error(AASM::InvalidTransition)
+      end
+    end
+  end
 end
