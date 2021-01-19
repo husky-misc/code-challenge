@@ -70,7 +70,7 @@ RSpec.describe Transaction, type: :model do
       end
 
       it 'if the spent limit is greater then the amount, when the state is checked it decreases the amount available on the spent limit' do
-        transaction = create(:transaction)
+        transaction = create(:transaction, status: :dispute)
         spent_limit_before_decrease = transaction.spent_limit
         transaction.check_state
 
@@ -80,7 +80,7 @@ RSpec.describe Transaction, type: :model do
       it 'if the spent limit is smaller then the amount, when the state is check and it fails, the spent limit is not decreased' do
         credit_card = create(:credit_card)
         spent_limit_before_decrease = credit_card.spent_limit
-        transaction = create(:transaction, credit_card_id: credit_card.id, amount: spent_limit_before_decrease + 1)
+        transaction = create(:transaction, credit_card_id: credit_card.id, amount: spent_limit_before_decrease + 1, status: :dispute)
         transaction.check_state
 
         expect(spent_limit_before_decrease).not_to eq(transaction.spent_limit + transaction.amount)
