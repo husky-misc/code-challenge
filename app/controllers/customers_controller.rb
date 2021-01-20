@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     transaction.check_state
 
     if transaction.save
-      render json: transaction
+      render json: transaction, status: :created
     else
       render json: transaction.errors.full_messages, status: :unprocessable_entity
     end
