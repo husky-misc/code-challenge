@@ -14,6 +14,8 @@ RSpec.describe "Customers", type: :request do
         it 'returns the transactions' do
           expect(json['transactions']).to all( include("credit_card_id" => credit_card.id) )
         end
+
+        include_examples 'http status code', 200
       end
 
       context 'when the credit card does not exist' do
@@ -22,6 +24,8 @@ RSpec.describe "Customers", type: :request do
         it 'returns an error message' do
           expect(json['message']).to match(/Couldn't find CreditCard/)
         end
+
+        include_examples 'http status code', 404
       end
     end
 
@@ -31,12 +35,14 @@ RSpec.describe "Customers", type: :request do
       it 'returns an error message' do
         expect(json['message']).to match(/Couldn't find Customer/)
       end
+
+      include_examples 'http status code', 404
     end
 
     context 'when you have status parameter' do
       before { get "/customers/#{customer_id}/credit_cards/#{credit_card_id}/transactions?status=paid" }
 
-      it 'returns the filtered transactions given the status' do 
+      it 'returns the filtered transactions given the status' do
         expect(json['transactions']).to all( include("credit_card_id" => credit_card.id, "status" => "paid") )
       end
     end
@@ -56,6 +62,8 @@ RSpec.describe "Customers", type: :request do
           it 'creates the transaction' do            
             expect(json['transaction']['credit_card_id']).to eq(credit_card.id)
           end
+
+          include_examples 'http status code', 201
         end
 
         
@@ -65,6 +73,8 @@ RSpec.describe "Customers", type: :request do
           it 'raises an error message' do         
             expect(json['message']).to match(/comparison of Integer with nil failed/)
           end
+
+          include_examples 'http status code', 422
         end
 
         context 'when the currency is missing' do
@@ -73,6 +83,8 @@ RSpec.describe "Customers", type: :request do
           it 'raises an error message' do         
             expect(json).to match([/Currency can't be blank/])
           end
+
+          include_examples 'http status code', 422
         end
       end
 
@@ -83,6 +95,8 @@ RSpec.describe "Customers", type: :request do
         it 'returns an error message' do
           expect(json['message']).to match(/Couldn't find CreditCard/)
         end
+
+        include_examples 'http status code', 404
       end
     end
 
@@ -92,6 +106,8 @@ RSpec.describe "Customers", type: :request do
       it 'returns an error message' do
         expect(json['message']).to match(/Couldn't find Customer/)
       end
+
+      include_examples 'http status code', 404
     end
   end
 end
