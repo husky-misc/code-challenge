@@ -7,6 +7,8 @@ SimpleCov.start 'rails' do
     source_file.lines.count < 3
   end
 
+  add_filter ['app/channels', 'app/mailers', 'app/jobs']
+
   maximum_coverage_drop 1
 end
 
