@@ -11,8 +11,10 @@ class Match < ApplicationRecord
     players.uniq.map do |player|
       {
         name: player.name,
-        frags: player.frags.where(match_id: id).size,
-        deaths: player.deaths.where(match_id: id).size
+        frags: player.frags_per_match(id).size,
+        deaths: player.deaths_per_match(id).size,
+        favorite_gun: player.favorite_gun(id)&.name,
+        award: player.deaths_per_match(id).empty?
       }
     end.sort_by { |data| data[:frags] }.reverse
   end
