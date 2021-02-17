@@ -8,4 +8,9 @@ class MatchesController < ApplicationController
 
     redirect_to matches_path
   end
+
+  def show
+    @match = Match.find(params[:id])
+    @players = @match.ranking
+  end
 end
