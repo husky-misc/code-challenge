@@ -1,4 +1,8 @@
-<%= form_with url:"/matches" do |form| %>
-  <%= form.file_field :file %>
-  <%= form.submit %>
-<% end %>
+<div class="container" style="height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div style="color: gray;">
+    <%= form_with url:"/matches" do |form| %>
+      <%= form.file_field :file %>
+      <%= form.submit %>
+    <% end %>
+  </div>
+</div>

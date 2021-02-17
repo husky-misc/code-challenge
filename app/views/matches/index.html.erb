@@ -1,2 +1,3 @@
-<h1>Matches#index</h1>
-<p>Find me in app/views/matches/index.html.erb</p>
+<% @matches.each do |match| %>
+  <%= match.match_id %>
+<% end %>
