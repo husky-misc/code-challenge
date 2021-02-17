@@ -1,10 +1,9 @@
 class MatchesController < ApplicationController
   def index
-  end
-
-  def new
+    @matches = Match.all
   end
 
   def create
+    ::Extractor::Parser.new(params[:file]).read
   end
 end
