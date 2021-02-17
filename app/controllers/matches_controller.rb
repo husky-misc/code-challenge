@@ -5,5 +5,7 @@ class MatchesController < ApplicationController
 
   def create
     ::Extractor::Parser.new(params[:file]).read
+
+    redirect_to matches_path
   end
 end
