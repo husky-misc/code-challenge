@@ -14,6 +14,14 @@ module Extractor
       line.scan(ID_FORMAT).last
     end
 
+    def start_date_to_datetime
+      DateTime.parse("#{start_date} #{start_time}")
+    end
+
+    def end_date_to_datetime
+      DateTime.parse("#{end_date} #{end_time}")
+    end
+
     def start_date
       line.scan(DATE_FORMAT).flatten.first
     end
@@ -23,11 +31,11 @@ module Extractor
     end
 
     def start_time
-      line.scan(DATE_FORMAT).flatten.first
+      line.scan(TIME_FORMAT).flatten.first
     end
 
     def end_time
-      line.scan(DATE_FORMAT).flatten.first
+      line.scan(TIME_FORMAT).flatten.first
     end
 
     def to_s
