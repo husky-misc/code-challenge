@@ -1,0 +1,32 @@
+<h1>Match <%= @match.match_id %></h1>
+
+<%= @match.start_date.strftime("%d/%m/%Y %T") %>
+<%= @match.end_date.strftime("%d/%m/%Y %T") %>
+<h2>Ranking</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th id="name" scope="col">Name</th>
+      <th id="frags" scope="col">Frags</th>
+      <th id="deaths" scope="col">Deaths</th>
+      <th id="deaths" scope="col">Favorite Gun</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player[:name] %></td>
+        <td><%= player[:frags] %> </td>
+        <td><%= player[:deaths] %></td>
+        <td><%= player[:favorite_gun] %></td>
+        <% if player[:award].present? %>
+          <td><span class="badge badge-success">Award</span></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", matches_path%>
