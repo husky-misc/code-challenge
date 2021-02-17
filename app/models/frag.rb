@@ -1,0 +1,2 @@
+class Frag < Score 
+end
