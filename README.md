@@ -38,4 +38,8 @@ Faça caso se identifique com o problema ou se achar que há algo interessante a
 - Faça commits atômicos e progressivos;
 - Utilize Ruby on Rails para fazer o upload do arquivo, persistir os dados das partidas e criar e as views necessárias para exibir o ranking, estatisticas dos jogadores e os dados das partidas. 
 
+<<<<<<< HEAD
 Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
+=======
+Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
+>>>>>>> Retorna readme original
