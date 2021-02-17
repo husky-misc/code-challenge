@@ -1,8 +1,10 @@
-<div class="container" style="height: 100vh; display: flex; justify-content: center; align-items: center;">
-  <div style="color: gray;">
+<div class="container">
+  <h1>Faça upload do seu arquivo de log aqui:</h1>
+
+  <div>
     <%= form_with url:"/matches" do |form| %>
       <%= form.file_field :file %>
-      <%= form.submit %>
+      <%= form.submit "Criar Ranking", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
