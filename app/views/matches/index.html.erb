@@ -1,6 +1,5 @@
 <h1>Matches</h1>
 
-
 <table class="table">
   <thead>
     <tr>
@@ -11,13 +10,13 @@
   </thead>
 
   <tbody>
-  <% @matches.each do |match| %>
+    <% @matches.each do |match| %>
       <tr>
         <th scope="row"><%= match.match_id %> </th>
         <td> <%= match.start_date.strftime("%d/%m/%Y %T") %></td>
         <td> <%= match.end_date.strftime("%d/%m/%Y %T") %></td>
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
 </table>
 
