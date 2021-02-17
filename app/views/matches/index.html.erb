@@ -1,23 +1,52 @@
-<h1>Matches</h1>
+<div class="container">
+  <h1>Matches</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">End Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @matches.each do |match| %>
+  <table class="table">
+    <thead>
       <tr>
-        <th scope="row"><%= match.match_id %> </th>
-        <td> <%= match.start_date.strftime("%d/%m/%Y %T") %></td>
-        <td> <%= match.end_date.strftime("%d/%m/%Y %T") %></td>
+        <th scope="col">#</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to "Upload log", new_match_path %>
+    <tbody>
+      <% @matches.each do |match| %>
+        <tr>
+          <td scope="row"><%= link_to match.match_id, match_path(match) %></td>
+          <td><%= match.start_date.strftime("%d/%m/%Y %T") %></td>
+          <td><%= match.end_date.strftime("%d/%m/%Y %T") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Upload log", new_match_path, class: "btn btn-primary", style: "margin-left: 16px" %>
+
+  <br>
+  <br>
+
+  <h2>Global Ranking</h2>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th id="name" scope="col">Name</th>
+        <th id="frags" scope="col">Frags</th>
+        <th id="deaths" scope="col">Deaths</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @players.each do |player| %>
+        <tr>
+          <td><%= player[:name] %></td>
+          <td><%= player[:frags] %> </td>
+          <td><%= player[:deaths] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Back", matches_path%>
+</div>

@@ -1,6 +1,7 @@
 class MatchesController < ApplicationController
   def index
     @matches = Match.all
+    @players = Player.global_ranking
   end
 
   def create
