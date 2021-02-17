@@ -1,3 +1,24 @@
-<% @matches.each do |match| %>
-  <%= match.match_id %>
-<% end %>
+<h1>Matches</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @matches.each do |match| %>
+      <tr>
+        <th scope="row"><%= match.match_id %> </th>
+        <td> <%= match.start_date.strftime("%d/%m/%Y %T") %></td>
+        <td> <%= match.end_date.strftime("%d/%m/%Y %T") %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Upload log", new_match_path %>
