@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_id: MyString
+  start_date: 2021-02-17 01:17:36
+  end_date: 2021-02-17 01:17:36
+  start_time: 2021-02-17 01:17:36
+  end_time: 2021-02-17 01:17:36
+
+two:
+  match_id: MyString
+  start_date: 2021-02-17 01:17:36
+  end_date: 2021-02-17 01:17:36
+  start_time: 2021-02-17 01:17:36
+  end_time: 2021-02-17 01:17:36

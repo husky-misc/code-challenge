@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player: one
+  match: one
+  gun: one
+  date: 2021-02-17 12:43:28
+  type: 
+
+two:
+  player: two
+  match: two
+  gun: two
+  date: 2021-02-17 12:43:28
+  type: 
