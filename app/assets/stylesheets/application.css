@@ -1,15 +1,64 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+  font-family: 'Poppins', sans-serif;
+ }
+
+.container {
+  height: 100vh;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  color: #4D4D4D;
+  font-size: 32px;
+  margin: 46px 0 16px 0;
+}
+
+h2 {
+  color: #6D6D6D;
+  font-size: 24px;
+  margin: 46px 0 16px 0;
+}
+
+th, tbody {
+  text-align: center;
+}
+
+table td, table th {
+  font-size: 18px;
+  padding: 16px !important;
+}
+
+table th {
+  font-weight: 500;
+}
+
+#name {
+  color:  #4D4D4D;
+}
+
+#frags {
+  color:  green;
+}
+
+#deaths {
+  color: crimson;
+}
+
+#favorite-gun {
+  color: darkorange;
+}
+
+input[type='file'] {
+  font-size: 18px;
+  padding-left: 8px;
+}
+
+input[type='submit'] {
+  border: 0;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
