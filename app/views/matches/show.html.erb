@@ -13,6 +13,7 @@
         <th id="deaths" scope="col">Deaths</th>
         <th id="favorite-gun" scope="col">Favorite Gun</th>
         <th id="awards" scope="col">Awards</th>
+        <th id="five-kills" scope="col">Five kills in one minute</th>
       </tr>
     </thead>
 
@@ -23,8 +24,17 @@
           <td><%= player[:frags] %> </td>
           <td><%= player[:deaths] %></td>
           <td><%= player[:favorite_gun] %></td>
+          
           <% if player[:award].present? %>
             <td><span class="badge badge-success">Award</span></td>
+          <% else %>
+            <td></td>
+          <% end %>
+
+          <% if player[:award_five_kills].present? %>
+            <td><span class="badge badge-dark">great</span></td>
+          <% else %>
+            <td></td>
           <% end %>
         </tr>
       <% end %>
