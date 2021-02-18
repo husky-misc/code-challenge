@@ -24,17 +24,17 @@
           <td><%= player[:frags] %> </td>
           <td><%= player[:deaths] %></td>
           <td><%= player[:favorite_gun] %></td>
-          
+
           <% if player[:award].present? %>
             <td><span class="badge badge-success">Award</span></td>
           <% else %>
-            <td></td>
+            <td>-</td>
           <% end %>
 
           <% if player[:award_five_kills].present? %>
-            <td><span class="badge badge-dark">great</span></td>
+            <td><span class="badge badge-dark">Great award</span></td>
           <% else %>
-            <td></td>
+            <td>-</td>
           <% end %>
         </tr>
       <% end %>
