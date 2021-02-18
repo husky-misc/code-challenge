@@ -14,7 +14,7 @@ body {
 h1 {
   color: #4D4D4D;
   font-size: 32px;
-  margin: 46px 0 16px 0;
+  margin: 46px 0 24px 0;
 }
 
 h2 {
@@ -41,7 +41,7 @@ table th {
 }
 
 #frags {
-  color:  green;
+  color:  royalblue;
 }
 
 #deaths {
@@ -50,6 +50,10 @@ table th {
 
 #favorite-gun {
   color: darkorange;
+}
+
+#awards {
+  color: green;
 }
 
 input[type='file'] {
@@ -61,4 +65,16 @@ input[type='submit'] {
   border: 0;
   padding: 8px 16px;
   border-radius: 5px;
+}
+
+.back {
+  margin-top: 72px;
+}
+
+#file-field {
+  margin-top: 32px;
+}
+
+.time {
+  color: #6D6D6D;
 }

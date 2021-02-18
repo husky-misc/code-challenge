@@ -1,32 +1,35 @@
-<h1>Match <%= @match.match_id %></h1>
+<div class="container">
+  <h1>Match <%= @match.match_id %></h1>
 
-<%= @match.start_date.strftime("%d/%m/%Y %T") %>
-<%= @match.end_date.strftime("%d/%m/%Y %T") %>
-<h2>Ranking</h2>
+  <p class="time">Start time <%= @match.start_date.strftime("%d/%m/%Y %T") %></p>
+  <p class="time">End time <%= @match.end_date.strftime("%d/%m/%Y %T") %></p>
+  <h2>Ranking</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th id="name" scope="col">Name</th>
-      <th id="frags" scope="col">Frags</th>
-      <th id="deaths" scope="col">Deaths</th>
-      <th id="deaths" scope="col">Favorite Gun</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @players.each do |player| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= player[:name] %></td>
-        <td><%= player[:frags] %> </td>
-        <td><%= player[:deaths] %></td>
-        <td><%= player[:favorite_gun] %></td>
-        <% if player[:award].present? %>
-          <td><span class="badge badge-success">Award</span></td>
-        <% end %>
+        <th id="name" scope="col">Name</th>
+        <th id="frags" scope="col">Frags</th>
+        <th id="deaths" scope="col">Deaths</th>
+        <th id="favorite-gun" scope="col">Favorite Gun</th>
+        <th id="awards" scope="col">Awards</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to "Back", matches_path%>
+    <tbody>
+      <% @players.each do |player| %>
+        <tr>
+          <td><%= player[:name] %></td>
+          <td><%= player[:frags] %> </td>
+          <td><%= player[:deaths] %></td>
+          <td><%= player[:favorite_gun] %></td>
+          <% if player[:award].present? %>
+            <td><span class="badge badge-success">Award</span></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "Back", matches_path, class: "back" %>
+</div>
