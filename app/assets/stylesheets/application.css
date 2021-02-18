@@ -56,6 +56,10 @@ table th {
   color: green;
 }
 
+#five-kills {
+  color: black;
+}
+
 input[type='file'] {
   font-size: 18px;
   padding-left: 8px;
@@ -69,6 +73,7 @@ input[type='submit'] {
 
 .back {
   margin-top: 72px;
+  font-size: 20px;
 }
 
 #file-field {
@@ -77,4 +82,8 @@ input[type='submit'] {
 
 .time {
   color: #6D6D6D;
+}
+
+.badge {
+  padding: 8px;
 }
