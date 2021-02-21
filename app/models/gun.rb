@@ -1,2 +1,0 @@
-class Gun < ApplicationRecord
-end
