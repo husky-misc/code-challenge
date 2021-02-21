@@ -1,3 +1,3 @@
 class Team < ApplicationRecord
-  belongs_to :player
+  has_many :match_players
 end
