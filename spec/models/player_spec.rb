@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Player, :type => :model do
     context('When valid') do
         it 'Should bevalid' do
-            player = FactoryBot.build(:player, name: Faker::Games::Fallout.unique.character)
+            player = FactoryBot.build(:player)
             expect(player).to be_valid
         end
     end
