@@ -31,7 +31,7 @@ class Player < ApplicationRecord
   end
 
   def self.global_ranking
-    Player.all.map do |player|
+    Player.includes(:deaths, :frags).all.map do |player|
       {
         name: player.name,
         frags: player.frags.size,
