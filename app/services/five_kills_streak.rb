@@ -13,6 +13,6 @@ class FiveKillsStreak
   end
 
   def frags
-    player.frags.where(id: match_id)
+    player.frags.where(match_id: match_id)
   end
 end
