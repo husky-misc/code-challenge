@@ -5,6 +5,8 @@ class MatchesController < ApplicationController
   end
 
   def create
+    return redirect_to new_match_path unless params[:file].present?
+
     ::Extractor::Parser.new(params[:file]).read
 
     redirect_to matches_path
