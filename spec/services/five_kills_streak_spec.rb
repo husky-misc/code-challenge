@@ -2,8 +2,21 @@ require 'rails_helper'
 
 RSpec.describe FiveKillsStreak do
   let!(:match) { create(:match) }
+  let!(:match_2) { create(:match, match_id: "5678") }
   let!(:player_1) { create(:player) }
   subject { FiveKillsStreak.new(player_1, match.id) }
+
+  context "for 5 kills in one minute different matches" do
+    let!(:frag_1) { create(:frag, player: player_1, match: match) }
+    let!(:frag_2) { create(:frag, player: player_1, match: match) }
+    let!(:frag_3) { create(:frag, player: player_1, match: match) }
+    let!(:frag_4) { create(:frag, player: player_1, match: match_2) }
+    let!(:frag_5) { create(:frag, player: player_1, match: match_2) }
+  
+    it 'Does not give award' do
+      expect(subject.award).to be_falsy
+    end
+  end
 
   context "for 5 kills in one minute" do
     let!(:frag_1) { create(:frag, player: player_1, match: match) }

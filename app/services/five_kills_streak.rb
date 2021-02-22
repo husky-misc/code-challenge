@@ -7,8 +7,12 @@ class FiveKillsStreak
   end
 
   def award
-    player.frags.map do |frag|
-      player.frags.where(date: frag.date..frag.date + 1.minutes).size >= 5
+    frags.map do |frag|
+      frags.where(date: frag.date..frag.date + 1.minutes).size >= 5
     end.any?(true)
+  end
+
+  def frags
+    player.frags.where(id: match_id)
   end
 end
