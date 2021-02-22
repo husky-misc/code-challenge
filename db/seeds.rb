@@ -1,6 +1,6 @@
 20.times do 
     Player.create!(
-        name: Faker::Games::Fallout.unique.character
+        name: Faker::Lorem.unique.word
     )
 end
 
@@ -19,8 +19,8 @@ Match.create!()
 Player.all.each do |player|
     MatchPlayer.create!(
         match_id: 1,
-        player: player,
-        team_id: rand(1..4)
+        player: player
+       
     )
 end
 
