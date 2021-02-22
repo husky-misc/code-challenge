@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_21_131738) do
     t.integer "player_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "team_id", null: false
+    t.integer "team_id"
     t.index ["match_id"], name: "index_match_players_on_match_id"
     t.index ["player_id"], name: "index_match_players_on_player_id"
     t.index ["team_id"], name: "index_match_players_on_team_id"
