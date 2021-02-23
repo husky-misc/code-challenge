@@ -28,10 +28,14 @@ class Player < ApplicationRecord
     end
 
     def get_favorite_gun(match)
-        self.kill_logs.where(match: match).group(:gun).count.first[0].name || ""
+        self.kill_logs.where(match: match).group(:gun).count.
+        map{|gun| [ gun[0].name, gun[1] ]}.
+        sort_by(&:last).reverse[0][0]
     end
 
     def get_global_favorite_gun()
-        self.kill_logs.group(:gun).count.first[0].name || ""
+        self.kill_logs.group(:gun).count.
+        map{|gun| [ gun[0].name, gun[1] ]}.
+        sort_by(&:last).reverse[0][0]
     end
 end
