@@ -1,0 +1,7 @@
+<h1>Dashboard#index</h1>
+<p>Find me in app/views/dashboard/index.html.erb</p>
+
+<%= form_tag dashboard_upload_file_path, :multipart => true do %>
+    <label for="file">Upload log</label> <%= file_field_tag "file" %>
+    <%= submit_tag %>
+<% end %>

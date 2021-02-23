@@ -1,0 +1,40 @@
+<% @logs.each do |log| %>
+
+    <h2><%= "Match: #{log.first}" %> </h2>
+        <table>
+        <tr>
+            <th>Player</th>
+            <th>kills</th>
+            <th>Death</th>
+            <th>Fav Gun</th>
+        </tr>
+        <% log.second.each do |ranking| %>
+            <tr>            
+                <td><%= ranking[:player] %></td>
+                <td><%= ranking[:kills] %></td>
+                <td><%= ranking[:deaths] %></td>
+                <td><%= ranking[:fav_gun] %></td>
+            </tr>
+        <% end %>
+    </table>
+
+<% end %>
+
+  <h2> Global </h2>
+        <table>
+        <tr>
+            <th>Player</th>
+            <th>kills</th>
+            <th>Death</th>
+            <th>Fav Gun</th>
+        </tr>
+        <% @global_log.each do |ranking| %>
+            <tr>            
+                <td><%= ranking[:player] %></td>
+                <td><%= ranking[:kills] %></td>
+                <td><%= ranking[:deaths] %></td>
+                <td><%= ranking[:fav_gun] %></td>
+            </tr>
+        <% end %>
+    </table>
+
