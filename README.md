@@ -1,5 +1,5 @@
-# PROBLEMA
-Dado o seguinte log de um jogo de tiro em primeira pessoa:
+# Sistema
+Faz analise do seguinte log de um jogo de tiro em primeira pessoa:
 ```
 23/04/2013 15:34:22 - New match 11348965 has started
 23/04/2013 15:36:04 - Roman killed Nick using M16
@@ -12,30 +12,12 @@ Dado o seguinte log de um jogo de tiro em primeira pessoa:
 23/04/2013 16:49:22 - Match 11348966 has ended
 ```
 
-# Resultado esperado
-- Montar o ranking de cada partida, com a quantidade de _frags_* e a quantidade de mortes de cada jogador;
-- Permitir que o seu código receba logs de múltiplas rodadas em um único arquivo.
+# Criar a database e iniciar a aplicação
+```
+rails db:create
+rails db:migrate
+rails s
 
-# Observações
-- Frag é quando um jogador mata outro player no jogo;
-- Frags realizados pelo player WORLD devem ser desconsiderados;
-- Permitir que uma rodada tenha múltiplos players, limitado a 20 jogadores por partida.
+selecionar e importar o log
+```
 
-# Bônus
-Faça caso se identifique com o problema ou se achar que há algo interessante a ser mostrado na solução:
-
-- Descobrir a arma preferida (a que mais matou) do vencedor;
-- Identificar a maior sequência de _frags_ efetuadas por um jogador (streak) sem morrer, dentro da partida;
-- Jogadores que vencerem uma partida sem morrerem devem ganhar um "award";
-- Jogadores que matarem 5 vezes em 1 minuto devem ganhar um "award";
-- Ranking Global dos jogadores, computando dados de todas as partidas existentes;
-- Permitir que os jogadores sejam classificados em times, quando um jogador mata outro player do mesmo time - Friendly Fire - é computado ```-1``` no score de frags do atirador.
-
-# Solução
-- Seja criativo;
-- Explore ao máximo a orientação a objetos e engenharia de software (SOLID; UseCases; Services; Interactors, etc)
-- Crie testes unitários e tente usar TDD; 
-- Faça commits atômicos e progressivos;
-- Utilize Ruby on Rails para fazer o upload do arquivo, persistir os dados das partidas e criar e as views necessárias para exibir o ranking, estatisticas dos jogadores e os dados das partidas. 
-
-Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
