@@ -1,0 +1,15 @@
+
+  <div class="card border-dark mb-3">
+    <div class="card-header">Faça o upload da partida aqui</div>
+    <div class="card-body text-dark">
+      <%= form_tag(matches_path, method: :post, multipart: true) do %>
+        <div class="mb-3" >
+          <%= label_tag 'log', 'Log da partida', class: 'form-label' %>
+          <%= file_field_tag 'log', class: 'form-control' %>
+        </div>
+        <div class="mb-3" >
+          <%= submit_tag 'Enviar partida', class: 'btn btn-primary'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
