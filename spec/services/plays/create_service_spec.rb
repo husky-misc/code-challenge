@@ -5,8 +5,8 @@ RSpec.describe Plays::CreateService do
     let(:killer)   { create(:player) }
     let(:victim)   { create(:player) }
     let(:weapon)   { create(:weapon) }
-    let(:match)    { create(:ended_match) }
-    let(:gametime) { match.match_begin + 1.minute }
+    let(:match)    { create(:finished_match) }
+    let(:gametime) {match.start + 1.minute }
 
     context 'when parameter match is missing' do
       let(:service) do

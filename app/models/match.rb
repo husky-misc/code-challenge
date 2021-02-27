@@ -1,3 +1,5 @@
 class Match < ApplicationRecord
-  has_one_attached :match_log
+  has_one_attached :file
+  validates :match_id, :file, :start, presence: true
+  validates :match_id, uniqueness: true
 end
