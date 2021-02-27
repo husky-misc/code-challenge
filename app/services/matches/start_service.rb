@@ -22,7 +22,7 @@ module Matches
         filename: "#{match.match_id}-#{SecureRandom.hex(10)}"
       )
 
-      match.save
+      match.save!
 
       match
     end

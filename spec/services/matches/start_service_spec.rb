@@ -57,5 +57,20 @@ RSpec.describe Matches::StartService do
         expect { service.call }.to change(Match, :count).by(1)
       end
     end
+
+    context 'when match already exists in database' do
+      let(:service) { Matches::StartService.new(match_id, start, log_file) }
+
+      before do
+        create(:finished_match, match_id: match_id)
+      end
+
+      it 'expects to raise an error' do
+        expect { service.call }.to raise_error(
+          ActiveRecord::RecordInvalid,
+          'Validation failed: Match has already been taken'
+        )
+      end
+    end
   end
 end
