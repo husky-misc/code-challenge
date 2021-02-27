@@ -23,6 +23,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', require: false
   gem 'listen', '~> 3.3'
+  gem 'guard-rspec', require: false
   gem 'spring'
 end
 
