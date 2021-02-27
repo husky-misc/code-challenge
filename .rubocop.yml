@@ -1,0 +1,17 @@
+AllCops:
+  NewCops: enable
+  Include:
+    - '**/*.rb'
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'app/views/**/*'
+    - 'node_modules/**/*'
+    - 'front/**/*'
+    - 'vendor/**/*'
+    - 'Guardfile'
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
