@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(version: 2021_02_26_213454) do
 
   create_table "matches", force: :cascade do |t|
     t.string "match_id"
-    t.text "match_log"
-    t.datetime "match_begin"
-    t.datetime "match_end"
+    t.text "file"
+    t.datetime "start"
+    t.datetime "finish"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_matches_on_match_id", unique: true
   end
 
   create_table "players", force: :cascade do |t|

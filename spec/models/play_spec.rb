@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Play, type: :model do
-  let(:match)    { create(:ended_match) }
+  let(:match)    { create(:finished_match) }
   let(:killer)   { create(:player) }
   let(:victim)   { create(:player) }
   let(:weapon)   { create(:weapon) }
-  let(:gametime) { match.match_begin + 1.second }
+  let(:gametime) { match.start + 1.second }
 
   context 'when param match is not present' do
     let(:new_play) do
