@@ -8,7 +8,19 @@ RSpec.describe MatchRecorderService do
       let(:service)   { MatchRecorderService.new(file) }
 
       it 'expects to not create matches' do
-        expect(service.call).to be_empty
+        expect { service.call }.not_to change(Match, :count)
+      end
+
+      it 'expects to not create plays' do
+        expect { service.call }.not_to change(Play, :count)
+      end
+
+      it 'expects to not create players' do
+        expect { service.call }.not_to change(Player, :count)
+      end
+
+      it 'expects to not create weapons' do
+        expect { service.call }.not_to change(Weapon, :count)
       end
     end
 
@@ -17,8 +29,20 @@ RSpec.describe MatchRecorderService do
       let(:file)      { File.open(file_path) }
       let(:service)   { MatchRecorderService.new(file) }
 
-      it 'expects to not create an match' do
-        expect(service.call).to be_empty
+      it 'expects to not create matches' do
+        expect { service.call }.not_to change(Match, :count)
+      end
+
+      it 'expects to not create plays' do
+        expect { service.call }.not_to change(Play, :count)
+      end
+
+      it 'expects to not create players' do
+        expect { service.call }.not_to change(Player, :count)
+      end
+
+      it 'expects to not create weapons' do
+        expect { service.call }.not_to change(Weapon, :count)
       end
     end
 
@@ -27,33 +51,66 @@ RSpec.describe MatchRecorderService do
       let(:file)      { File.open(file_path) }
       let(:service)   { MatchRecorderService.new(file) }
 
-      it 'expects to not create an match' do
-        expect(service.call).to be_empty
+
+      it 'expects to not create matches' do
+        expect { service.call }.not_to change(Match, :count)
+      end
+
+      it 'expects to not create plays' do
+        expect { service.call }.not_to change(Play, :count)
+      end
+
+      it 'expects to not create players' do
+        expect { service.call }.not_to change(Player, :count)
+      end
+
+      it 'expects to not create weapons' do
+        expect { service.call }.not_to change(Weapon, :count)
       end
     end
 
+    context 'when match file has the required data to create a new match' do
+      let(:file_path)   { Rails.root.join('spec', 'support', 'new_match_log') }
+      let(:file)        { File.open(file_path) }
+      let(:service)     { MatchRecorderService.new(file) }
 
-    # expect to create a new match
-    # context 'when match with the required regex to create a new match' do
-    #   let(:match_id)    { '11348965' }
-    #   let(:match_begin) { '23/04/2013 15:34:22'.to_time }
-    #   let(:match_end)   { '23/04/2013 15:39:22'.to_time }
-    #   let(:file_path)   { Rails.root.join('spec', 'support', 'new_match_log') }
-    #   let(:file)        { File.open(file_path) }
-    #   let(:service)     { MatchRecorderService.new(file) }
-    #   let(:response) do
-    #     [
-    #       Match.new(
-    #         match_id: match_id,
-    #         match_begin: match_begin,
-    #         match_end: match_end
-    #       )
-    #     ]
-    #   end
+      it 'expects to not create matches' do
+        expect { service.call }.to change(Match, :count).by(1)
+      end
 
-    #   it 'expects to create a new match' do
-    #     expect(service.call).to eq(response)
-    #   end
-    # end
+      it 'expects to not create plays' do
+        expect { service.call }.not_to change(Play, :count)
+      end
+
+      it 'expects to not create players' do
+        expect { service.call }.not_to change(Player, :count)
+      end
+
+      it 'expects to not create weapons' do
+        expect { service.call }.not_to change(Weapon, :count)
+      end
+    end
+
+    context 'when match file has the required data to create a complete match' do
+      let(:file_path)   { Rails.root.join('spec', 'support', 'complete_match_log') }
+      let(:file)        { File.open(file_path) }
+      let(:service)     { MatchRecorderService.new(file) }
+
+      it 'expects to create a new match in database' do
+        expect { service.call }.to change(Match, :count).by(1)
+      end
+
+      it 'expects to create new players in database' do
+        expect { service.call }.to change(Player, :count).by(2)
+      end
+
+      it 'expects to create new weapons in database' do
+        expect { service.call }.to change(Weapon, :count).by(1)
+      end
+
+      it 'expects to create a new play in database' do
+        expect { service.call }.to change(Play, :count).by(2)
+      end
+    end
   end
 end

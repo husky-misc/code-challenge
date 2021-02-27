@@ -52,4 +52,18 @@ RSpec.describe Play, type: :model do
       expect { new_play.save }.to change(Play, :count).by(1)
     end
   end
+
+  context 'when params killer and weapon is missing' do
+    let(:new_play) do
+      build(:play, match: match, killer: nil, victim: victim, weapon: nil, gametime: gametime)
+    end
+
+    it 'expects new_play to be valid' do
+      expect(new_play).to be_valid
+    end
+
+    it 'expects new_play to be saved in database' do
+      expect(new_play.save).to be true
+    end
+  end
 end

@@ -1,11 +1,10 @@
 class MatchRecorderService
   def initialize(file)
     @file = file
+    @match = nil
   end
 
   def call
-    matches = []
-
     File.readlines(file).each do |line|
       time, data = line.split(' - ')
 
@@ -17,39 +16,30 @@ class MatchRecorderService
       case data
       when ->(str) { str.match?(/New match (.*?) has started/) }
         match_id = data.match(/New match (.*?) has started/)[1]
-
-        matches << start_a_match!(match_id, time)
-
+        @match = create_a_match!(match_id, time, file)
       when ->(str) { str.match?(/Match (.*?) has ended/) }
-        match_id = data.match(/Match (.*?) has ended/)[1]
+        finish_a_match!(@match, time)
+      when ->(str) { str.match?(/(.*?) killed (.*?) using (.*)/) }
+        event_data = data.match(/(.*?) killed (.*?) using (.*)/)
 
-        the_match = matches.find do |match|
-          match.match_id.eql?(match_id)
-        end
+        killer = killer(event_data[1])
+        victim = victim(event_data[2])
+        weapon = weapon(event_data[3])
 
-        end_match!(the_match, file, time)
+        create_a_play!(@match, killer, victim, weapon, time)
+      when ->(str) { str.match?(/<WORLD> killed (.*?) by DROWN/) }
+        event_data = data.match(/<WORLD> killed (.*?) by DROWN/)
+        victim = victim(event_data[1])
+
+        create_a_world_death!(@match, victim, time)
       end
     end
-
-    matches
   end
 
-  def start_a_match!(match_id, match_begin)
-    Matches::StartService.new(
-      match_id,
-      match_begin
-    ).call
-  end
+  private
 
-  def end_match!(match, file, match_end)
-    file.rewind
-
-    Matches::EndService.new(
-      match,
-      file,
-      match_end
-    ).call
-  end
+  attr_reader :file
+  attr_accessor :match
 
   def corrupted_or_empty_line?(time, data)
     return true if time.blank? || data.blank?
@@ -57,7 +47,44 @@ class MatchRecorderService
     false
   end
 
-  private
+  def create_a_match!(match_id, start, file)
+    Matches::StartService.new(match_id, start, file).call
+  end
 
-  attr_reader :file
+  def finish_a_match!(match, finish)
+    file.rewind
+    Matches::FinishService.new(match, finish).call
+  end
+
+  def killer(nickname)
+    Players::FindOrCreateService.new(nickname).call
+  end
+
+  def victim(nickname)
+    Players::FindOrCreateService.new(nickname).call
+  end
+
+  def weapon(name)
+    Weapons::FindOrCreateService.new(name).call
+  end
+
+  def create_a_play!(match, killer, victim, weapon, gametime)
+    Plays::CreateService.new(
+      match: match,
+      killer: killer,
+      victim: victim,
+      weapon: weapon,
+      gametime: gametime
+    ).call
+  end
+
+  def create_a_world_death!(match, victim, gametime)
+    Plays::CreateService.new(
+      match: match,
+      killer: nil,
+      victim: victim,
+      weapon: nil,
+      gametime: gametime
+    ).call
+  end
 end
