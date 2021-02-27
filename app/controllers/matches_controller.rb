@@ -1,5 +1,8 @@
 class MatchesController < ApplicationController
-  def index; end
+  def index
+    matches = Matches::ResumeRepository.matches
+    @presenter = Matches::IndexPresenter.new(matches).attributes
+  end
 
   def new; end
 
