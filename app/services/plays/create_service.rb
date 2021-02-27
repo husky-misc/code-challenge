@@ -1,7 +1,7 @@
 module Plays
   class CreateService
     include ActiveModel::Validations
-    validates :match, :killer, :victim, :weapon, :gametime, presence: true
+    validates :match, :victim, :gametime, presence: true
 
     def initialize(match:, killer:, victim:, weapon:, gametime:)
       @match = match

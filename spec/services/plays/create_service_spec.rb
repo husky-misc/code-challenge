@@ -6,7 +6,7 @@ RSpec.describe Plays::CreateService do
     let(:victim)   { create(:player) }
     let(:weapon)   { create(:weapon) }
     let(:match)    { create(:finished_match) }
-    let(:gametime) {match.start + 1.minute }
+    let(:gametime) { match.start + 1.minute }
 
     context 'when parameter match is missing' do
       let(:service) do
@@ -29,27 +29,6 @@ RSpec.describe Plays::CreateService do
       end
     end
 
-    context 'when parameter killer is missing' do
-      let(:service) do
-        Plays::CreateService.new(
-          match: match,
-          killer: nil,
-          victim: victim,
-          weapon: weapon,
-          gametime: gametime
-        )
-      end
-
-      it 'expects to raise an ActiveModel::ValidationError' do
-        expect { service.call }.to(
-          raise_error(
-            ActiveModel::ValidationError,
-            "Validation failed: Killer can't be blank"
-          )
-        )
-      end
-    end
-
     context 'when parameter victim is missing' do
       let(:service) do
         Plays::CreateService.new(
@@ -66,27 +45,6 @@ RSpec.describe Plays::CreateService do
           raise_error(
             ActiveModel::ValidationError,
             "Validation failed: Victim can't be blank"
-          )
-        )
-      end
-    end
-
-    context 'when parameter weapon is missing' do
-      let(:service) do
-        Plays::CreateService.new(
-          match: match,
-          killer: killer,
-          victim: victim,
-          weapon: nil,
-          gametime: gametime
-        )
-      end
-
-      it 'expects to raise an ActiveModel::ValidationError' do
-        expect { service.call }.to(
-          raise_error(
-            ActiveModel::ValidationError,
-            "Validation failed: Weapon can't be blank"
           )
         )
       end

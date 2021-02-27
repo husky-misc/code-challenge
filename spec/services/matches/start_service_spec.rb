@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Matches::StartService do
   describe '.call' do
-    let(:match_id)  { '12837' }
+    let(:match_id)  { Faker::Number.number(digits: 10).to_s }
     let(:start)     { '23/04/2013 15:34:22'.to_time }
     let(:file_path) { Rails.root.join('spec', 'support', 'new_match_log') }
     let(:log_file)  { File.open(file_path) }
