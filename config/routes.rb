@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
   root 'matches#index'
-  resources :matches, only: %i[index create new]
+  resources :matches, only: %i[index create new show]
 end
