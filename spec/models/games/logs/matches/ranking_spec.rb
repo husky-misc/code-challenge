@@ -34,4 +34,27 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.frags?('Astrobaldo')).to eq(false)
     end
   end
+
+  describe '#deaths_count' do
+    it 'returns the deaths count' do
+      expect(ranking.deaths_count.size).to eq(7)
+      expect(ranking.deaths_count['Nick']).to eq(1)
+      expect(ranking.deaths_count['Marcus']).to eq(1)
+      expect(ranking.deaths_count['Astrobaldo']).to eq(1)
+      expect(ranking.deaths_count['Robertinho']).to eq(1)
+      expect(ranking.deaths_count['Zangief']).to eq(1)
+      expect(ranking.deaths_count['Osw']).to eq(1)
+      expect(ranking.deaths_count['Diego']).to eq(1)
+    end
+  end
+
+  describe '#deaths?' do
+    it 'returns false if player has deaths' do
+      expect(ranking.deaths?('Roman')).to eq(false)
+    end
+
+    it 'returns true if player dont has deaths' do
+      expect(ranking.deaths?('Astrobaldo')).to eq(true)
+    end
+  end
 end

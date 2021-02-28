@@ -18,5 +18,13 @@ class Games::Logs::Matches::Ranking
     frags_count.find { |k, _| k == player_name }.present?
   end
 
+  def deaths_count
+    events.group_by { |e| e[:victim] }.transform_values(&:size)
+  end
+
+  def deaths?(player_name)
+    deaths_count.find { |k, _| k == player_name }.present?
+  end
+
   attr_reader :events, :players
 end
