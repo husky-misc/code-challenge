@@ -65,4 +65,14 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.players_weapons['Diego'].size).to eq(1)
     end
   end
+
+  describe '#kill_five_times_on_a_minute?(player_name)' do
+    it 'returns true if player has kill five times on a minute' do
+      expect(ranking.kill_five_times_on_a_minute?('Roman')).to eq(true)
+    end
+
+    it 'returns false if player dont has kill five times on a minute' do
+      expect(ranking.kill_five_times_on_a_minute?('Diego')).to eq(false)
+    end
+  end
 end
