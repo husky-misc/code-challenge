@@ -95,4 +95,10 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.dont_have_streaks?('Diego')).to eq(true)
     end
   end
+
+  describe '#streaks(player_name)' do
+    it 'returns number of player streaks' do
+      expect(ranking.streaks('Roman')).to eq(5)
+    end
+  end
 end

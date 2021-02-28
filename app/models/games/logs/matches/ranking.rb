@@ -47,5 +47,11 @@ class Games::Logs::Matches::Ranking
     deaths_count.key?(player_name) || !frags_count.key?(player_name)
   end
 
+  def streaks(player_name)
+    return 0 if dont_have_streaks?(player_name)
+
+    frags_count[player_name]
+  end
+
   attr_reader :events, :players
 end
