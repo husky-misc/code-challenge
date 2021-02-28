@@ -32,4 +32,11 @@ RSpec.describe Games::Logs::Matches::Data do
       expect(data.finished_at).to eq('23/04/2013 15:39:22')
     end
   end
+
+  describe '#players' do
+    it 'returns match players' do
+      expect(data.players.size).to eq(8)
+      expect(data.players).to eq(%w[Roman Nick Marcus Astrobaldo Robertinho Zangief Diego Osw])
+    end
+  end
 end

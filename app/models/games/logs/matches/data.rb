@@ -33,6 +33,15 @@ class Games::Logs::Matches::Data
     end
   end
 
+  def players
+    events_list.each_with_object([]) do |event, array|
+      attacker, victim = event.values_at(:attacker, :victim)
+
+      array << attacker unless attacker == '<WORLD>'
+      array << victim
+    end.uniq
+  end
+
   private
 
   FRAG_REGEX = /(.+) killed (.+) (by|using) (.+)/
