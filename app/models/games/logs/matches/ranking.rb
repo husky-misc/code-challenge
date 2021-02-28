@@ -39,5 +39,9 @@ class Games::Logs::Matches::Ranking
                       .present?
   end
 
+  def award?(player_name)
+    !deaths?(player_name) || kill_five_times_on_a_minute?(player_name)
+  end
+
   attr_reader :events, :players
 end

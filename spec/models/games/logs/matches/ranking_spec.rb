@@ -75,4 +75,14 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.kill_five_times_on_a_minute?('Diego')).to eq(false)
     end
   end
+
+  describe '#award?' do
+    it 'returns true if player has award' do
+      expect(ranking.award?('Roman')).to eq(true)
+    end
+
+    it 'returns false if player dont has award' do
+      expect(ranking.award?('Diego')).to eq(false)
+    end
+  end
 end
