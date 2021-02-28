@@ -29,4 +29,23 @@ RSpec.describe Match, type: :model do
       expect(match.save).to be false
     end
   end
+
+  context 'when match reached the maxium amount of players' do
+    let(:some_match) { create(:started_match) }
+    let(:finished)   { some_match.start + 2.minutes }
+    let(:play)       { build(:play, match: some_match) }
+
+    before do
+      create_list(:play, 10, match: some_match)
+    end
+
+    it 'expects to raise an validation error' do
+      expect { some_match.update!(finish: finished) }.to(
+        raise_error(
+          StandardError,
+          'The maximun amount of players was reached'
+        )
+      )
+    end
+  end
 end
