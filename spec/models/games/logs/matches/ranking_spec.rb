@@ -85,4 +85,14 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.award?('Diego')).to eq(false)
     end
   end
+
+  describe '#dont_have_streaks?' do
+    it 'returns false if player has streaks' do
+      expect(ranking.dont_have_streaks?('Roman')).to eq(false)
+    end
+
+    it 'returns true if player dont has streaks' do
+      expect(ranking.dont_have_streaks?('Diego')).to eq(true)
+    end
+  end
 end

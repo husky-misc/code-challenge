@@ -43,5 +43,9 @@ class Games::Logs::Matches::Ranking
     !deaths?(player_name) || kill_five_times_on_a_minute?(player_name)
   end
 
+  def dont_have_streaks?(player_name)
+    deaths_count.key?(player_name) || !frags_count.key?(player_name)
+  end
+
   attr_reader :events, :players
 end
