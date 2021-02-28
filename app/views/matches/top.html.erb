@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Posição</th>
+      <th scope="col">Jogador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @presenter.each do |player| %>
+      <tr>
+        <th scope="row"><%= player[:position] %></th>
+        <td><%= player[:nickname] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar', :back, class: 'btn btn-primary' %>

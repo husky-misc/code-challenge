@@ -23,6 +23,11 @@ class MatchesController < ApplicationController
     @presenter = Matches::ShowPresenter.new(match).attributes
   end
 
+  def top
+    best_players = Matches::BestPlayersRepository.players
+    @presenter = Matches::TopPresenter.new(best_players).attributes
+  end
+
   private
 
   def allowed_params
