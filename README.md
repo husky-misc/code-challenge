@@ -1,28 +1,41 @@
-Para rodar o projeto os comandos abaixo devem ser o suficiente
+# PROBLEMA
+Dado o seguinte log de um jogo de tiro em primeira pessoa:
+```
+23/04/2013 15:34:22 - New match 11348965 has started
+23/04/2013 15:36:04 - Roman killed Nick using M16
+23/04/2013 15:36:33 - <WORLD> killed Nick by DROWN
+23/04/2013 15:39:22 - Match 11348965 has ended
 
-1. bundle install
-2. yarn install
-3. rails db:create db:migrate
-4. rails s
+23/04/2013 16:14:22 - New match 11348966 has started
+23/04/2013 16:26:04 - Roman killed Marcus using M16
+23/04/2013 16:36:33 - <WORLD> killed Marcus by DROWN
+23/04/2013 16:49:22 - Match 11348966 has ended
+```
 
-Objetivos concluídos:
+# Resultado esperado
+- Montar o ranking de cada partida, com a quantidade de _frags_* e a quantidade de mortes de cada jogador;
+- Permitir que o seu código receba logs de múltiplas rodadas em um único arquivo.
 
+# Observações
 - Frag é quando um jogador mata outro player no jogo;
-
 - Frags realizados pelo player WORLD devem ser desconsiderados;
-
 - Permitir que uma rodada tenha múltiplos players, limitado a 20 jogadores por partida.
 
+# Bônus
+Faça caso se identifique com o problema ou se achar que há algo interessante a ser mostrado na solução:
+
 - Descobrir a arma preferida (a que mais matou) do vencedor;
-
-- Ranking Global dos jogadores, computando dados de todas as partidas existentes;
-
+- Identificar a maior sequência de _frags_ efetuadas por um jogador (streak) sem morrer, dentro da partida;
 - Jogadores que vencerem uma partida sem morrerem devem ganhar um "award";
-
-Objetivos não concluídos(motivo: Só tinha tempo no sabado para terminar o projeto):
-
 - Jogadores que matarem 5 vezes em 1 minuto devem ganhar um "award";
+- Ranking Global dos jogadores, computando dados de todas as partidas existentes;
+- Permitir que os jogadores sejam classificados em times, quando um jogador mata outro player do mesmo time - Friendly Fire - é computado ```-1``` no score de frags do atirador.
 
-- Identificar a maior sequência de frags efetuadas por um jogador (streak) sem morrer, dentro da partida;
+# Solução
+- Seja criativo;
+- Explore ao máximo a orientação a objetos e engenharia de software (SOLID; UseCases; Services; Interactors, etc)
+- Crie testes unitários e tente usar TDD; 
+- Faça commits atômicos e progressivos;
+- Utilize Ruby on Rails para fazer o upload do arquivo, persistir os dados das partidas e criar e as views necessárias para exibir o ranking, estatisticas dos jogadores e os dados das partidas. 
 
-- Permitir que os jogadores sejam classificados em times, quando um jogador mata outro player do mesmo time - Friendly Fire - é computado -1 no score de frags do atirador.
+Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
