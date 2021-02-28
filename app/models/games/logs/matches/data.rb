@@ -5,6 +5,18 @@ class Games::Logs::Matches::Data
     @match = match
   end
 
+  def id
+    match.first[:event].match(/\d+/).to_s
+  end
+
+  def started_at
+    match.first[:datetime]
+  end
+
+  def finished_at
+    match.last[:datetime]
+  end
+
   def events_list
     events.each_with_object([]) do |kill, array|
       attacker, victim, _, weapon = kill[:event].match(FRAG_REGEX).captures
