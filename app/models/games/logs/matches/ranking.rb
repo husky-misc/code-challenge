@@ -53,5 +53,13 @@ class Games::Logs::Matches::Ranking
     frags_count[player_name]
   end
 
+  def factal_weapon(player_name)
+    player_weapons = players_weapons[player_name]
+
+    return 'no kills, no factal weapon' if player_weapons.nil?
+
+    player_weapons.key(player_weapons.values.max)
+  end
+
   attr_reader :events, :players
 end

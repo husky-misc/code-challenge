@@ -58,11 +58,11 @@ RSpec.describe Games::Logs::Matches::Ranking do
     end
   end
 
-  describe '#players_weapons' do
-    it 'returns weapons by player' do
+  describe '#player_weapons' do
+    it 'returns number of player streaks' do
       expect(ranking.players_weapons.size).to eq(3)
-      expect(ranking.players_weapons['Roman'].size).to eq(3)
-      expect(ranking.players_weapons['Diego'].size).to eq(1)
+      expect(ranking.players_weapons['Roman']).to eq({ 'knife' => 3, 'R38' => 1, 'kick' => 1 })
+      expect(ranking.players_weapons['Diego']).to eq({ 'crossbow' => 1 })
     end
   end
 
@@ -99,6 +99,13 @@ RSpec.describe Games::Logs::Matches::Ranking do
   describe '#streaks(player_name)' do
     it 'returns number of player streaks' do
       expect(ranking.streaks('Roman')).to eq(5)
+    end
+  end
+
+  describe '#factal_weapon(player_name)' do
+    it 'returns weapon of the player who killed the most' do
+      expect(ranking.factal_weapon('Roman')).to eq('knife')
+      expect(ranking.factal_weapon('Diego')).to eq('crossbow')
     end
   end
 end
