@@ -1,3 +1,24 @@
 <h1 class="text-center"> Partidas </h1>
 
-<%= link_to 'Carregar partida', new_match_path %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Partida</th>
+      <th scope="col">Melhor jogador</th>
+      <th scope="col">Arma mais usada</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @presenter.each do |match| %>
+      <tr>
+        <th scope="row"><%= match[:match][:id] %></th>
+        <td><%= match[:best_player] %></td>
+        <td><%= match[:most_used_weapon] %></td>
+        <td>
+          <%= link_to 'visualizar partida', match[:match][:show_path], class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

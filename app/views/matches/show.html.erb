@@ -1,0 +1,30 @@
+
+<h1> Resultados da partida: <%= @presenter[:match_id] %> </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Jogador</th>
+      <th scope="col">Abates</th>
+      <th scope="col">Mortes</th>
+      <th scope="col">Conquistas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @presenter[:players].each do |player| %>
+      <tr>
+        <th scope="row"><%= player[:nickname] %></th>
+        <td><%= player[:kills] %></td>
+        <td><%= player[:deaths] %></td>
+        <td>
+          <% player[:awards].each do |award| %>
+            <%= award %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar', :back, class: 'btn btn-primary' %>
+
