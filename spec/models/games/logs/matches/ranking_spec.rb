@@ -57,4 +57,12 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.deaths?('Astrobaldo')).to eq(true)
     end
   end
+
+  describe '#players_weapons' do
+    it 'returns weapons by player' do
+      expect(ranking.players_weapons.size).to eq(3)
+      expect(ranking.players_weapons['Roman'].size).to eq(3)
+      expect(ranking.players_weapons['Diego'].size).to eq(1)
+    end
+  end
 end
