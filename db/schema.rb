@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_002806) do
+ActiveRecord::Schema.define(version: 2021_03_01_010741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2021_02_28_002806) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.bigint "game_id", null: false
+    t.integer "match_id"
+    t.jsonb "ranking"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.index ["game_id"], name: "index_matches_on_game_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "matches", "games"
 end
