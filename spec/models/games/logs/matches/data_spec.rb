@@ -39,4 +39,22 @@ RSpec.describe Games::Logs::Matches::Data do
       expect(data.players).to eq(%w[Roman Nick Marcus Astrobaldo Robertinho Zangief Diego Osw])
     end
   end
+
+  describe '#ranking' do
+    it 'returns the match rating by frags' do
+      expect(data.ranking.size).to eq(8)
+      expect(data.ranking.first[:name]).to eq('Roman')
+      expect(data.ranking.first[:frags]).to eq(5)
+      expect(data.ranking.first[:deaths]).to eq(0)
+      expect(data.ranking.first[:award]).to eq(true)
+      expect(data.ranking.first[:streak]).to eq(5)
+      expect(data.ranking.first[:weapon]).to eq('knife')
+      expect(data.ranking.last[:name]).to eq('Osw')
+      expect(data.ranking.last[:frags]).to eq(0)
+      expect(data.ranking.last[:deaths]).to eq(1)
+      expect(data.ranking.last[:award]).to eq(false)
+      expect(data.ranking.last[:streak]).to eq(0)
+      expect(data.ranking.last[:weapon]).to eq('no kills, no factal weapon')
+    end
+  end
 end

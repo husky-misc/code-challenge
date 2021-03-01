@@ -42,6 +42,10 @@ class Games::Logs::Matches::Data
     end.uniq
   end
 
+  def ranking
+    Games::Logs::Matches::Ranking.new(players, events_list).to_a
+  end
+
   private
 
   FRAG_REGEX = /(.+) killed (.+) (by|using) (.+)/
