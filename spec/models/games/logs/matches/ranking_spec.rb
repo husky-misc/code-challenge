@@ -108,4 +108,16 @@ RSpec.describe Games::Logs::Matches::Ranking do
       expect(ranking.factal_weapon('Diego')).to eq('crossbow')
     end
   end
+
+  describe '#factal_weapon(player_name)' do
+    it 'returns weapon of the player who killed the most' do
+      expect(ranking.to_a.size).to eq(8)
+      expect(ranking.to_a.first[:name]).to eq('Roman')
+      expect(ranking.to_a.first[:frags]).to eq(5)
+      expect(ranking.to_a.first[:deaths]).to eq(0)
+      expect(ranking.to_a.first[:award]).to eq(true)
+      expect(ranking.to_a.first[:streak]).to eq(5)
+      expect(ranking.to_a.first[:weapon]).to eq('knife')
+    end
+  end
 end

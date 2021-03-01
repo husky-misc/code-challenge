@@ -6,6 +6,21 @@ class Games::Logs::Matches::Ranking
     @events = events
   end
 
+  def to_a
+    players.each_with_object([]) do |player_name, array|
+      rank = {
+        name: player_name,
+        frags: frags_count[player_name] || 0,
+        deaths: deaths_count[player_name] || 0,
+        award: award?(player_name),
+        streak: streaks(player_name),
+        weapon: factal_weapon(player_name)
+
+      }
+      array << rank
+    end
+  end
+
   def frags
     events.group_by { |e| e[:attacker] }
   end
@@ -60,6 +75,8 @@ class Games::Logs::Matches::Ranking
 
     player_weapons.key(player_weapons.values.max)
   end
+
+  private
 
   attr_reader :events, :players
 end
