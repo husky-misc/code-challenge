@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HungerGames</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>::[Husky Test]::</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <%= render 'layouts/navbar' %>
+
+  <section class="section">
+    <div class="content">
+      <div class="columns is-centered">
+        <div class="column is-full-mobile is-half-desktop">
+          <h2 class="subtitle is-4">
+            <%= yield(:title) %>
+          </h2>
+
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>

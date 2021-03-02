@@ -1,0 +1,44 @@
+<% content_for :title do %>
+Faça o upload do log
+<% end %>
+
+<div class="columns" data-controller="upload">
+  <div class="column">
+    <% if flash[:alert] %>
+      <div class="notification is-danger"><%= flash[:alert] %></div>
+    <% end %>
+
+    <%= form_with model: @game, local: true do |form| %>
+    <div class="field">
+      <div class="control">
+        <div class="file has-name">
+          <label class="file-label">
+            <%= form.file_field :file, class: 'file-input',
+                                  data: {
+                                    action: 'change->upload#showFilename',
+                                    target: 'upload.fileInput'
+                                  } %>
+
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Selecione o arquivo…
+              </span>
+            </span>
+            <span class="file-name" data-target="upload.filename">
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= form.submit 'Upload', class: 'button is-primary', data: { target: 'upload.uploadButton' }, disabled: true %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
