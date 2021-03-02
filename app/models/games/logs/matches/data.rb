@@ -10,11 +10,11 @@ class Games::Logs::Matches::Data
   end
 
   def started_at
-    match.first[:datetime]
+    DateTime.parse(match.first[:datetime])
   end
 
   def finished_at
-    match.last[:datetime]
+    DateTime.parse(match.last[:datetime])
   end
 
   def events_list
