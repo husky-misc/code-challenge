@@ -46,6 +46,10 @@ class Games::Logs::Matches::Data
     Games::Logs::Matches::Ranking.new(players, events_list).to_a
   end
 
+  def valid_match?
+    players.size <= 20
+  end
+
   private
 
   FRAG_REGEX = /(.+) killed (.+) (by|using) (.+)/
