@@ -97,6 +97,7 @@ GEM
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
     formatador (0.2.5)
+    gemoji (3.0.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     guard (2.16.2)
@@ -290,6 +291,7 @@ DEPENDENCIES
   database_cleaner-active_record
   factory_bot_rails
   faker
+  gemoji
   guard-rspec
   jbuilder (~> 2.7)
   listen (~> 3.3)
