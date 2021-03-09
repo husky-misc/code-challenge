@@ -1,7 +1,10 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   NewCops: enable
   Include:
     - '**/*.rb'
+
   Exclude:
     - 'bin/**/*'
     - 'config/**/*'
@@ -13,5 +16,20 @@ AllCops:
     - 'Guardfile'
 Style/ClassAndModuleChildren:
   Enabled: false
+
 Style/Documentation:
   Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - "**/*_spec.rb"
+    - "**/*.rake"
+    - "**/*.jbuilder"
+    - "app/admin/**/*.rb"
+    - "spec/support/shared_examples/**/*.rb"
+    - "spec/factories/**.rb"
+    - "spec/**/*_helper.rb"
