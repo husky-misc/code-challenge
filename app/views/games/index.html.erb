@@ -1,0 +1,31 @@
+<% if flash[:notice] %>
+<div class="notification is-success"><%= flash[:notice] %></div>
+<% end %>
+
+<% content_for :title do %>
+Ranking
+<% end %>
+
+<div class="columns is-centered">
+  <div class="column">
+    <table class="table is-bordered is-striped is-narrow is-hoverable">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Frags</th>
+        <th>Deaths</th>
+        <th>Favorite Weapon</th>
+      </tr>
+      <tr>
+        <% @game.each do |player| %>
+        <td><%= @game.first.name == player.name ? Emoji.find_by_alias("trophy").raw : Emoji.find_by_alias("skull").raw %></td>
+        <td><%= player.name %></td>
+        <td><%= player.frags %></td>
+        <td><%= player.deaths %></td>
+        <td><%= player.weapon %></td>
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
+</div>

@@ -12,15 +12,22 @@ class GamesController < ApplicationController
       StoreMatchService.call(@game)
 
       flash[:notice] = 'Upload realizado com Sucesso!'
+      redirect_to games_path
     else
       flash[:alert] = @game.errors[:file].first
       render :new
     end
   end
 
-  def index; end
+  def index
+    @game = CreateGlobalRankingService.call.sort_by(&:frags).reverse
+  end
 
   private
+
+  def game
+    params[:game]
+  end
 
   def game_params
     params.require(:game).permit(:file)
