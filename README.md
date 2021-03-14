@@ -46,7 +46,10 @@ Utilize o arquivo de read.me para adicionar algum comentário/observação que a
 
 # Execução
   - Clone o repositorio em sua maquina.
-  - Execute o comando ˋ docker run --name code_challenger -e POSTGRES_PASSWORD=12345678 -p 5432:5432 -d postgres ˋ
+  - Execute o comando 
+    ˋˋˋ
+     docker run --name code_challenger -e POSTGRES_PASSWORD=12345678 -p 5432:5432 -d postgres ˋ
+    ˋˋˋ
   - Abra o projeto e execute ` bundle install `
   - Execute o projeto ` rails s `
   - Execute as migrations ` rails db:migrate `
