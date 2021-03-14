@@ -39,3 +39,14 @@ Faça caso se identifique com o problema ou se achar que há algo interessante a
 - Utilize Ruby on Rails para fazer o upload do arquivo, persistir os dados das partidas e criar e as views necessárias para exibir o ranking, estatisticas dos jogadores e os dados das partidas. 
 
 Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
+
+# Requistos para execução
+  - Ruby na versão 2.7.2
+  - Docker
+
+# Execução
+  - Clone o repositorio em sua maquina.
+  - ˋ docker run --name code_challenger -e POSTGRES_PASSWORD=12345678 -p 5432:5432 -d postgres ˋ
+  - Abra o projeto e execute ` bundle install `
+  - Execute o projeto ` rails s `
+  - Execute as migrations ` rails db:migrate `
