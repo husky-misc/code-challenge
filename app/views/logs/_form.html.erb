@@ -1,0 +1,18 @@
+<%= form_with(model: log) do |form| %>
+  <div class="card">
+    <div class="card-header">
+      <h3>Adicionar log de partida</h3>
+    </div>
+    <div class="card-body">
+        <div class="field">
+          <%= form.label "Faça upload do arquivo de logs", for: "formFileMultiple", class: "form-label" %><br />
+          <%= form.file_field :file, class: "form-control", id: "formFile"%>
+        </div>
+        <div class="d-flex justify-content-end" style="margin-top:15px;">
+          <box>
+            <%= form.submit 'Criar', class: "btn btn-primary" %>
+          </box>
+        </div>
+    </div>
+  </div>
+<% end %>

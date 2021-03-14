@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Log da partida</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id da Partida</th>
+          <th>Atirador</th>
+          <th>Morto</th>
+          <th>Arma</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @logs.each do |log| %>
+          <tr>
+            <td><%= log.match_id %></td>
+            <td><%= log.player1 %></td>
+            <td><%= log.player2 %></td>
+            <td><%= log.weapon %></td>
+            <td colspan="3"></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <div class="d-flex justify-content-end">
+    <box>
+      <%= link_to 'Adicionar nova partida', new_log_path, class: "btn btn-primary" %>
+    </box>
+  </div>
+</div>
+

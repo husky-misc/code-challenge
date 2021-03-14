@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<div class="card">
+  <div class="card-header">
+    <h3>Estatisticas da partida</h3>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Jogador</th>
+          <th>Abates</th>
+          <th>Mortes</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @stats.each do |stat| %>
+          <tr>
+            <td><%= stat[:player] %></td>
+            <td><%= stat[:kills] %></td>
+            <td><%= stat[:death] %></td>
+            <td colspan="3"></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+      <box>
+        <%= link_to 'Adicionar nova partida', new_log_path, class: "btn btn-primary" %>
+      </box>
+    </div>
+  </div>
+</div>

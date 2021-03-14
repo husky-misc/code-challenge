@@ -19,6 +19,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Ajuda a debugar a aplicação
 gem 'awesome_print', '~> 1.9', '>= 1.9.2'
+gem 'bootstrap', '~> 4.6'
+gem 'jquery-rails'
+gem 'sprockets-rails', '~> 3.0', '>= 3.2.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
