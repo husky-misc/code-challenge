@@ -22,7 +22,8 @@
             <td><%= log.player1 %></td>
             <td><%= log.player2 %></td>
             <td><%= log.weapon %></td>
-            <td colspan="3"></td>
+            <td><%= link_to 'Apagar', log, method: :delete, data: { confirm: 'Deseja apagar este log?' }, class: "btn btn-danger" %></td>
+            <td colspan="2"></td>
           </tr>
         <% end %>
       </tbody>

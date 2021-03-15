@@ -22,7 +22,8 @@ class LogsController < ApplicationController
   # POST /logs or /logs.json
   def create
     read_archive
-    render :index
+    Stat.statistics
+    redirect_to "/"
   end
 
   # PATCH/PUT /logs/1 or /logs/1.json
