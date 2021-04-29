@@ -13,7 +13,7 @@ Dado o seguinte log de um jogo de tiro em primeira pessoa:
 
 24/04/2013 16:14:22 - New match 11348961 has started
 24/04/2013 16:26:12 - Roman killed Marcus using M16
-24/04/2013 16:35:56 - Roman killed Jhon using AK47
+24/04/2013 16:35:56 - Marcus killed Jhon using AK47
 24/04/2013 17:12:34 - Roman killed Bryian using M16
 24/04/2013 18:26:14 - Bryan killed Marcus using AK47
 24/04/2013 19:36:33 - <WORLD> killed Marcus by DROWN
