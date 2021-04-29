@@ -10,6 +10,14 @@ Dado o seguinte log de um jogo de tiro em primeira pessoa:
 23/04/2013 16:26:04 - Roman killed Marcus using M16
 23/04/2013 16:36:33 - <WORLD> killed Marcus by DROWN
 23/04/2013 16:49:22 - Match 11348966 has ended
+
+24/04/2013 16:14:22 - New match 11348961 has started
+24/04/2013 16:26:12 - Roman killed Marcus using M16
+24/04/2013 16:35:56 - Roman killed Jhon using AK47
+24/04/2013 17:12:34 - Roman killed Bryian using M16
+24/04/2013 18:26:14 - Bryan killed Marcus using AK47
+24/04/2013 19:36:33 - <WORLD> killed Marcus by DROWN
+24/04/2013 20:19:22 - Match 11348966 has ended
 ```
 
 # Resultado esperado
