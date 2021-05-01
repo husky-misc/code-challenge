@@ -2,8 +2,6 @@
 
 one:
   name: MyString
-  rankeable: false
 
 two:
   name: MyString
-  rankeable: false
