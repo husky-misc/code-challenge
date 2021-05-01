@@ -2,8 +2,8 @@ class CreateMatches < ActiveRecord::Migration[6.1]
   def change
     create_table :matches do |t|
       t.integer :code
-      t.datetime :start_at
-      t.datetime :end_at
+      t.datetime :started_at
+      t.datetime :ended_at
 
       t.timestamps
     end
