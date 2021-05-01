@@ -3,7 +3,7 @@
 one:
   killed_at: 2021-04-29 21:40:27
   killer: one
-  killed: one
+  killed: two
   weapon: one
   match: one
 
