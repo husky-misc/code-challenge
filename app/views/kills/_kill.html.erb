@@ -1,0 +1,9 @@
+<p class="kill">
+  [<%= l kill.killed_at %>] -
+  <% if kill.suicide? %>
+    <strong><%= kill.killed.name %></strong> died
+  <% else %>
+    <strong><%= kill.killer&.name %></strong>
+    killed <strong><%= kill.killed.name %></strong>
+  <% end %>
+</p>

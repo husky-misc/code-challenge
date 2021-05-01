@@ -1,0 +1,7 @@
+<h1>Matches#show</h1>
+
+<%= render @match %>
+
+<%= render @match.kills.order(:killed_at) %>
+
+<%= link_to "Back", matches_path %>
