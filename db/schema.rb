@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_004027) do
+ActiveRecord::Schema.define(version: 2021_05_01_141856) do
 
   create_table "kills", force: :cascade do |t|
     t.datetime "killed_at"
@@ -38,12 +38,14 @@ ActiveRecord::Schema.define(version: 2021_04_30_004027) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_players_on_name", unique: true
   end
 
   create_table "weapons", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_weapons_on_name", unique: true
   end
 
   add_foreign_key "kills", "matches"
