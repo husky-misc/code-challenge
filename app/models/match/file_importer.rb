@@ -6,7 +6,7 @@ class Match::FileImporter
   def import
     Match.transaction do
       @file_reader.each_match do |match|
-        match.save
+        match.save!
       end
     end
   end
