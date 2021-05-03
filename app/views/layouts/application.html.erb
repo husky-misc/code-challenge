@@ -11,7 +11,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="flex flex-col">
+    <header class="bg-gray-200 flex flex-wrap justify-center">
+      <%= render "navbar" %>
+    </header>
+    <main class="flex justify-center">
+      <%= yield %>
+    </main>
   </body>
 </html>
