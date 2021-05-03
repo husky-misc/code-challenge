@@ -6,7 +6,7 @@ class Match::FileImporter < ApplicationService
   def call
     Match.transaction do
       @file_reader.each_match do |match|
-        match.save!
+        Match::Creator.call(match)
       end
     end
   end
