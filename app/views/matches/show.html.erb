@@ -1,0 +1,9 @@
+<article class="flex flex-col w-100 lg:w-1/2">
+  <h1>Matches#show</h1>
+
+  <%= render @match %>
+
+  <%= render @match.kills.order(:killed_at) %>
+
+  <%= link_to "Back", matches_path %>
+</article>
