@@ -14,4 +14,14 @@ class MatchTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test ".import more than players limit" do
+    Match.import(file: file_fixture("matches"))
+
+    match_with_players_limit_reached = Match.find_by(code: 11348777)
+    kill = match_with_players_limit_reached.kills.build(killed_at: Time.now, killed: players(:one))
+
+    refute kill.valid?
+    refute match_with_players_limit_reached.valid?
+  end
 end

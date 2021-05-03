@@ -4,6 +4,8 @@ class Kill < ApplicationRecord
   belongs_to :killed, class_name: "Player"
   belongs_to :weapon, optional: true
 
+  validates_associated :match
+
   def suicide?
     killer.nil?
   end
