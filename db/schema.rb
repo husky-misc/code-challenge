@@ -33,5 +33,5 @@ ActiveRecord::Schema.define(version: 2021_05_02_191649) do
 # Could not dump table "rounds" because of following StandardError
 #   Unknown type 'round_actions' for column 'action'
 
-  add_foreign_key "rounds", "matches"
+  add_foreign_key "rounds", "matches", column: "matches_id"
 end
