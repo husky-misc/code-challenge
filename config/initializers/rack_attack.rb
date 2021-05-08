@@ -1,4 +1,5 @@
 # Rack middleware for blocking & throttling abusive requests. ::Rack::Attack
+
 class Rack::Attack
   ::Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new
 
