@@ -24,7 +24,10 @@ gem 'rack-attack', '~> 6.5'
 gem 'rails-i18n'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'active_storage_validations'
 gem 'rack-cors'
+gem 'rails-controller-testing'
+gem 'state_machines'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,3 +53,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'timecop'
 end
+
+gem "state_machines-activerecord", "~> 0.8.0"

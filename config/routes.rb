@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :rankings, only: %i[create show delete]
+      resources :global_rankings, only: %i[create]
+      resources :logs, only: %i[create]
     end
   end
 end

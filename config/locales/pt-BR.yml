@@ -1,11 +1,37 @@
 pt-BR:
   activerecord:
+    models:
+      log:
+        one: Log
+        other: Logs
+      ranking:
+        one: Ranking
+        other: Rankings
+    attributes:
+      log:
+        file: Log do Jogo
+        ranking: Ranking
+        description: Descrição
+        game_mode: Modo de Jogo
+      ranking:
+        log_id: Log
+        processed_at: Processado em
+        rejected_at: Rejeitado em
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+      models:
+        log:
+          attributes:
+            base:
+              invalid_resource_from_id: Não foi possível encontrar um Log com o ID fornecido
+        ranking:
+          attributes:
+            base:
+              invalid_resource_from_id: Não foi possível encontrar um Ranking com o ID fornecido
   date:
     abbr_day_names:
       - dom

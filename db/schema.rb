@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_035030) do
+ActiveRecord::Schema.define(version: 2021_05_08_155222) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2021_05_08_035030) do
     t.string "status", default: "pending", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "processed_at"
+    t.datetime "rejected_at"
     t.index ["log_id"], name: "index_rankings_on_log_id"
   end
 
