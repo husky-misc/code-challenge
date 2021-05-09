@@ -1,7 +1,15 @@
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import AppProvider from "./contexts";
+import Routes from "./components/routes";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <BrowserRouter>
+      <AppProvider>
+        <Routes />
+      </AppProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
