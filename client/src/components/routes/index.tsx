@@ -11,7 +11,7 @@ const Routes: React.FC = () => {
     return <Splash />;
   }
 
-  return isAuthenticated ? <AppRoutes /> : <AuthRoutes />;
+  return false ? <AppRoutes /> : <AuthRoutes />;
 };
 
 export default Routes;

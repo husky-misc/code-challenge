@@ -5,8 +5,8 @@ import { SignIn, SignUp, Signed } from "../screens";
 const AuthRoutes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/" component={SignUp} exact />
-      <Route path="/signin" component={SignIn} />
+      <Route path="/" component={SignIn} exact />
+      <Route path="/signup" component={SignUp} />
       <Route path="/signed" component={Signed} />
     </Switch>
   );

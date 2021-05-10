@@ -1,9 +1,20 @@
-import React from "react";
+import Logo from "../../atoms/Logo";
+import { Container, FormChildren } from "./styles";
+import { FormContainerProps } from "../../../libs/interfaces/molecules";
 
-import { Container } from "./styles";
-
-const FormContainer: React.FC = () => {
-  return <Container>FormContainer</Container>;
+const FormContainer: React.FC<FormContainerProps> = ({
+  formRef,
+  handleSubmit,
+  children,
+}) => {
+  return (
+    <Container>
+      <Logo />
+      <FormChildren ref={formRef} onSubmit={handleSubmit}>
+        {children}
+      </FormChildren>
+    </Container>
+  );
 };
 
 export default FormContainer;
