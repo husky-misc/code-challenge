@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_05_02_191649) do
 
   create_table "matches", force: :cascade do |t|
     t.datetime "started_at", null: false
-    t.datetime "finished_at", null: false
+    t.datetime "finished_at"
     t.integer "external_id", null: false
     t.integer "frags_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -30,8 +30,14 @@ ActiveRecord::Schema.define(version: 2021_05_02_191649) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-# Could not dump table "rounds" because of following StandardError
-#   Unknown type 'round_actions' for column 'action'
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.jsonb "metadata", default: {}, null: false
+    t.string "action", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_rounds_on_match_id"
+  end
 
-  add_foreign_key "rounds", "matches", column: "matches_id"
+  add_foreign_key "rounds", "matches"
 end

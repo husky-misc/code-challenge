@@ -12,7 +12,7 @@ class Round < ApplicationRecord
     required_info =
       case action
       when "kill"
-        [:killer_player_id, :dead_player_id]
+        ["killer_player_nickname", "dead_player_nickname"]
       else
         # This can be updated to accept new round actions in the future
         []

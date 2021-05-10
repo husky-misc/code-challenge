@@ -1,4 +1,4 @@
 class Player < ApplicationRecord
-  validate :nickname, presence: true
-  validate :nickname, uniqueness: true
+  validates :nickname, presence: true
+  validates :nickname, uniqueness: true
 end
