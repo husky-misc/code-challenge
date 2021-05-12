@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
         <Input name="email" label="Email" required />
         <Input name="password" label="Password" required />
         <Input name="confirmPassword" label="Confirm Password" required />
-        <Button text="PLAY NOW!" clickFunction={() => {}} />
+        <Button text="PLAY NOW!" />
         <Link to="/">Already have an account? Sign In</Link>
       </FormContainer>
     </Container>

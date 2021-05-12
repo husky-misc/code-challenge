@@ -1,3 +1,4 @@
 import getValidationErrors from "./getValidationErrors";
+import truncateString from "./truncateString";
 
-export { getValidationErrors };
+export { getValidationErrors, truncateString };

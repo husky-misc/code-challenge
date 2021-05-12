@@ -8,3 +8,8 @@ export interface ISignUp {
   password: string;
   confirmPassword: string;
 }
+
+export interface IProcessRanking {
+  description: string;
+  teamMode: boolean;
+}

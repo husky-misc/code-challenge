@@ -4,8 +4,8 @@ import { COLORS } from "../../../constants";
 
 export const Container = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
+  flex: 1;
 
   max-width: 580px;
   min-height: 30rem;

@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
       <FormContainer formRef={formRef} handleSubmit={handleSubmit}>
         <Input name="email" label="Email" required />
         <Input name="password" label="Password" required />
-        <Button text="PLAY NOW!" clickFunction={() => {}} />
+        <Button text="PLAY NOW!" />
         <Link to="signup">Do not have an account? Sign Up</Link>
       </FormContainer>
     </Container>
