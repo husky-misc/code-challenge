@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { RankingContext, RankingContextData } from "../contexts/ranking";
+import { RankingContext } from "../contexts/ranking";
+import { IRankingContextData } from "../libs/interfaces/contexts";
 
-export default function useRanking(): RankingContextData {
+export default function useRanking(): IRankingContextData {
   const context = useContext(RankingContext);
 
   if (!context) {

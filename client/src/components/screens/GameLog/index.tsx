@@ -1,35 +1,31 @@
-import React, {
-  ChangeEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, useCallback, useRef, useState } from "react";
 import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-import { IMAGES, ICONS, COLORS } from "../../../constants";
+import { IMAGES, ICONS, COLORS, URLS } from "../../../constants";
 import FlexOffset from "../../atoms/FlexOffset";
 import { FormContainer } from "../../molecules";
-import { IProcessRanking } from "../../../libs/interfaces/screens";
+import { ICreateLog } from "../../../libs/interfaces/screens";
 import { Container, Header, UploadLog, TeamModeSwitch } from "./styles";
 import { gameLog } from "../../../libs/validations";
 import { getValidationErrors, truncateString } from "../../../utils";
 import { Button, Input } from "../../atoms";
+import { useRanking } from "../../../hooks";
 
 const GameLog: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const uploadLogRef = useRef<HTMLInputElement>(null);
 
   const history = useHistory();
+  const { loading, setLoading, createLog } = useRanking();
 
   const [log, setLog] = useState<File | null>(null);
   const [logError, setLogError] = useState<string | null>(null);
   const [teamMode, setTeamMode] = useState(false);
 
   const handleSubmit = useCallback(
-    async (data: IProcessRanking): Promise<void> => {
+    async (data: ICreateLog): Promise<void> => {
       try {
         if (!log) {
           Swal.fire(
@@ -43,27 +39,35 @@ const GameLog: React.FC = () => {
         formRef.current?.setErrors({});
         setLogError(null);
 
-        const gamelogData = { ...data, log, team_mode: teamMode };
+        const gamelogData = { ...data, log, teamMode };
 
         await gameLog.validate(gamelogData, {
           abortEarly: false,
         });
 
-        // await processRanking({
-        //   description: gamelogData.description,
-        //   file: gamelogData.log,
-        // });
+        const response = await createLog({
+          description: gamelogData.description,
+          log: gamelogData.log,
+          teamMode: gamelogData.teamMode,
+        });
 
-        history.push("processing");
+        if (response.success && response.data.id)
+          history.push({
+            pathname: "/processing",
+            state: { logId: response.data.id },
+          });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
-          console.log(error);
           formRef.current?.setErrors(errors);
           setLogError(errors.log);
 
           return;
+        } else {
+          Swal.fire("Error...", "Something went wrong!", "error");
         }
+      } finally {
+        setLoading(false);
       }
     },
     [log]
@@ -89,10 +93,6 @@ const GameLog: React.FC = () => {
       uploadLogRef.current.value = "";
     }
   }
-
-  useEffect(() => {
-    console.log(log);
-  }, [log]);
 
   return (
     <Container>
@@ -146,7 +146,7 @@ const GameLog: React.FC = () => {
             </button>
           </TeamModeSwitch>
 
-          <Button text="PROCESS RANKING" />
+          <Button text="PROCESS RANKING" loading={loading} />
         </FormContainer>
       </section>
 

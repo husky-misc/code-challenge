@@ -10,4 +10,5 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 export interface IButtonProps {
   text: string;
   clickFunction?(): void;
+  loading?: boolean;
 }

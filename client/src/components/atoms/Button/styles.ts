@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { COLORS } from "../../../constants";
 
-export const Container = styled.button`
+export const Container = styled.button<{ isLoading: boolean | undefined }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +16,17 @@ export const Container = styled.button`
   border-radius: 1rem;
   border: 0;
   transition: background 0.2s linear;
+
+  & > span {
+    margin-left: ${({ isLoading }) => isLoading && "1rem"};
+  }
+
+  ${({ isLoading }) =>
+    isLoading &&
+    css`
+      filter: opacity(0.6);
+      cursor: not-allowed;
+    `};
 
   &:hover {
     background: ${COLORS.darkPrimary};

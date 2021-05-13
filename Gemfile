@@ -54,4 +54,4 @@ group :test do
   gem 'timecop'
 end
 
-gem "state_machines-activerecord", "~> 0.8.0"
+gem 'state_machines-activerecord', '~> 0.8.0'

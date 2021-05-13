@@ -9,7 +9,12 @@ export interface ISignUp {
   confirmPassword: string;
 }
 
-export interface IProcessRanking {
+export interface ICreateLog {
   description: string;
   teamMode: boolean;
+  log: File;
+}
+
+export interface IProcessRanking {
+  logId: number | string;
 }

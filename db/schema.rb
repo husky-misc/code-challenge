@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2021_05_08_155222) do
     t.string "game_mode", null: false
     t.string "description"
     t.boolean "is_valid", default: false, null: false
+    t.boolean "team_mode", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

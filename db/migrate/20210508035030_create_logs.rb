@@ -6,6 +6,7 @@ class CreateLogs < ActiveRecord::Migration[6.0]
       t.string :game_mode, null: false
       t.string :description
       t.boolean :is_valid, default: false, null: false
+      t.boolean :team_mode, default: false, null: false
 
       t.timestamps
     end

@@ -13,10 +13,6 @@ RSpec.describe ::Api::V1::LogsController, type: :controller do
       end
 
       it { expect(::Log.last.file.filename.to_s).to eq('matches_log.txt') }
-
-      it {
-        expect(response).to redirect_to(api_v1_rankings_path(assigns[:post], log_id: ::Log.last.id))
-      }
     end
 
     context 'when an invalid file is provided' do
