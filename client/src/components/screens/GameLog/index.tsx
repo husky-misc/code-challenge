@@ -3,11 +3,18 @@ import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-import { IMAGES, ICONS, COLORS, URLS } from "../../../constants";
-import FlexOffset from "../../atoms/FlexOffset";
+import { IMAGES, ICONS, COLORS } from "../../../constants";
+import { FlexOffset, GlobalRankingLink } from "../../atoms";
 import { FormContainer } from "../../molecules";
 import { ICreateLog } from "../../../libs/interfaces/screens";
-import { Container, Header, UploadLog, TeamModeSwitch } from "./styles";
+import {
+  Container,
+  Header,
+  DownloadImage,
+  LogoutImage,
+  UploadLog,
+  TeamModeSwitch,
+} from "./styles";
 import { gameLog } from "../../../libs/validations";
 import { getValidationErrors, truncateString } from "../../../utils";
 import { Button, Input } from "../../atoms";
@@ -51,11 +58,7 @@ const GameLog: React.FC = () => {
           teamMode: gamelogData.teamMode,
         });
 
-        if (response.success && response.data.id)
-          history.push({
-            pathname: "/processing",
-            state: { logId: response.data.id },
-          });
+        response.success && response.data.id && history.push("/processing");
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
@@ -98,10 +101,10 @@ const GameLog: React.FC = () => {
     <Container>
       <Header>
         <div>
-          <img src={IMAGES.download} alt="Baixar Exemplo de Log" />
+          <DownloadImage src={IMAGES.download} alt="Baixar Exemplo de Log" />
           <h2>{teamMode ? "TEAM GAME LOG EXAMPLE" : "GAME LOG EXAMPLE"}</h2>
         </div>
-        <img src={IMAGES.logout} alt="Sair do Husky Fire" />
+        <LogoutImage src={IMAGES.logout} alt="Sair do Husky Fire" />
       </Header>
 
       <section>
@@ -150,11 +153,7 @@ const GameLog: React.FC = () => {
         </FormContainer>
       </section>
 
-      <footer>
-        <FlexOffset />
-        <h3>GLOBAL RANKING</h3>
-        <img src={IMAGES.eye} alt="Ver Ranking Global" />
-      </footer>
+      <GlobalRankingLink />
     </Container>
   );
 };

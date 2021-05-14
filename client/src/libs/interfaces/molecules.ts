@@ -5,3 +5,8 @@ export interface FormContainerProps {
   formRef: RefObject<FormHandles>;
   handleSubmit(data: any): Promise<void>;
 }
+
+export interface IMatchLineProps {
+  isLast?: boolean;
+  lineData: Array<{ label: string; value: string | number | boolean }>;
+}

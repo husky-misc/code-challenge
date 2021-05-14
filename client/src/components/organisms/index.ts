@@ -1,1 +1,3 @@
-export default {};
+import Match from "./Match";
+
+export { Match };

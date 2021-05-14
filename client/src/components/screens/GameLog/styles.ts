@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { COLORS } from "../../../constants";
 
 const headingCSS = css`
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: 300;
   color: ${COLORS.light};
 `;
@@ -47,6 +47,14 @@ export const Header = styled.header`
       ${headingCSS};
     }
   }
+`;
+
+export const DownloadImage = styled.img`
+  width: 34px;
+`;
+
+export const LogoutImage = styled.img`
+  width: 46px;
 `;
 
 const labelCSS = css`

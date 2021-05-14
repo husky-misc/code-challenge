@@ -1,4 +1,4 @@
-import Logo from "../../atoms/Logo";
+import { Logo } from "../../atoms";
 import { Container, FormChildren } from "./styles";
 import { FormContainerProps } from "../../../libs/interfaces/molecules";
 

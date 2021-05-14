@@ -11,6 +11,12 @@ const RankingProvider: React.FC = ({ children }) => {
   const [logId, setLogId] = useState(null);
   const [ranking, setRanking] = useState(null);
 
+  useEffect(() => {
+    const storagedRanking = localStorage.getItem("@HuskyFire:ranking");
+
+    storagedRanking && setRanking(JSON.parse(storagedRanking));
+  }, []);
+
   const createLog = useCallback(async (logData) => {
     setLoading(true);
 
@@ -26,9 +32,14 @@ const RankingProvider: React.FC = ({ children }) => {
 
     const response = await rankingService.processRanking(rankingData);
 
-    if (response.success) setRanking(response.data);
+    if (response.success) storageRanking(response.data);
 
     return response;
+  }, []);
+
+  const storageRanking = useCallback((rankingData) => {
+    setRanking(rankingData);
+    localStorage.setItem("@HuskyFire:ranking", JSON.stringify(rankingData));
   }, []);
 
   return (

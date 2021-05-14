@@ -1,5 +1,5 @@
 import GameLog from "./GameLog";
-import GlobalRanking from "./GameLog";
+import GlobalRanking from "./GlobalRanking";
 import Processing from "./Processing";
 import SignUp from "./SignUp";
 import SignIn from "./SingIn";
