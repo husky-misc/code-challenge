@@ -20,6 +20,21 @@ async function createLog(data: ICreateLog): Promise<IResponse> {
   return response;
 }
 
+async function downloadMatchExample(teamMode: boolean): Promise<IResponse> {
+  const response = await baseAPI.serviceHandler(async () => {
+    console.log(teamMode);
+
+    let type = "match";
+    if (teamMode) type = "team";
+
+    const serviceResponse = await baseAPI.client.get(URLS.LOGS + `/${type}`);
+
+    return serviceResponse;
+  });
+
+  return response;
+}
+
 async function processRanking(data: IProcessRanking): Promise<IResponse> {
   const response = await baseAPI.serviceHandler(async () => {
     const serviceResponse = await baseAPI.client.post(URLS.RANKINGS, {
@@ -34,5 +49,6 @@ async function processRanking(data: IProcessRanking): Promise<IResponse> {
 
 export default {
   createLog,
+  downloadMatchExample,
   processRanking,
 };

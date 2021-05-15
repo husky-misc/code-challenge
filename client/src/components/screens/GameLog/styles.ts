@@ -42,6 +42,7 @@ export const Header = styled.header`
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
+    cursor: pointer;
 
     & > h2 {
       ${headingCSS};

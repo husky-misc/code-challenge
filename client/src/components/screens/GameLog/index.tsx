@@ -3,6 +3,7 @@ import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
+import fileDownload from "js-file-download";
 import { IMAGES, ICONS, COLORS } from "../../../constants";
 import { FlexOffset, GlobalRankingLink } from "../../atoms";
 import { FormContainer } from "../../molecules";
@@ -15,6 +16,7 @@ import {
   UploadLog,
   TeamModeSwitch,
 } from "./styles";
+import { rankingService } from "../../../services";
 import { gameLog } from "../../../libs/validations";
 import { getValidationErrors, truncateString } from "../../../utils";
 import { Button, Input } from "../../atoms";
@@ -76,6 +78,14 @@ const GameLog: React.FC = () => {
     [log]
   );
 
+  const downloadMatchExample = useCallback(async () => {
+    const response = await rankingService.downloadMatchExample(teamMode);
+
+    if (!response.success) return;
+    console.log(response);
+    fileDownload(response.data, "example.txt");
+  }, []);
+
   function handleSelectLog(event: ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) {
       return;
@@ -100,7 +110,7 @@ const GameLog: React.FC = () => {
   return (
     <Container>
       <Header>
-        <div>
+        <div onClick={downloadMatchExample}>
           <DownloadImage src={IMAGES.download} alt="Baixar Exemplo de Log" />
           <h2>{teamMode ? "TEAM GAME LOG EXAMPLE" : "GAME LOG EXAMPLE"}</h2>
         </div>
@@ -140,10 +150,7 @@ const GameLog: React.FC = () => {
 
           <TeamModeSwitch withTeamMode={!!teamMode}>
             <label>TEAM mode?</label>
-            <button
-              type="button"
-              onClick={() => setTeamMode((oldState) => !oldState)}
-            >
+            <button type="button" onClick={() => setTeamMode(!teamMode)}>
               {!!teamMode && <FlexOffset />}
               <div />
             </button>
