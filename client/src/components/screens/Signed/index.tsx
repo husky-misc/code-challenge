@@ -12,7 +12,7 @@ const Signed: React.FC = () => {
         <CompleteImage src={IMAGES.complete} />
         <h1>Registration Complete!</h1>
         <p>You are now part of the Husky Gaming Platform!</p>
-        <Button text="Sign In" clickFunction={() => history.push("/")} />
+        <Button text="Play Now!" clickFunction={() => history.push("/")} />
       </WhiteBlock>
     </Container>
   );

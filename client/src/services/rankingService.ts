@@ -12,6 +12,8 @@ async function createLog(data: ICreateLog): Promise<IResponse> {
     formData.append("team_mode", String(data.teamMode));
     formData.append("game_mode", "contra_squad");
 
+    console.log(baseAPI.client.defaults);
+
     const serviceResponse = await baseAPI.client.post(URLS.LOGS, formData);
 
     return serviceResponse;
@@ -22,12 +24,10 @@ async function createLog(data: ICreateLog): Promise<IResponse> {
 
 async function downloadMatchExample(teamMode: boolean): Promise<IResponse> {
   const response = await baseAPI.serviceHandler(async () => {
-    console.log(teamMode);
-
     let type = "match";
     if (teamMode) type = "team";
 
-    const serviceResponse = await baseAPI.client.get(URLS.LOGS + `/${type}`);
+    const serviceResponse = await baseAPI.client.get(URLS.DOWNLOAD_LOG(type));
 
     return serviceResponse;
   });

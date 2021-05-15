@@ -3,6 +3,45 @@
 module Api
   module V1
     class ApiController < ApplicationController
+      before_action :authorized
+
+      def encode_token(payload)
+        JWT.encode(payload, 'I_am_hired_by_husky!')
+      end
+
+      def auth_header
+        request.headers['Authorization']
+      end
+
+      def decoded_token
+        return unless auth_header
+
+        token = auth_header.split(' ')[1]
+
+        begin
+          JWT.decode(token, 'I_am_hired_by_husky!', true, algorithm: 'HS256')
+        rescue JWT::DecodeError
+          nil
+        end
+      end
+
+      def logged_in_user
+        return unless decoded_token
+
+        user_id = decoded_token[0]['user_id']
+        @user = User.find_by(id: user_id)
+      end
+
+      def logged_in?
+        !!logged_in_user
+      end
+
+      def authorized
+        return if logged_in?
+
+        render json: { message: 'You are not authorized, please log in!' }, status: :unauthorized
+      end
+
       private
 
       def resource_class
@@ -51,6 +90,10 @@ module Api
 
       def render_unprocessable
         render json: { errors: resource.errors }, status: :unprocessable_entity
+      end
+
+      def render_error_message(message, status = :unprocessable_entity)
+        render json: { errors: message }, status: status
       end
     end
   end

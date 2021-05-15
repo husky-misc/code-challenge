@@ -1,6 +1,13 @@
 import { Route, Switch } from "react-router-dom";
 
-import { GameLog, Processing, Ranking, GlobalRanking } from "../screens";
+import {
+  GameLog,
+  Processing,
+  Ranking,
+  Signed,
+  GlobalRanking,
+  NoMatch,
+} from "../screens";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -9,6 +16,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/processing" component={Processing} />
       <Route path="/ranking" component={Ranking} />
       <Route path="/global" component={GlobalRanking} />
+      <Route path="/signed" component={Signed} />
+      <Route path="*" component={NoMatch} />
     </Switch>
   );
 };

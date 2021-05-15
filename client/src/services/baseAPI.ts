@@ -16,7 +16,6 @@ export async function serviceHandler(callback: any) {
       errors: response.data.errors,
     };
   } catch (error) {
-    console.log(error.response);
     return {
       success: false,
       data: {},
@@ -26,9 +25,7 @@ export async function serviceHandler(callback: any) {
   }
 }
 
-export function applyToken(): void {
-  const token = localStorage.getItem("@HuskyFire:token");
-
+export function applyToken(token: string): void {
   client.defaults.headers.Authorization = `Bearer ${token}`;
 }
 

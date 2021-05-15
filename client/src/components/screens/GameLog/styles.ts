@@ -56,6 +56,7 @@ export const DownloadImage = styled.img`
 
 export const LogoutImage = styled.img`
   width: 46px;
+  cursor: pointer;
 `;
 
 const labelCSS = css`
@@ -119,7 +120,7 @@ export const TeamModeSwitch = styled.div<{ withTeamMode: boolean }>`
     ${labelCSS};
   }
 
-  & > button {
+  & > div {
     display: flex;
     align-items: center;
     justify-content: space-between;

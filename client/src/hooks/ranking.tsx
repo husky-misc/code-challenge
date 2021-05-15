@@ -6,7 +6,7 @@ export default function useRanking(): IRankingContextData {
   const context = useContext(RankingContext);
 
   if (!context) {
-    throw new Error("useUser must be used within an PerfilProvider");
+    throw new Error("useRanking must be used within an RankingProvider");
   }
 
   return context;

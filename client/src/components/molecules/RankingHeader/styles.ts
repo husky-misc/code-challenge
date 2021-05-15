@@ -10,4 +10,5 @@ export const Container = styled.header`
 
 export const LogoutImage = styled.img`
   width: 46px;
+  cursor: pointer;
 `;

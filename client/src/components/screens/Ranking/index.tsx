@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useRanking } from "../../../hooks";
+import { useAuth, useRanking } from "../../../hooks";
 import { IMatch } from "../../../libs/interfaces/organisms";
 import { truncateString } from "../../../utils";
 import { fixtureRankingData } from "../../../utils/fixtures/rankingData";
@@ -26,7 +26,8 @@ const Ranking: React.FC = () => {
           <Logo size={50} />
 
           <h1>
-            RANKING ID: {ranking[0] && truncateString(ranking[0].match_id, 10)}{" "}
+            RANKING ID:{" "}
+            {ranking && ranking[0] && truncateString(ranking[0].match_id, 10)}{" "}
           </h1>
         </section>
 

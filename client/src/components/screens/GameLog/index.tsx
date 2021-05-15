@@ -20,7 +20,7 @@ import { rankingService } from "../../../services";
 import { gameLog } from "../../../libs/validations";
 import { getValidationErrors, truncateString } from "../../../utils";
 import { Button, Input } from "../../atoms";
-import { useRanking } from "../../../hooks";
+import { useAuth, useRanking } from "../../../hooks";
 
 const GameLog: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -28,6 +28,7 @@ const GameLog: React.FC = () => {
 
   const history = useHistory();
   const { loading, setLoading, createLog } = useRanking();
+  const { logout } = useAuth();
 
   const [log, setLog] = useState<File | null>(null);
   const [logError, setLogError] = useState<string | null>(null);
@@ -78,11 +79,15 @@ const GameLog: React.FC = () => {
     [log]
   );
 
-  const downloadMatchExample = useCallback(async () => {
+  const handleLogout = useCallback(() => {
+    logout();
+    history.push("/");
+  }, []);
+
+  const handleDownloadLog = useCallback(async () => {
     const response = await rankingService.downloadMatchExample(teamMode);
 
     if (!response.success) return;
-    console.log(response);
     fileDownload(response.data, "example.txt");
   }, []);
 
@@ -110,11 +115,15 @@ const GameLog: React.FC = () => {
   return (
     <Container>
       <Header>
-        <div onClick={downloadMatchExample}>
+        <div onClick={handleDownloadLog}>
           <DownloadImage src={IMAGES.download} alt="Baixar Exemplo de Log" />
           <h2>{teamMode ? "TEAM GAME LOG EXAMPLE" : "GAME LOG EXAMPLE"}</h2>
         </div>
-        <LogoutImage src={IMAGES.logout} alt="Sair do Husky Fire" />
+        <LogoutImage
+          src={IMAGES.logout}
+          alt="Sair do Husky Fire"
+          onClick={handleLogout}
+        />
       </Header>
 
       <section>
@@ -150,10 +159,10 @@ const GameLog: React.FC = () => {
 
           <TeamModeSwitch withTeamMode={!!teamMode}>
             <label>TEAM mode?</label>
-            <button type="button" onClick={() => setTeamMode(!teamMode)}>
+            <div onClick={() => setTeamMode(!teamMode)}>
               {!!teamMode && <FlexOffset />}
               <div />
-            </button>
+            </div>
           </TeamModeSwitch>
 
           <Button text="PROCESS RANKING" loading={loading} />

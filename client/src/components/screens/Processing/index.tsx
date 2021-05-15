@@ -7,7 +7,7 @@ import { useRanking } from "../../../hooks";
 import { Container } from "./styles";
 
 const Processing: React.FC = () => {
-  const { processRanking, setLoading, ranking, logId } = useRanking();
+  const { processRanking, setLoading, logId } = useRanking();
   const history = useHistory();
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const Processing: React.FC = () => {
     async function generateRanking() {
       if (!logId) return history.push("/");
 
-      const { success } = await processRanking({ logId });
+      const { success, data } = await processRanking({ logId });
 
-      success && ranking && history.push("/ranking");
+      success && data && history.push("/ranking");
 
       setLoading(false);
     }

@@ -8,11 +8,15 @@ import { Container } from "./styles";
 import { signIn } from "../../../libs/validations/";
 import { ISignIn } from "../../../libs/interfaces/screens";
 import { getValidationErrors } from "../../../utils";
+import { useAuth } from "../../../hooks";
+import Swal from "sweetalert2";
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const history = useHistory();
+
+  const { loading, setLoading, createAuth, isAuthenticated } = useAuth();
 
   const handleSubmit = useCallback(async (data: ISignIn): Promise<void> => {
     try {
@@ -22,25 +26,28 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+      const response = await createAuth({
+        email: data.email,
+        password: data.password,
+      });
 
-      history.push("/gamelog");
+      if (response.success && response.data.token) {
+        history.push("/");
+        return;
+      }
+
+      Swal.fire("Error...", response.errors, "error");
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);
         formRef.current?.setErrors(errors);
 
         return;
+      } else {
+        Swal.fire("Error...", "Something went wrong!", "error");
       }
-
-      // addToast({
-      //   type: "error",
-      //   title: "Erro na autenticação",
-      //   description: "Ocorreu um erro ao fazer login, cheque as credenciais.",
-      // });
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -49,7 +56,7 @@ const SignIn: React.FC = () => {
       <FormContainer formRef={formRef} handleSubmit={handleSubmit}>
         <Input name="email" label="Email" required />
         <Input name="password" label="Password" required />
-        <Button text="PLAY NOW!" />
+        <Button text="PLAY NOW!" loading={loading} />
         <Link to="signup">Do not have an account? Sign Up</Link>
       </FormContainer>
     </Container>
