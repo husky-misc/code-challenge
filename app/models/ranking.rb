@@ -3,6 +3,8 @@ class Ranking < ApplicationRecord
 
   belongs_to :log, class_name: '::Log', inverse_of: :ranking
 
+  has_many :matches, class_name: '::Match', inverse_of: :ranking, dependent: :destroy
+
   validates :log, presence: true
 
   state_machine :status, initial: :pending, namespace: :ranking do

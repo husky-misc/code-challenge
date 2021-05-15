@@ -21,7 +21,11 @@ module AppServices
         @response[:result] = @log_file.strip.split(' has ended').map do |match|
           content = extract_match_content(match)
 
-          { match_id: match.split.last, content: content }
+          splitted_match = match.split
+          started_at = "#{splitted_match[0]} #{splitted_match[1]}"
+          ended_at = "#{splitted_match[-5]} #{splitted_match[-4]}"
+
+          { id: splitted_match.last, started_at: started_at, ended_at: ended_at, content: content }
         end
       rescue StandardError => _e
         @response[:errors].append('Something went wrong! Check if the file log is really correct.')

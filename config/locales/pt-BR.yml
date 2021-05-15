@@ -13,6 +13,25 @@ pt-BR:
         ranking: Ranking
         description: Descrição
         game_mode: Modo de Jogo
+      match:
+        ranking: Ranking
+        ranking_id: Ranking
+        started_at: Data Início
+        ended_at: Data Fim
+        frags: Frags
+        winner: Vencedor
+        content: Conteúdo
+        strike_player: Jogador Strike
+      player:
+        match: Partida
+        match_id: Partida
+        name: Nome
+        frags: Frags
+        deads: Mortes
+        awarded: Prêmiado
+        strong_weapon: Arma Poderosa
+        strong_killer: Matador Poderoso
+        score: Score
       ranking:
         log_id: Log
         processed_at: Processado em
@@ -32,6 +51,10 @@ pt-BR:
           attributes:
             base:
               invalid_resource_from_id: Não foi possível encontrar um Ranking com o ID fornecido
+        match:
+          attributes:
+            started_at:
+              started_at_greater_than_ended_at: não deve ser maior que Data Fim
   date:
     abbr_day_names:
       - dom

@@ -21,6 +21,8 @@ module AppServices
 
         prepare_ranking_data
 
+        p @response
+
         @response
       rescue StandardError => _e
         @response[:errors].append('Something went wrong! Check if the file log is really correct.')
