@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useAuth, useRanking } from "../../../hooks";
+import { useRanking } from "../../../hooks";
 import { IMatch } from "../../../libs/interfaces/organisms";
 import { truncateString } from "../../../utils";
 import { fixtureRankingData } from "../../../utils/fixtures/rankingData";
@@ -10,7 +10,7 @@ import { Match } from "../../organisms";
 import { Container, RankingTable } from "./styles";
 
 const Ranking: React.FC = () => {
-  const { ranking } = useRanking();
+  const { ranking, processRanking } = useRanking();
   const history = useHistory();
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const Ranking: React.FC = () => {
 
           <h1>
             RANKING ID:{" "}
-            {ranking && ranking[0] && truncateString(ranking[0].match_id, 10)}{" "}
+            {ranking && ranking[0] && truncateString(ranking[0].match_code, 10)}{" "}
           </h1>
         </section>
 
-        {fixtureRankingData.map((match: IMatch) => (
+        {ranking.map((match: IMatch) => (
           <Match key={match.id} match={match} />
         ))}
       </RankingTable>

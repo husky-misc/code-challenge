@@ -17,6 +17,7 @@ const SignUp: React.FC = () => {
 
   const history = useHistory();
   const { loading, setLoading, createUser } = useUser();
+  const { setIsAuthenticated } = useAuth();
 
   const handleSubmit = useCallback(async (data: ISignUp): Promise<void> => {
     try {
@@ -31,7 +32,10 @@ const SignUp: React.FC = () => {
         password: data.password,
       });
 
-      response.success && response.data.token && history.push("/signed");
+      if (response.data.token) {
+        setIsAuthenticated(true);
+        history.push("/signed");
+      }
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error);

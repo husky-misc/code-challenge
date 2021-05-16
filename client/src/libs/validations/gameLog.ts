@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const gameLog = Yup.object().shape({
-  description: Yup.string().max(200),
+  description: Yup.string().min(5).max(200),
   log: Yup.mixed()
     .test(
       "fileSize",

@@ -18,9 +18,13 @@ const Processing: React.FC = () => {
 
       const { success, data } = await processRanking({ logId });
 
-      success && data && history.push("/ranking");
-
       setLoading(false);
+
+      if (success && data) {
+        history.push("/ranking");
+      } else {
+        history.push("/gamelog");
+      }
     }
   }, []);
 

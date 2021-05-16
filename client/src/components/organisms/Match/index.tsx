@@ -13,8 +13,8 @@ const Match: React.FC<IMatchProps> = ({ match }) => {
           { label: "MATCH STARTED AT", value: match.started_at },
           { label: "MATCH ENDED AT", value: match.ended_at },
           { label: "FRAGS", value: match.frags },
-          { label: "STRIKE PLAYER", value: match.strike_player },
-          { label: "WINNER PLAYER", value: match.winner },
+          { label: "STRIKE PLAYER", value: match.strike_player.name },
+          { label: "WINNER PLAYER", value: match.winner.name },
         ]}
       />
 

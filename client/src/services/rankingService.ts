@@ -47,8 +47,19 @@ async function processRanking(data: IProcessRanking): Promise<IResponse> {
   return response;
 }
 
+async function processGlobalRanking(): Promise<IResponse> {
+  const response = await baseAPI.serviceHandler(async () => {
+    const serviceResponse = await baseAPI.client.post(URLS.GLOBAL_RANKINGS);
+
+    return serviceResponse;
+  });
+
+  return response;
+}
+
 export default {
   createLog,
   downloadMatchExample,
   processRanking,
+  processGlobalRanking,
 };

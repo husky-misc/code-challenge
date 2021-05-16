@@ -113,15 +113,15 @@ module AppServices
       end
 
       def awarded?
-        @current_player[:awarded] = true if @current_player[:deads].zero?
+        @current_player[:awarded] = @current_player[:deads].zero?
       end
 
       def strong_killer?
-        @current_player[:strong_killer] = true if @current_player[:frags] >= 5
+        @current_player[:strong_killer] = @current_player[:frags] >= 5
       end
 
       def extract_strong_weapon
-        return unless @player_weapons[@current_player[:name]]
+        return unless @player_weapons[@current_player[:name]] && @current_player[:frags] > 0
 
         weapon_counts = Hash.new(0)
         @player_weapons[@current_player[:name]].each { |weapon| weapon_counts[weapon] += 1 }

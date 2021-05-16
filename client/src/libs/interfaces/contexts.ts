@@ -5,17 +5,20 @@ export interface IAuthContextData {
   loading: boolean;
   isAuthenticated: boolean;
   setLoading(state: boolean): void;
+  setIsAuthenticated(state: boolean): void;
   createAuth(credentials: ICredentials): Promise<IResponse>;
   logout(): void;
 }
 
 export interface IRankingContextData {
   ranking: any;
+  globalRanking: any;
   loading: boolean;
   logId: string | number | null;
   setLoading(state: boolean): void;
   createLog(logData: ICreateLog): Promise<IResponse>;
   processRanking(rankingData: IProcessRanking): Promise<IResponse>;
+  processGlobalRanking(): Promise<IResponse>;
 }
 
 export interface IUserData {

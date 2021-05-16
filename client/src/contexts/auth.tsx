@@ -28,7 +28,9 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const response = await authService.createAuth(credentials);
 
-    persistAuthenticate(response.data.token, response.data.user);
+    if (response.success && response.data.token) {
+      persistAuthenticate(response.data.token, response.data.user);
+    }
 
     return response;
   }, []);
@@ -44,6 +46,7 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem("@HuskyFire:user");
     localStorage.removeItem("@HuskyFire:token");
     localStorage.removeItem("@HuskyFire:ranking");
+    localStorage.removeItem("@HuskyFire:globalRanking");
     setIsAuthenticated(false);
     baseAPI.unstickToken();
   }, []);
@@ -59,6 +62,7 @@ const AuthProvider: React.FC = ({ children }) => {
         setLoading,
         createAuth,
         isAuthenticated,
+        setIsAuthenticated,
         logout,
       }}
     >

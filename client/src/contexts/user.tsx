@@ -17,7 +17,9 @@ const UserProvider: React.FC = ({ children }) => {
 
     const response = await userService.createUser(userData);
 
-    persistAuthenticate(response.data.token, response.data.user);
+    if (response.success && response.data.token) {
+      persistAuthenticate(response.data.token, response.data.user);
+    }
 
     return response;
   }, []);

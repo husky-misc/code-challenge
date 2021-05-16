@@ -7,8 +7,8 @@ export interface IMatch {
   started_at: string;
   ended_at: string;
   frags: number;
-  strike_player: string;
-  winner: string;
+  strike_player: any;
+  winner: any;
   players: IPlayer[];
 }
 

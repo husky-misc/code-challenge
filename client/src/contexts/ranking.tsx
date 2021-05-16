@@ -10,11 +10,17 @@ const RankingProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [logId, setLogId] = useState(null);
   const [ranking, setRanking] = useState(null);
+  const [globalRanking, setGlobalRanking] = useState(null);
 
   useEffect(() => {
     const storagedRanking = localStorage.getItem("@HuskyFire:ranking");
+    const storagedGlobalRanking = localStorage.getItem(
+      "@HuskyFire:globalRanking"
+    );
 
     storagedRanking && setRanking(JSON.parse(storagedRanking));
+    storagedGlobalRanking &&
+      setGlobalRanking(JSON.parse(storagedGlobalRanking));
   }, []);
 
   const createLog = useCallback(async (logData) => {
@@ -37,9 +43,29 @@ const RankingProvider: React.FC = ({ children }) => {
     return response;
   }, []);
 
+  const processGlobalRanking = useCallback(async () => {
+    setLoading(true);
+
+    console.log("kkkkkk");
+    const response = await rankingService.processGlobalRanking();
+    console.log(response);
+
+    if (response.success) storageGlobalRanking(response.data);
+
+    return response;
+  }, []);
+
   const storageRanking = useCallback((rankingData) => {
     setRanking(rankingData);
     localStorage.setItem("@HuskyFire:ranking", JSON.stringify(rankingData));
+  }, []);
+
+  const storageGlobalRanking = useCallback((rankingData) => {
+    setRanking(rankingData);
+    localStorage.setItem(
+      "@HuskyFire:globalRanking",
+      JSON.stringify(rankingData)
+    );
   }, []);
 
   return (
@@ -51,6 +77,8 @@ const RankingProvider: React.FC = ({ children }) => {
         processRanking,
         setLoading,
         ranking,
+        globalRanking,
+        processGlobalRanking,
       }}
     >
       {children}

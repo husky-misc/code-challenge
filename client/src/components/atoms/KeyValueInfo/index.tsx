@@ -1,3 +1,4 @@
+import { COLORS, ICONS } from "../../../constants";
 import { Container, Info, Divisor } from "./styles";
 
 interface IKeyValueInfoProps {
@@ -15,7 +16,17 @@ const KeyValueInfo: React.FC<IKeyValueInfoProps> = ({
     <Container>
       <Info>
         <label>{label}</label>
-        <span>{value}</span>
+        {typeof value === "boolean" ? (
+          <span>
+            {value ? (
+              <ICONS.AI.AiOutlineCheck size={20} color={COLORS.success} />
+            ) : (
+              <ICONS.AI.AiOutlineClose size={20} color={COLORS.error} />
+            )}
+          </span>
+        ) : (
+          <span>{value}</span>
+        )}
       </Info>
 
       {withDivisor && <Divisor />}
