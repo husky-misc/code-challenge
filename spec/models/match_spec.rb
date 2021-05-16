@@ -10,6 +10,7 @@ RSpec.describe Match, type: :model do
     it { is_expected.to validate_presence_of :started_at }
     it { is_expected.to validate_presence_of :ended_at }
     it { is_expected.to validate_presence_of :content }
+    it { is_expected.to validate_presence_of :match_code }
   end
 
   context 'when validating the started_at and ended_at' do

@@ -13,7 +13,5 @@ class CreatePlayers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-
-    add_index :matches, %i[match_id name], unique: true, name: 'unique_name_by_match'
   end
 end

@@ -55,7 +55,7 @@ class Ranking < ApplicationRecord
   end
 
   def call_process_ranking_service
-    response = ::AppServices::Ranking::ProccessRankingService.new.call(@log_file)
+    response = ::AppServices::Ranking::ProccessRankingService.new.call(id, @log_file)
 
     @process_result = handle_response(response)
 

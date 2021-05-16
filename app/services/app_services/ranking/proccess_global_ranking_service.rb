@@ -5,6 +5,7 @@ module AppServices
     class ProccessGlobalRankingService
       def initialize
         @response = { result: [], errors: [] }
+        @match_ids = []
       end
 
       def call
@@ -17,14 +18,12 @@ module AppServices
 
       def try_proccess_global_ranking
         ::Log.where(is_valid: true).map do |log|
-          log_file = log.file.open { |file| File.read(file) }
+          match_ids = ::Match.where(ranking_id: log.ranking.id).pluck(:id)
 
-          log_ranking = ::AppServices::Ranking::ProccessRankingService.new.call(log_file)
-
-          raise StandardError if log_ranking[:errors].present?
-
-          @response[:result].append(log_ranking[:result])
+          @match_ids += match_ids
         end
+
+        @response[:result] = ::AppServices::Ranking::PrepareRankingDataService.new(@match_ids).call
       rescue StandardError => _e
         @response[:errors].append('Error on generating the global ranking!')
       end

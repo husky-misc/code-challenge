@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 2021_05_15_192106) do
     t.integer "frags", default: 0, null: false
     t.datetime "started_at", null: false
     t.datetime "ended_at", null: false
+    t.string "match_code", null: false
     t.json "content", null: false
     t.string "strike_player"
     t.string "winner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"match_id\", \"name\"", name: "unique_name_by_match", unique: true
     t.index ["ranking_id"], name: "index_matches_on_ranking_id"
   end
 

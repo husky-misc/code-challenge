@@ -5,7 +5,7 @@ class Match < ApplicationRecord
 
   has_many :players, class_name: '::Player', inverse_of: :match, dependent: :destroy
 
-  validates :ranking, :started_at, :ended_at, :content, presence: true
+  validates :ranking, :started_at, :ended_at, :content, :match_code, presence: true
 
   validate :started_at_greater_than_ended_at, if: -> { dates_are_present? }
 
