@@ -1,49 +1,66 @@
-# PROBLEMA
-Dado o seguinte log de um jogo de tiro em primeira pessoa:
+# Problema
+
+Em um jogo de poker, imagine o seguinte cenário:
+
+Cada jogador recebe 5 cartas e pode vê-las. O jogador pode então descartar entre 0 e 5 das suas cartas e trocá-las pelo mesmo número de cartas a partir do topo do monte. O objetivo é maximizar o valor final da mão do jogador.
+
+As cartas do monte estão viradas para baixo, e normalmente não é possível saber a ordem das cartas. Vamos imaginar que o nosso jogador é um paranormal e que ele consiga saber as próximas 5 cartas do monte. Faça um código que ajude o jogador a descartar e trocar as cartas de forma a maximizar sua mão.
+
+Entradas e saídas
+A entrada será uma série de linhas, cada linha contendo as 5 cartas na mão do jogador e depois as 5 cartas do topo do monte. Cada carta será representada por 2 caracteres: o primeiro é o valor da carta (A=ás, 0-9, T=10, J=Valete, Q=Dama, K=Rei) e o segundo valor é o naipe (C=Paus, D=Ouro, S=Espada, H=Copas). As cartas serão separadas por espaço e cada linha será de um único baralho válido. Logo, não haverá cartas duplicadas entre a mão e o monte.
+
+Cada linha de entrada deve produzir uma linha de saída com a mão inicial, as 5 cartas do monte e a melhor mão possível.
+
+A ordem das cartas na mão do jogador é irrelevante mas a ordem das cartas no monte são importantes, pois cada carta só pode ser trocada com carta no topo do monte.
+
+Exemplos de entrada
 ```
-23/04/2019 15:34:22 - New match 11348965 has started
-23/04/2019 15:36:04 - Roman killed Nick using M16
-23/04/2019 15:36:33 - <WORLD> killed Nick by DROWN
-23/04/2019 15:39:22 - Match 11348965 has ended
-
-23/04/2021 16:14:22 - New match 11348966 has started
-23/04/2021 16:26:04 - Roman killed Marcus using M16
-23/04/2021 16:36:33 - <WORLD> killed Marcus by DROWN
-23/04/2021 16:49:22 - Match 11348966 has ended
-
-24/04/2020 16:14:22 - New match 11348961 has started
-24/04/2020 16:26:12 - Roman killed Marcus using M16
-24/04/2020 16:35:56 - Marcus killed Jhon using AK47
-24/04/2020 17:12:34 - Roman killed Bryian using M16
-24/04/2020 18:26:14 - Bryan killed Marcus using AK47
-24/04/2020 19:36:33 - <WORLD> killed Marcus by DROWN
-24/04/2020 20:19:22 - Match 11348961 has ended
+TH JH QC QD QS QH KH AH 2S 6S
+2H 2S 3H 3S 3C 2D 3D 6C 9C TH
+2H 2S 3H 3S 3C 2D 9C 3D 6C TH
+2H AD 5H AC 7H AH 6H 9H 4H 3C
+AC 2D 9C 3S KD 5S 4D KS AS 4C
+KS AH 2H 3C 4H KC 2C TC 2D AS
+AH 2C 9S AD 3C QH KS JS JD KD
+6C 9C 8C 2D 7C 2H TC 4C 9S AH
+3D 5S 2H QD TD 6S KH 9H AD QH
 ```
-
-# Resultado esperado
-- Montar o ranking de cada partida, com a quantidade de _frags_* e a quantidade de mortes de cada jogador;
-- Permitir que o seu código receba logs de múltiplas rodadas em um único arquivo.
-
-# Observações
-- Frag é quando um jogador mata outro player no jogo;
-- Frags realizados pelo player WORLD devem ser desconsiderados;
-- Permitir que uma rodada tenha múltiplos players, limitado a 20 jogadores por partida.
-
-# Bônus
-Faça caso se identifique com o problema ou se achar que há algo interessante a ser mostrado na solução:
-
-- Descobrir a arma preferida (a que mais matou) do vencedor;
-- Identificar a maior sequência de _frags_ efetuadas por um jogador (streak) sem morrer, dentro da partida;
-- Jogadores que vencerem uma partida sem morrerem devem ganhar um "award";
-- Jogadores que matarem 5 vezes em 1 minuto devem ganhar um "award";
-- Ranking Global dos jogadores, computando dados de todas as partidas existentes;
-- Permitir que os jogadores sejam classificados em times, quando um jogador mata outro player do mesmo time - Friendly Fire - é computado ```-1``` no score de frags do atirador.
-
+Exemplos de saída
+```
+Mão: TH JH QC QD QS Monte: QH KH AH 2S 6S Melhor Jogo: straight-flush (sequência numérica e de naipe)
+Mão: 2H 2S 3H 3S 3C Monte: 2D 3D 6C 9C TH Melhor Jogo: four-of-a-kind (quadra)
+Mão: 2H 2S 3H 3S 3C Monte: 2D 9C 3D 6C TH Melhor Jogo: full-house (trinca + par)
+Mão: 2H AD 5H AC 7H Monte: AH 6H 9H 4H 3C Melhor Jogo: flush (sequência de naipe)
+Mão: AC 2D 9C 3S KD Monte: 5S 4D KS AS 4C Melhor Jogo: straight (sequência numérica)
+Mão: KS AH 2H 3C 4H Monte: KC 2C TC 2D AS Melhor Jogo: three-of-a-kind (trinca)
+Mão: AH 2C 9S AD 3C Monte: QH KS JS JD KD Melhor Jogo: two-pairs (2 pares)
+Mão: 6C 9C 8C 2D 7C Monte: 2H TC 4C 9S AH Melhor Jogo: one-pair (1 par)
+Mão: 3D 5S 2H QD TD Monte: 6S KH 9H AD QH Melhor Jogo: highest-card (maior carta)
+```
 # Solução
-- Seja criativo;
-- Explore ao máximo a orientação a objetos e engenharia de software (SOLID; UseCases; Services; Interactors, etc)
-- Crie testes unitários e tente usar TDD; 
-- Faça commits atômicos e progressivos;
-- Utilize Ruby on Rails para fazer o upload do arquivo, persistir os dados das partidas e criar e as views necessárias para exibir o ranking, estatisticas dos jogadores e os dados das partidas. 
 
-Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
+1. Seja criativo;
+2. Explore ao máximo a orientação conceitos de objetos e engenharia de software (SOLID; UseCases; Services; Interactors)
+3. Crie testes unitários e tente usar TDD;
+4. Faça commits atômicos e progressivos;
+5. Utilize Ruby on Rails para fazer o upload do arquivo de entrada, persistir os dados das partidas e criar e as views necessárias para exibir as jogadas que nosso vidente conseguiu executar.
+6. Utilize o arquivo de read.me para adicionar algum comentário/observação que achar importante.
+
+
+# My Solution
+
+## ToDos
+- [x] Fix challenge description on README
+- [ ] Create a rails application running on docker
+- [ ] Setup testing tools
+- [ ] Write a few test scenarios
+- [ ] Build an API to receive the file (mocked response)
+- [ ] Handle errors when uploading file (no file, error messages)
+- [ ] Build an API to retrieve response (mocked data)
+- [ ] Implement cards logic
+- [ ] Implement data parsing
+- [ ] Implement possible hands analysis
+- [ ] Choose best hand
+- [ ] Create the frontend layer response
+- [ ] Tests for frontend
+- [ ] Possible hands step running in threads/ractors
