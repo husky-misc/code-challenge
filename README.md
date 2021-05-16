@@ -49,9 +49,29 @@ Mão: 3D 5S 2H QD TD Monte: 6S KH 9H AD QH Melhor Jogo: highest-card (maior cart
 
 # My Solution
 
+## Setup
+### Project dependencies
+*  [`docker`](https://docs.docker.com/install/)
+*  [`docker-compose`](https://docs.docker.com/compose/install/)
+
+
+### Container setup
+Build the containers for the application
+```
+$ docker-compose build
+```
+
+### Running the application
+Let docker compose do the job for us
+```
+$ docker-compose up
+```
+
+The application will be accessible on `localhost:3000`
+
 ## ToDos
 - [x] Fix challenge description on README
-- [ ] Create a rails application running on docker
+- [x] Create a rails application running on docker
 - [ ] Setup testing tools
 - [ ] Write a few test scenarios
 - [ ] Build an API to receive the file (mocked response)
