@@ -85,7 +85,7 @@ The application will be accessible on `localhost:3000`
 - [x] Fix challenge description on README
 - [x] Create a rails application running on docker
 - [x] Setup testing tools
-- [ ] Write a few test scenarios
+- [x] Write a few test scenarios
 - [ ] Build an API to receive the file (mocked response)
 - [ ] Handle errors when uploading file (no file, error messages)
 - [ ] Build an API to retrieve response (mocked data)
