@@ -67,12 +67,24 @@ Let docker compose do the job for us
 $ docker-compose up
 ```
 
+### Testing
+Run tests using rspec
+```
+$ docker-compose run webapp bundle exec rspec
+```
+
+### Code Linter
+Code quality evaluation is available with rubocop
+```
+$ docker-compose run webapp bundle exec rubocop
+```
+
 The application will be accessible on `localhost:3000`
 
 ## ToDos
 - [x] Fix challenge description on README
 - [x] Create a rails application running on docker
-- [ ] Setup testing tools
+- [x] Setup testing tools
 - [ ] Write a few test scenarios
 - [ ] Build an API to receive the file (mocked response)
 - [ ] Handle errors when uploading file (no file, error messages)
