@@ -86,8 +86,8 @@ The application will be accessible on `localhost:3000`
 - [x] Create a rails application running on docker
 - [x] Setup testing tools
 - [x] Write a few test scenarios
-- [ ] Build an API to receive the file (mocked response)
-- [ ] Handle errors when uploading file (no file, error messages)
+- [x] Build an API to receive the file (mocked response)
+- [x] Handle errors when uploading file (no file, error messages)
 - [ ] Build an API to retrieve response (mocked data)
 - [ ] Implement cards logic
 - [ ] Implement data parsing

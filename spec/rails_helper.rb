@@ -32,8 +32,8 @@ RSpec.configure do |config|
   # note if you'd prefer not to run each example within a transaction, you
   # should set use_transactional_fixtures to false.
   #
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  # config.use_transactional_fixtures = true
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
