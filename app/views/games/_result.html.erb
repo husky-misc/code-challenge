@@ -1,1 +1,9 @@
 <h1><%= t('.results') %></h1>
+
+<% @result.each do |hand| %>
+  <ul>
+    <div><%= hand[:hand] %></div>
+    <div><%= hand[:deck] %></div>
+    <div><%= hand[:best_hand] %></div>
+  </ul>
+<% end %>

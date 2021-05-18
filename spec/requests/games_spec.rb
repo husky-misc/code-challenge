@@ -29,6 +29,10 @@ RSpec.describe 'Games', type: :request do
       it 'loads a partial with the results' do
         expect(response.body).to include(I18n.t('games.index.title'))
         expect(response.body).to include(I18n.t('games.result.results'))
+
+        expect(response.body).to include(games_result.first[:hand])
+        expect(response.body).to include(games_result.first[:deck])
+        expect(response.body).to include(games_result.first[:best_hand].to_s)
       end
     end
 
@@ -37,6 +41,9 @@ RSpec.describe 'Games', type: :request do
 
       it 'raises an error' do
         expect(response).to have_http_status :unprocessable_entity
+      end
+
+      it 'shows an error message' do
         expect(response.body).to include(I18n.t('.games.upload.unprocessable_file'))
       end
     end

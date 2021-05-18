@@ -61,6 +61,11 @@ Build the containers for the application
 $ docker-compose build
 ```
 
+Install webpacker
+```
+$ docker-compose run webapp bundle exec rails webpacker:install
+```
+
 ### Running the application
 Let docker compose do the job for us
 ```
@@ -88,7 +93,7 @@ The application will be accessible on `localhost:3000`
 - [x] Write a few test scenarios
 - [x] Build an API to receive the file (mocked response)
 - [x] Handle errors when uploading file (no file, error messages)
-- [ ] Build an API to retrieve response (mocked data)
+- [x] Build a view to retrieve response (mocked data)
 - [ ] Implement cards logic
 - [ ] Implement data parsing
 - [ ] Implement possible hands analysis

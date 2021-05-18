@@ -22,6 +22,7 @@ class GamesController < ApplicationController
 
   def valid_file?
     return false unless game_params[:games_filename]
+
     File.extname(game_params[:games_filename]) == ACCEPTED_FORMAT
   end
 end
