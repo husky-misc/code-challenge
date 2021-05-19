@@ -7,3 +7,4 @@ en:
       results: 'Summary'
     upload:
       unprocessable_file: 'Please inform a .txt file'
+      no_content_file: 'File informed is empty'

@@ -12,6 +12,9 @@ class GamesController < ApplicationController
       flash[:notice] = t('.unprocessable_file')
       render :index, status: :unprocessable_entity
     end
+  rescue GameAnalyzer::NoContentFile
+    flash[:notice] = t('.no_content_file')
+    render :index, status: :unprocessable_entity
   end
 
   private

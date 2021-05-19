@@ -94,8 +94,8 @@ The application will be accessible on `localhost:3000`
 - [x] Build an API to receive the file (mocked response)
 - [x] Handle errors when uploading file (no file, error messages)
 - [x] Build a view to retrieve response (mocked data)
-- [ ] Implement cards logic
-- [ ] Implement data parsing
+- [x] Implement cards logic
+- [x] Implement data parsing
 - [ ] Implement possible hands analysis
 - [ ] Choose best hand
 - [ ] Create the frontend layer response
