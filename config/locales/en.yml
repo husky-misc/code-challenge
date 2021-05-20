@@ -8,3 +8,5 @@ en:
     upload:
       unprocessable_file: 'Please inform a .txt file'
       no_content_file: 'File informed is empty'
+  hand_evaluator:
+    result: "Hand: %{hand} Deck: %{deck} Best Hand: %{best_hand}"

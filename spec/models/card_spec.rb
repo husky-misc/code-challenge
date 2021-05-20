@@ -19,8 +19,6 @@ RSpec.describe Card, type: :model do
   end
 
   describe '#validations' do
-    let(:card) { described_class.build(card_string) }
-
     context 'when input has 3 characters' do
       let(:card_string) { '9DD' }
 

@@ -11,7 +11,13 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
+
+  config.eager_load_paths += Dir[Rails.root.join('app/models/**/*.rb')]
+
+  Rails.application.reloader.to_prepare do
+    Dir[Rails.root.join('app/models/**/*.rb')].each { |file| require_dependency file }
+  end
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -61,4 +67,7 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  Rails.logger = Logger.new($stdout)
+  config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
 end

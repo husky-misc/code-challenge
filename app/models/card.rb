@@ -26,7 +26,7 @@ class Card
   end
 
   def self.valid?(input, card)
-    return false if input.length != 2
+    return false if input.size != 2
     return false if card.face.nil?
     return false if card.suit.nil?
 

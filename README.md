@@ -96,8 +96,8 @@ The application will be accessible on `localhost:3000`
 - [x] Build a view to retrieve response (mocked data)
 - [x] Implement cards logic
 - [x] Implement data parsing
+- [x] Choose best hand
 - [ ] Implement possible hands analysis
-- [ ] Choose best hand
 - [ ] Create the frontend layer response
 - [ ] Tests for frontend
 - [ ] Possible hands step running in threads/ractors

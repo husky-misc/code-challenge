@@ -1,17 +1,40 @@
 # frozen_string_literal: true
 
+require 'rails_helper'
+
 RSpec.describe GameAnalyzer do
   describe '.call' do
-    context 'when deck is valid' do
-      it 'searches the best hand for each deck'
+    subject { described_class.new(games_filename) }
+
+    context 'when file is valid' do
+      let(:games_filename) { file_fixture('valid_games.txt') }
+
+      before do
+        allow(HandEvaluator).to receive(:call)
+      end
+
+      it 'searches the best hand for each deck' do
+        subject.call
+
+        expect(HandEvaluator).to have_received(:call).exactly(9).times
+      end
     end
 
-    context 'when deck contains invalid cards' do
-      it 'appends and error message to deck line'
+    context 'when returns result' do
+      let(:result) { subject.call }
+      let(:games_filename) { file_fixture('valid_games.txt') }
+
+      it 'returns an array of results' do
+        expect(result.first[:hand]).to eq 'TH JH QC QD QS'
+      end
     end
 
-    context 'when deck contains wrong amount of cards' do
-      it 'appends and error message to deck'
+    context 'when file is empty' do
+      let(:games_filename) { file_fixture('empty_file.txt') }
+
+      it 'returns NoContentFile exception' do
+        expect { subject.call }.to raise_error(GameAnalyzer::NoContentFile)
+      end
     end
   end
 end
