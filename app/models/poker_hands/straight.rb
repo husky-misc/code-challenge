@@ -7,9 +7,5 @@ module PokerHands
 
       five_consecutives?(faces)
     end
-
-    def self.to_s
-      'straight'
-    end
   end
 end

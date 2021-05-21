@@ -45,7 +45,9 @@ module PokerHands
         false
       end
 
-      false
+      def to_s
+        name.demodulize.underscore.dasherize
+      end
     end
   end
 end

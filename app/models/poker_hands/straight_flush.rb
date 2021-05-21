@@ -12,10 +12,6 @@ module PokerHands
       end
     end
 
-    def self.to_s
-      'straight-flush'
-    end
-
     def self.flush_hand(deck, suit)
       deck.select { |card| card.suit == suit }
     end
