@@ -2,7 +2,7 @@
 
 module PokerHands
   class HighestCard < PokerHand
-    def self.possible?(deck_by_face, deck_by_suit)
+    def self.possible?(*args)
       true
     end
 

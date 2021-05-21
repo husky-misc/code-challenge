@@ -15,7 +15,11 @@ class HandEvaluator < ApplicationService
 
   def best_hand
     poker_hands.find do |poker_hand|
-      poker_hand.possible?(@hand.deck_by_face, @hand.deck_by_suit)
+      poker_hand.possible?({
+        sorted: @hand.sorted,
+        by_face: @hand.grouped_by_face,
+        by_suit: @hand.grouped_by_suit
+      })
     end.to_s
   end
 

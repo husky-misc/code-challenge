@@ -34,4 +34,9 @@ class Card
   end
 
   private_class_method :valid?
+
+  def ==(other)
+    face == other.face &&
+      suit == other.suit
+  end
 end

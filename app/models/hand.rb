@@ -5,39 +5,55 @@ class Hand
 
   CARDS_AMOUNT = 10
 
-  attr_accessor :deck_by_face, :deck_by_suit, :visible_cards, :deck_cards
+  attr_accessor :cards, :visible_cards, :deck_cards
 
-  def self.build(deck_line)
-    cards = deck_line_parser(deck_line)
+  class << self
+    def build(deck_line)
+      hand = new
+      hand.cards = deck_line_parser(deck_line)
+      hand.visible_cards = formatted_hand(deck_line)
+      hand.deck_cards = formatted_deck(deck_line)
 
-    hand = new
-    hand.deck_by_face = cards.sort_by(&:face)
-    hand.deck_by_suit = cards.sort_by(&:suit)
-    hand.visible_cards = formatted_hand(deck_line)
-    hand.deck_cards = formatted_deck(deck_line)
+      raise InvalidHand unless valid?(hand)
 
-    raise InvalidHand unless valid?(hand)
+      hand
+    end
 
-    hand
+    def formatted_hand(deck_line)
+      deck_line[..13]
+    end
+
+    def formatted_deck(deck_line)
+      deck_line[15..]
+    end
+
+    def deck_line_parser(deck_line)
+      deck_line.split.map { |value| Card.build(value) }
+    end
+
+    private
+
+    def valid?(hand)
+      return false if hand.cards.size != CARDS_AMOUNT
+      return false if hand.cards.any? { |card| hand.cards.count(card) > 1 }
+
+      true
+    end
   end
 
-  def self.formatted_hand(deck_line)
-    deck_line[..13]
+  def sorted
+    @sorted ||= cards.sort_by(&:face)
   end
 
-  def self.formatted_deck(deck_line)
-    deck_line[15..]
+  def grouped_by_face
+    @grouped_by_face ||= cards.group_by(&:face).map do |face, cards|
+      { face: face, qty: cards.size }
+    end
   end
 
-  def self.deck_line_parser(deck_line)
-    deck_line.split.map { |value| Card.build(value) }
+  def grouped_by_suit
+    @grouped_by_suit ||= cards.group_by(&:suit).map do |suit, cards|
+      { suit: suit, qty: cards.size }
+    end
   end
-
-  def self.valid?(hand)
-    return false if hand.deck_by_face.size != CARDS_AMOUNT
-
-    true
-  end
-
-  private_class_method :deck_line_parser, :valid?
 end

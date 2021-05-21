@@ -86,6 +86,7 @@ $ docker-compose run webapp bundle exec rubocop
 
 The application will be accessible on `localhost:3000`
 
+
 ## ToDos
 - [x] Fix challenge description on README
 - [x] Create a rails application running on docker
@@ -97,7 +98,7 @@ The application will be accessible on `localhost:3000`
 - [x] Implement cards logic
 - [x] Implement data parsing
 - [x] Choose best hand
-- [ ] Implement possible hands analysis
+- [x] Implement possible hands analysis
 - [ ] Create the frontend layer response
 - [ ] Tests for frontend
 - [ ] Possible hands step running in threads/ractors

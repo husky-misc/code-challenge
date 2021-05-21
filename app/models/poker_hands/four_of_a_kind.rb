@@ -2,8 +2,8 @@
 
 module PokerHands
   class FourOfAKind < PokerHand
-    def self.possible?(deck_by_face, deck_by_suit)
-      true
+    def self.possible?(combinations)
+      combinations[:by_face].any? { |group| group[:qty] == 4 }
     end
 
     def self.to_s
