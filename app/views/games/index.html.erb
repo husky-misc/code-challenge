@@ -1,0 +1,13 @@
+<h1><%= t('.title') %></h1>
+
+
+<%= form_tag games_upload_path, multipart: true do %>
+  <%= file_field_tag :games_filename %>
+  <%= submit_tag t('.file_upload_button') %>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= render partial: 'result', locals: { result: @result } if @result %>

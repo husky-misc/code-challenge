@@ -1,0 +1,14 @@
+en:
+  games:
+    index:
+      title: 'Pocker Decks Analyzer'
+      file_upload_button: 'Upload'
+    result:
+      results: 'Summary'
+    upload:
+      unprocessable_file: 'Please inform a .txt file'
+  no_content_file: 'File informed is empty'
+  invalid_card: " --> contains invalid cards"
+  invalid_hand: " --> contains invalid hand"
+  hand_evaluator:
+    result: "Hand: %{hand} Deck: %{deck} Best Hand: %{best_hand}"
