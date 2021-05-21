@@ -12,13 +12,13 @@ RSpec.describe PokerHands::TwoPairs do
   end
 
   describe '#possible?' do
-    subject { described_class.possible?({ by_face: grouped_by_face }) }
+    subject(:possible?) { described_class.possible?({ by_face: grouped_by_face }) }
 
     context 'when the hand as four cards with same face' do
       let(:grouped_by_face) { [{ face: 2, qty: 2 }, { face: 4, qty: 2 }] }
 
       it 'returns true' do
-        expect(subject).to be_truthy
+        expect(possible?).to be_truthy
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe PokerHands::TwoPairs do
       let(:grouped_by_face) { [{ face: 3, qty: 1 }, { face: 13, qty: 2 }] }
 
       it 'returns false' do
-        expect(subject).to be_falsy
+        expect(possible?).to be_falsy
       end
     end
   end

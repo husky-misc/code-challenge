@@ -12,13 +12,13 @@ RSpec.describe PokerHands::Flush do
   end
 
   describe '#possible?' do
-    subject { described_class.possible?({ by_suit: grouped_by_suit }) }
+    subject(:possible?) { described_class.possible?({ by_suit: grouped_by_suit }) }
 
     context 'when the hand has fiver cards with same suit' do
       let(:grouped_by_suit) { [{ suit: 2, qty: 5 }] }
 
       it 'returns true' do
-        expect(subject).to be_truthy
+        expect(possible?).to be_truthy
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe PokerHands::Flush do
       let(:grouped_by_suit) { [{ suit: 3, qty: 3 }, { suit: 2, qty: 2 }] }
 
       it 'returns false' do
-        expect(subject).to be_falsy
+        expect(possible?).to be_falsy
       end
     end
   end

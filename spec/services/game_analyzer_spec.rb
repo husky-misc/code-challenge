@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe GameAnalyzer do
   describe '.call' do
-    subject { described_class.new(games_filename) }
+    subject(:call) { described_class.new(games_filename).call }
 
     context 'when file is valid' do
       let(:games_filename) { file_fixture('valid_games.txt') }
@@ -14,14 +14,14 @@ RSpec.describe GameAnalyzer do
       end
 
       it 'searches the best hand for each deck' do
-        subject.call
+        call
 
         expect(HandEvaluator).to have_received(:call).exactly(9).times
       end
     end
 
     context 'when returns result' do
-      let(:result) { subject.call }
+      let(:result) { call }
       let(:games_filename) { file_fixture('valid_games.txt') }
 
       it 'returns an array of results' do
@@ -33,7 +33,7 @@ RSpec.describe GameAnalyzer do
       let(:games_filename) { file_fixture('empty_file.txt') }
 
       it 'returns NoContentFile exception' do
-        expect { subject.call }.to raise_error(GameAnalyzer::NoContentFile)
+        expect { call }.to raise_error(GameAnalyzer::NoContentFile)
       end
     end
   end

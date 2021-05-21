@@ -14,31 +14,35 @@ module PokerHands
       HighestCard: 9
     }.freeze
 
-    def self.possible?
-      raise NotImplementedError
-    end
+    class << self
+      def possible?
+        raise NotImplementedError
+      end
 
-    def self.priority
-      PRIORITY_LEVEL[name.demodulize.to_sym]
-    end
+      def priority
+        PRIORITY_LEVEL[name.demodulize.to_sym]
+      end
 
-    def self.two_of_the_same(group)
-      group.count { |group| group[:qty] == 2 }
-    end
+      def two_of_the_same(group)
+        group.count { |deck| deck[:qty] == 2 }
+      end
 
-    def self.three_of_the_same(group)
-      group.count { |group| group[:qty] == 3 }
-    end
+      def three_of_the_same(group)
+        group.count { |deck| deck[:qty] == 3 }
+      end
 
-    def self.five_of_the_same(group)
-      group.select { |group| group[:qty] >= 5 }
-    end
+      def five_of_the_same(group)
+        group.select { |deck| deck[:qty] >= 5 }
+      end
 
-    def self.five_consecutives?(faces)
-      faces << 14 if faces[0] == 1
+      def five_consecutives?(faces)
+        faces << 14 if faces[0] == 1
 
-      for i in 0..(faces.size - 5)
-        return true if faces[i + 4] - faces[i] == 4
+        (0..(faces.size - 5)).each do |i|
+          return true if faces[i + 4] - faces[i] == 4
+        end
+
+        false
       end
 
       false

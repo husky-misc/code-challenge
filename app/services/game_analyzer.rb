@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class GameAnalyzer < ApplicationService
-  class NoContentFile < StandardError; end
+  class NoContentFile < StandardError
+    def message
+      I18n.t('.no_content_file')
+    end
+  end
 
   def initialize(games_file)
     @games_file = games_file
@@ -13,10 +17,10 @@ class GameAnalyzer < ApplicationService
     result = []
 
     File.foreach(@games_file) do |line|
-      Rails.logger.debug("Reading line from file: #{line}")
-
       hand = Hand.build(line)
       result << HandEvaluator.call(hand)
+    rescue StandardError => e
+      result << { line: line, errors: e.message }
     end
 
     result

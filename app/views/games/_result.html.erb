@@ -2,8 +2,14 @@
 
 <% @result.each do |hand| %>
   <ul>
-    <div><%= hand[:hand] %></div>
-    <div><%= hand[:deck] %></div>
-    <div><%= hand[:best_hand] %></div>
+    <div>
+      <% if hand[:errors] %>
+        <b><%= t '.line' %>: </b><%= hand[:line] %><%= hand[:errors] %>
+      <% else %>
+        <b><%= t '.hand' %>: </b><%= hand[:hand] %>
+        <b><%= t '.deck' %>: </b><%= hand[:deck] %>
+        <b><%= t '.best_hand' %>: </b><%= hand[:best_hand] %>
+      <% end %>
+    </div>
   </ul>
 <% end %>

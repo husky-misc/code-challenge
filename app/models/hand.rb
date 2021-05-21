@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Hand
-  class InvalidHand < StandardError; end
+  class InvalidHand < StandardError
+    def message
+      I18n.t('.invalid_hand')
+    end
+  end
 
   CARDS_AMOUNT = 10
 

@@ -87,6 +87,11 @@ $ docker-compose run webapp bundle exec rubocop
 The application will be accessible on `localhost:3000`
 
 
+## Personal Notes
+- Sample data offered by data does not match to rules
+- If I can switch "between 0 and 5 cards", all of them can be used
+
+
 ## ToDos
 - [x] Fix challenge description on README
 - [x] Create a rails application running on docker
@@ -99,6 +104,6 @@ The application will be accessible on `localhost:3000`
 - [x] Implement data parsing
 - [x] Choose best hand
 - [x] Implement possible hands analysis
-- [ ] Create the frontend layer response
+- [x] Improve data presentation
 - [ ] Tests for frontend
 - [ ] Possible hands step running in threads/ractors

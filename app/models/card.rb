@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Card
-  class InvalidCard < StandardError; end
+  class InvalidCard < StandardError
+    def message
+      I18n.t('.invalid_card')
+    end
+  end
 
   SUITS = {
     'C' => 0, 'D' => 1, 'S' => 2, 'H' => 3

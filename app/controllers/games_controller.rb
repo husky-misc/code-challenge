@@ -9,12 +9,10 @@ class GamesController < ApplicationController
 
       render :index, locals: { result: @result }
     else
-      flash[:notice] = t('.unprocessable_file')
-      render :index, status: :unprocessable_entity
+      handle_error
     end
-  rescue GameAnalyzer::NoContentFile
-    flash[:notice] = t('.no_content_file')
-    render :index, status: :unprocessable_entity
+  rescue StandardError => e
+    handle_error(e)
   end
 
   private
@@ -27,5 +25,12 @@ class GamesController < ApplicationController
     return false unless game_params[:games_filename]
 
     File.extname(game_params[:games_filename]) == ACCEPTED_FORMAT
+  end
+
+  def handle_error(exception = nil)
+    message = t('.unprocessable_file') if exception.nil?
+
+    flash[:notice] = message || exception.message
+    render :index, status: :unprocessable_entity
   end
 end

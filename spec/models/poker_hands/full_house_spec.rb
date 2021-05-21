@@ -12,13 +12,13 @@ RSpec.describe PokerHands::FullHouse do
   end
 
   describe '#possible?' do
-    subject { described_class.possible?({ by_face: grouped_by_face }) }
+    subject(:possible?) { described_class.possible?({ by_face: grouped_by_face }) }
 
     context 'when the hand has one pair and one three of a kind' do
       let(:grouped_by_face) { [{ face: 2, qty: 3 }, { face: 7, qty: 2 }] }
 
       it 'returns true' do
-        expect(subject).to be_truthy
+        expect(possible?).to be_truthy
       end
     end
 
@@ -26,7 +26,7 @@ RSpec.describe PokerHands::FullHouse do
       let(:grouped_by_face) { [{ face: 2, qty: 3 }, { face: 7, qty: 3 }, { face: 9, qty: 3 }] }
 
       it 'returns true' do
-        expect(subject).to be_truthy
+        expect(possible?).to be_truthy
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe PokerHands::FullHouse do
       let(:grouped_by_face) { [{ suit: 3, qty: 2 }, { suit: 2, qty: 2 }] }
 
       it 'returns false' do
-        expect(subject).to be_falsy
+        expect(possible?).to be_falsy
       end
     end
   end

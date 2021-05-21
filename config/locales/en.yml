@@ -7,6 +7,8 @@ en:
       results: 'Summary'
     upload:
       unprocessable_file: 'Please inform a .txt file'
-      no_content_file: 'File informed is empty'
+  no_content_file: 'File informed is empty'
+  invalid_card: " --> contains invalid cards"
+  invalid_hand: " --> contains invalid hand"
   hand_evaluator:
     result: "Hand: %{hand} Deck: %{deck} Best Hand: %{best_hand}"

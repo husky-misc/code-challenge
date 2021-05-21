@@ -2,12 +2,8 @@
 
 module PokerHands
   class HighestCard < PokerHand
-    def self.possible?(*args)
+    def self.possible?(*_args)
       true
-    end
-
-    def self.to_s
-      'highest-card'
     end
   end
 end

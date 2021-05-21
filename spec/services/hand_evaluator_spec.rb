@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe HandEvaluator do
   describe '.call' do
-    subject { described_class.new(hand) }
+    subject(:call) { described_class.new(hand).call }
 
     context 'when deck is valid' do
       let(:deck_line) { 'TH JH QC QD QS QH KH AH 2S 6S' }
@@ -18,7 +18,7 @@ RSpec.describe HandEvaluator do
       end
 
       it 'retuns a string with best hand' do
-        expect(subject.call).to eq expected
+        expect(call).to eq expected
       end
     end
 
@@ -27,13 +27,13 @@ RSpec.describe HandEvaluator do
       let(:hand) { Hand.build(deck_line) }
 
       it 'retuns an error' do
-        expect { subject.call }.to raise_error(Card::InvalidCard)
+        expect { call }.to raise_error(Card::InvalidCard)
       end
     end
   end
 
   describe '.best_hand' do
-    subject { described_class.new(hand) }
+    subject(:best_hand) { described_class.new(hand).best_hand }
 
     context 'when found a straight flush' do
       let(:deck_line) { 'TH JH QC QD QS QH KH AH 2S 6S' }
@@ -46,7 +46,7 @@ RSpec.describe HandEvaluator do
       end
 
       it 'stops evaluating hands when finding first' do
-        subject.best_hand
+        best_hand
 
         expect(PokerHands::StraightFlush).to have_received(:possible?)
         expect(PokerHands::FourOfAKind).not_to have_received(:possible?)
